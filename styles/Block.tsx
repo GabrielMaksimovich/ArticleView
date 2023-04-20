@@ -31,6 +31,10 @@ export type BlockInterface = {
     paddingHorizontal?: string;
     paddingVertical?: string;
     borderStyle?: string;
+    marginTop?: number;
+    marginBottom?: number;
+    marginLeft?: number;
+    marginRight?: number;
     minHeight?: string;
     onLayout?: (value: SyntheticEvent) => void;
     translateY?: string;
@@ -49,6 +53,10 @@ export type BlockInterface = {
 const StyledBlock = styled.View<BlockInterface>`
   ${({ width }): string | undefined => width && `width: ${width}`};
   ${({ height }): string | undefined => height && `height: ${height}`};
+  ${({ marginTop }): number | undefined => marginTop};
+  ${({ marginBottom }): number | undefined => marginBottom};
+  ${({ marginLeft }): number | undefined => marginLeft};
+  ${({ marginRight }): number | undefined => marginRight};
   ${({ minHeight }): string | undefined => minHeight && `min-height: ${minHeight}px`};
   ${({ minWid }): string | undefined => minWid && `min-width: ${minWid}`};
   ${({ maxWid }): string | undefined => maxWid && `max-width: ${maxWid}`};
@@ -96,7 +104,9 @@ const StyledBlock = styled.View<BlockInterface>`
   ${({ overflow }): string | undefined => overflow && `overflow: ${overflow}`};
 `;
 
-export const Block: React.FC<BlockInterface> = ({ children, ...rest }) => (
-    <StyledBlock {...rest}>{children}</StyledBlock>
+export const Block: FC<BlockInterface> = ({ children, ...rest }) => (
+    <StyledBlock {...rest}>
+        {children}
+    </StyledBlock>
 );
 
