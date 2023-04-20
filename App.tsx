@@ -14,6 +14,7 @@ import {
 
 import HeaderWithIcons from "./components/CommonUIComponents/HeaderWithIcons";
 import {Block} from "./styles/Block";
+import BadgeSection from "./components/CommonUIComponents/BadgeSection";
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,9 +35,7 @@ function App(): JSX.Element {
         >
           <HeaderWithIcons />
 
-          <Block>
-
-          </Block>
+          <BadgeSection />
         </ScrollView>
     </SafeAreaView>
   );
