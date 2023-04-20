@@ -23,6 +23,8 @@ const ArticleSection = () => {
 
     return (
         <Block
+            borderBottomColor={'grey'}
+            borderBottomWidth={'0.5px'}
         >
             <Block
                 flexDirection={'row'}
