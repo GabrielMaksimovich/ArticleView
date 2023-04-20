@@ -1,22 +1,24 @@
 import React from 'react';
 
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme, View,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    Text,
+    useColorScheme, View,
 } from 'react-native';
 
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
+import HeaderWithIcons from "./components/CommonUIComponents/HeaderWithIcons";
+
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? Colors.darker : Colors.white,
   };
 
   return (
@@ -28,10 +30,7 @@ function App(): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <View>
-          <Text>Hello world</Text>
-        </View>
-
+        <HeaderWithIcons />
       </ScrollView>
     </SafeAreaView>
   );
