@@ -13,6 +13,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import HeaderWithIcons from "./components/CommonUIComponents/HeaderWithIcons";
+import {Block} from "./styles/Block";
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,11 +28,16 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
+        <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <HeaderWithIcons />
-      </ScrollView>
+        style={backgroundStyle}
+        >
+          <HeaderWithIcons />
+
+          <Block>
+
+          </Block>
+        </ScrollView>
     </SafeAreaView>
   );
 }
