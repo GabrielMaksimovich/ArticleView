@@ -30,8 +30,10 @@ const StyledButton = styled.TouchableOpacity<ButtonInterface>`
   ${({ opacity }): string | undefined => opacity && `opacity: ${opacity}`};
   ${({ shadowOpacity }): string | 0 | undefined => shadowOpacity && `shadow-opacity: ${shadowOpacity}`};
   ${({ shadowRadius }): number | undefined => shadowRadius && `shadow-radius: ${shadowRadius}`};
-  ${({ boxShadow }): string | undefined => boxShadow && `box-shadow: ${boxShadow}`};
   ${({ elevation }): string | 0 | undefined => elevation && `elevation: ${elevation}`};
+  ${({ elevation }): string | 0 | undefined => elevation && `elevation: ${elevation}`};
+  ${({ borderColor }): string | undefined => borderColor && `borderColor: ${borderColor}`};
+  ${({ borderWidth }): string | undefined => borderWidth && `borderWidth: ${borderWidth}`};
   ${({ borderBottomColor, borderBottomWidth }): string | undefined =>
     borderBottomColor &&
     borderBottomWidth &&
