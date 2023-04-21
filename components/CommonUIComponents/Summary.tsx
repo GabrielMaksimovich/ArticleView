@@ -1,27 +1,37 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from "react";
+import React, {useState} from "react";
 import HeaderWithoutIcons from "../SimpleComponents/HeaderWithoutIcons";
 import {Block} from "../../styles/Block";
 import ArticleSection from "../SimpleComponents/ArticleSection";
 import Footer from "../SimpleComponents/Footer";
 import BadgeSummary from "../SimpleComponents/BadgeSummary";
 import SwitchBtn from "../SimpleComponents/SwitchBtn";
+import ArticleHeader from "../SimpleComponents/ArticleHeader";
+import Carton from "../SimpleComponents/Carton";
 
 const Summary = () => {
+    const [activeButton, setActiveButton] = useState("Cartons");
+
+    const handleActiveButtonChange = (buttonName: string) => {
+        setActiveButton(buttonName);
+    };
+
     return (
         <Block>
-            <HeaderWithoutIcons text='Prepare' title='Summary'/>
+            <HeaderWithoutIcons text="Prepare" title="Summary" />
             <BadgeSummary />
-            <SwitchBtn />
-            <ArticleSection />
-            <Footer title='Pull the trigger to scan a carton barcode.'/>
+            <SwitchBtn onButtonChange={handleActiveButtonChange} />
+            {activeButton === "Articles" ? (
+                <>
+                    <ArticleHeader title={'ARTICLE NO.'} />
+                    <ArticleSection/>
+                </>
+            ) : (
+                <>
+                    <ArticleHeader title={'CARTON NO.'} />
+                    <Carton />
+                    <Footer title="Pull the trigger to scan a carton barcode." />
+                </>
+            )}
         </Block>
     );
 };

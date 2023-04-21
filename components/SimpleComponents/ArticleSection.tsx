@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from "react";
+import React, {FC} from "react";
 import {Text} from "react-native";
 import {Block} from "../../styles/Block";
 import {Image} from "../../styles/Image";
@@ -15,7 +15,8 @@ import longsleeve from '../../assets/longsleeve.webp';
 import rightArrow from '../../assets/right-arrow.png';
 import data from "../../data/data";
 
-const ArticleSection = () => {
+
+const ArticleSection: FC = () => {
 
     const handlePress = () => {
         console.log('Button pressed!');
@@ -26,18 +27,6 @@ const ArticleSection = () => {
             borderBottomColor={'grey'}
             borderBottomWidth={'0.5px'}
         >
-            <Block
-                flexDirection={'row'}
-                justifyContent={'space-between'}
-                paddingHorizontal={'20px'}
-                paddingVertical={'10px'}
-                borderBottomColor={'grey'}
-                borderBottomWidth={'0.5px'}
-            >
-                <Text style={{color: '#9e9e9e'}}>ARTICLE</Text>
-                <Text style={{color: '#9e9e9e'}}>ACT</Text>
-            </Block>
-
             {data.map(item => (
                 <Block
                     key={item.id}

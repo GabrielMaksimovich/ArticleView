@@ -26,7 +26,7 @@ const Footer: FC<Props> = ({ title }) => {
             flexDirection={'row'}
             alignItems={'center'}
             alignSelf={'center'}
-            justifyContent={'center'}
+            justifyContent={'flex-end'}
             paddingVertical={'10px'}
         >
             <Button
