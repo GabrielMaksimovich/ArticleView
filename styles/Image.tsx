@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components/native";
 
 type ImageInterface = {
-    width?: string;
-    height?: string;
+    width?: string | number;
+    height?: string | number;
     display?: string;
     resizeMode: string;
     onError: () => void;
@@ -12,8 +12,8 @@ type ImageInterface = {
 };
 
 const StyledImage = styled.Image<ImageInterface>`
-  width: ${({ width }): string => width || "50px"};
-  height: ${({ height }): string => height || "50px"};
+  width: ${({ width }): string | number => width || "50px"};
+  height: ${({ height }): string | number => height || "50px"};
   ${({ display }): string | null => (display && `display: ${display}`) || null};
 `;
 
