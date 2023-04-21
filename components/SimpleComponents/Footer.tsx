@@ -6,13 +6,17 @@
  * @flow strict-local
  */
 
-import React from "react";
+import React, {FC} from "react";
 import {Block} from "../../styles/Block";
 import {Text} from "react-native";
 import {Button} from "../../styles/Button";
 
+type Props = {
+    title: string;
+}
 
-const Footer = () => {
+
+const Footer: FC<Props> = ({ title }) => {
     const handlePress = () => {
         console.log('Button pressed!');
     }
@@ -35,7 +39,7 @@ const Footer = () => {
                 justifyContent={'center'}
                 alignItems={'center'}
             >
-                <Text style={{color: '#7813ab', fontSize: 16}}>Pull the trigger to start reading.</Text>
+                <Text style={{color: '#7813ab', fontSize: 15, textAlign: 'center'}}>{title}</Text>
             </Button>
         </Block>
     );

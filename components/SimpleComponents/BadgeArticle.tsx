@@ -13,7 +13,7 @@ import {Image} from "../../styles/Image";
 import box from '../../assets/box.png';
 import badge from '../../assets/badge.png';
 
-const BadgeSection = () => {
+const BadgeArticle = () => {
 
     return (
         <Block
@@ -58,4 +58,4 @@ const BadgeSection = () => {
     );
 };
 
-export default BadgeSection;
+export default BadgeArticle;

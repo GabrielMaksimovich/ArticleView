@@ -10,7 +10,7 @@ import Summary from './components/CommonUIComponents/Summary';
 
 const Stack = createNativeStackNavigator();
 
-const MyStack = () => {
+const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -23,25 +23,10 @@ const MyStack = () => {
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-            <Stack.Navigator>
-                <Stack.Screen
-                    name="HeaderWithIcons"
-                    component={HeaderWithIcons}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Article"
-                    component={Article}
-                    options={{ title: 'Article' }}
-                />
-                <Stack.Screen
-                    name="Summary"
-                    component={Summary}
-                    options={{ title: 'Summary' }}
-                />
-            </Stack.Navigator>
+            <HeaderWithIcons />
+            <Summary />
         </NavigationContainer>
     );
 };
 
-export default MyStack;
+export default App;

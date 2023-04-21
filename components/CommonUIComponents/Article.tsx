@@ -8,7 +8,7 @@
 
 import React from "react";
 import HeaderWithoutIcons from "../SimpleComponents/HeaderWithoutIcons";
-import BadgeSection from "../SimpleComponents/BadgeSection";
+import BadgeArticle from "../SimpleComponents/BadgeArticle";
 import {Block} from "../../styles/Block";
 import ArticleSection from "../SimpleComponents/ArticleSection";
 import Footer from "../SimpleComponents/Footer";
@@ -16,10 +16,10 @@ import Footer from "../SimpleComponents/Footer";
 const Article = () => {
     return (
         <Block>
-            <HeaderWithoutIcons />
-            <BadgeSection />
+            <HeaderWithoutIcons text='Confirm' title='Article in Carton'/>
+            <BadgeArticle />
             <ArticleSection />
-            <Footer />
+            <Footer title='Pull the trigger to start reading'/>
         </Block>
     );
 };

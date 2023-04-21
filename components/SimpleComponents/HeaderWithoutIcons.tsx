@@ -6,11 +6,16 @@
  * @flow strict-local
  */
 
-import React from "react";
+import React, {FC} from "react";
 import {Block} from "../../styles/Block";
 import {Text} from "react-native";
 
-const HeaderWithoutIcons = () => {
+type Props = {
+    text: string,
+    title: string,
+}
+
+const HeaderWithoutIcons: FC<Props> = ({ text, title }) => {
 
     return (
         <Block
@@ -25,8 +30,8 @@ const HeaderWithoutIcons = () => {
                 paddingHorizontal={'5px'}
             >
                 <Text style={{color: 'blue'}}>Cancel</Text>
-                <Text style={{fontWeight: 'bold'}}>Article in Carton</Text>
-                <Text style={{color: 'blue'}}>Confirm</Text>
+                <Text style={{fontWeight: 'bold'}}>{title}</Text>
+                <Text style={{color: 'blue'}}>{text}</Text>
             </Block>
         </Block>
     );

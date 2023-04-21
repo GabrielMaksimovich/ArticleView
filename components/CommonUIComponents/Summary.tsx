@@ -8,18 +8,20 @@
 
 import React from "react";
 import HeaderWithoutIcons from "../SimpleComponents/HeaderWithoutIcons";
-import BadgeSection from "../SimpleComponents/BadgeSection";
 import {Block} from "../../styles/Block";
 import ArticleSection from "../SimpleComponents/ArticleSection";
 import Footer from "../SimpleComponents/Footer";
+import BadgeSummary from "../SimpleComponents/BadgeSummary";
+import SwitchBtn from "../SimpleComponents/SwitchBtn";
 
 const Summary = () => {
     return (
         <Block>
-            <HeaderWithoutIcons />
-            <BadgeSection />
+            <HeaderWithoutIcons text='Prepare' title='Summary'/>
+            <BadgeSummary />
+            <SwitchBtn />
             <ArticleSection />
-            <Footer />
+            <Footer title='Pull the trigger to scan a carton barcode.'/>
         </Block>
     );
 };

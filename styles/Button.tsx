@@ -5,7 +5,7 @@ import { BlockInterface } from "./Block";
 type ButtonInterface = BlockInterface & {
     onPress: () => void;
     shadowColor?: string;
-    shadowOffset?: { height: number; width: number };
+    shadowOffset?: { height: number; width: number } | undefined | string;
     shadowOpacity?: number;
     shadowRadius?: string;
     elevation?: number;
@@ -29,7 +29,7 @@ const StyledButton = styled.TouchableOpacity<ButtonInterface>`
   ${({ shadowColor }): string | undefined => shadowColor && `shadow-color: ${shadowColor}`};
   ${({ opacity }): string | undefined => opacity && `opacity: ${opacity}`};
   ${({ shadowOpacity }): string | 0 | undefined => shadowOpacity && `shadow-opacity: ${shadowOpacity}`};
-  ${({ shadowRadius }): number | undefined => shadowRadius && `shadow-radius: ${shadowRadius}`};
+  ${({ shadowRadius }): string | undefined => shadowRadius && `shadow-radius: ${shadowRadius}`};
   ${({ elevation }): string | 0 | undefined => elevation && `elevation: ${elevation}`};
   ${({ elevation }): string | 0 | undefined => elevation && `elevation: ${elevation}`};
   ${({ borderColor }): string | undefined => borderColor && `borderColor: ${borderColor}`};
