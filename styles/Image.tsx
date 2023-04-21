@@ -13,10 +13,11 @@ type ImageInterface = {
 };
 
 const StyledImage = styled.Image<ImageInterface>`
-  width: ${({ width }): string | number => width || "50px"};
-  height: ${({ height }): string | number => height || "50px"};
+  width: ${({ width }): string | number => (typeof width === 'number' ? width : width || "50px")};
+  height: ${({ height }): string | number => (typeof height === 'number' ? height : height || "50px")};
   ${({ display }): string | null => (display && `display: ${display}`) || null};
 `;
+
 
 export const Image: React.FC<ImageInterface> = ({
    source, resizeMode = "cover", ...rest
