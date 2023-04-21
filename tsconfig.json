@@ -12,8 +12,8 @@
     "strict": true,
     "types": [
       "jest",
-      "cypress",
-      "@testing-library/cypress",
+      "@types/cypress",
+      "@types/testing-library__cypress",
       "@types/styled-components-react-native"
     ]
   },

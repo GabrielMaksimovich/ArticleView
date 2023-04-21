@@ -18,7 +18,7 @@ export type BlockInterface = {
     borderBottomWidth?: string;
     borderTopColor?: string;
     borderTopWidth?: string;
-    children?: React.ReactNode | FC;
+    children?: React.ReactNode;
     position?: string;
     top?: string;
     left?: string;

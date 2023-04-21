@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components/native";
+import { ImageSourcePropType } from "react-native";
 
 type ImageInterface = {
     width?: string | number;
     height?: string | number;
     display?: string;
-    resizeMode: string;
+    resizeMode?: "center" | "repeat" | "cover" | "contain" | "stretch";
     onError: () => void;
     onLoad: () => void;
-    source: { uri: string } | React.ReactNode;
+    source: ImageSourcePropType;
 };
 
 const StyledImage = styled.Image<ImageInterface>`
@@ -17,6 +18,6 @@ const StyledImage = styled.Image<ImageInterface>`
   ${({ display }): string | null => (display && `display: ${display}`) || null};
 `;
 
-export const Image: React.FC<ImageInterface> = ({ source, resizeMode, ...rest }) => (
-    <StyledImage source={source} resizeMode={resizeMode} {...rest} />
-);
+export const Image: React.FC<ImageInterface> = ({
+   source, resizeMode = "cover", ...rest
+}) => <StyledImage source={source} resizeMode={resizeMode} {...rest} />;

@@ -6,7 +6,7 @@ import ListItem from "./ListItem";
 
 const ArticleSection: FC = () => {
     const [slideAnimations] = useState(() => data.map(() => new Animated.Value(0)));
-    const [showDeleteButton, setShowDeleteButton] = useState(null);
+    const [showDeleteButton, setShowDeleteButton] = useState<number | null>(null);
     const [prevIndex, setPrevIndex] = useState<number | null>(null);
     const [imageOpacities] = useState(() => data.map(() => new Animated.Value(1)));
 
