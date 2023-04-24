@@ -1,14 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import HeaderWithIcons from './components/CommonUIComponents/HeaderWithIcons';
-import Article from './components/CommonUIComponents/Article';
-import Summary from './components/CommonUIComponents/Summary';
+import RegistrationScreen from "./components/CommonUIComponents/RegistrationScreen";
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -20,11 +18,10 @@ const App = () => {
     return (
         <NavigationContainer>
             <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+                barStyle={'light-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-            <HeaderWithIcons />
-            <Summary />
+            <RegistrationScreen />
         </NavigationContainer>
     );
 };
