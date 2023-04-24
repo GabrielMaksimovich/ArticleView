@@ -7,9 +7,9 @@
  */
 
 import React from "react";
-import {Text} from "react-native";
 import {Block} from "../../styles/Block";
 import {Image} from "../../styles/Image";
+import {Text} from "../../styles/Text";
 import box from '../../assets/box.png';
 import badge from '../../assets/badge.png';
 
@@ -28,7 +28,12 @@ const BadgeSummary = () => {
                 alignItems={'center'}
                 justifyContent={'space-between'}
             >
-                <Text style={{ fontSize: 10, color: "#343536" }}>2601 - LAS VEGAS (TST) </Text>
+                <Text
+                    fontSize={10}
+                    color={'#343536'}
+                >
+                    2601 - LAS VEGAS (TST)
+                </Text>
             </Block>
 
             <Block
@@ -49,7 +54,12 @@ const BadgeSummary = () => {
                         onLoad={() => console.log('loaded')}
                         source={box}
                     />
-                    <Text style={{fontSize: 10, marginLeft: 5}}>1</Text>
+                    <Text
+                        fontSize={10}
+                        marginLeft={5}
+                    >
+                        1
+                    </Text>
                 </Block>
 
                 <Block flexDirection={'row'} alignItems={'center'}>
@@ -61,7 +71,7 @@ const BadgeSummary = () => {
                         onLoad={() => console.log('loaded')}
                         source={badge}
                     />
-                    <Text style={{fontSize: 10}}>9</Text>
+                    <Text fontSize={10}>9</Text>
                 </Block>
             </Block>
         </Block>

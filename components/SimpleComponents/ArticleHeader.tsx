@@ -8,7 +8,7 @@
 
 import React, {FC} from "react";
 import {Block} from "../../styles/Block";
-import {Text} from "react-native";
+import {Text} from "../../styles/Text";
 
 type Props = {
     title: string;
@@ -23,10 +23,18 @@ const ArticleHeader: FC<Props> = ({ title }) => {
             paddingHorizontal={'20px'}
             paddingVertical={'10px'}
             borderBottomColor={'grey'}
-            borderBottomWidth={'0.5px'}
+            borderBottomWidth={'1px'}
         >
-            <Text style={{color: '#9e9e9e'}}>{title}</Text>
-            <Text style={{color: '#9e9e9e'}}>ACT</Text>
+            <Text
+                color={'#9e9e9e'}
+            >
+                {title}
+            </Text>
+            <Text
+                color={'#9e9e9e'}
+            >
+                ACT
+            </Text>
         </Block>
     );
 };

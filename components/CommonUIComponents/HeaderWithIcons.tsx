@@ -19,8 +19,6 @@ const HeaderWithIcons = () => {
 
     return (
         <Block
-            borderBottomColor={'grey'}
-            borderBottomWidth={'0.5px'}
         >
             <Block
                 flexDirection={'row'}
@@ -29,7 +27,7 @@ const HeaderWithIcons = () => {
                 paddingVertical={'10px'}
                 paddingHorizontal={'10px'}
                 borderBottomColor={'grey'}
-                borderBottomWidth={'0.5px'}
+                borderBottomWidth={'1px'}
             >
                 <Block
                     flexDirection={'row'}

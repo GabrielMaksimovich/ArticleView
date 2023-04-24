@@ -8,7 +8,7 @@
 
 import React, {FC} from "react";
 import {Block} from "../../styles/Block";
-import {Text} from "react-native";
+import {Text} from "../../styles/Text";
 
 type Props = {
     text: string,
@@ -20,7 +20,7 @@ const HeaderWithoutIcons: FC<Props> = ({ text, title }) => {
     return (
         <Block
             borderBottomColor={'grey'}
-            borderBottomWidth={'0.5px'}
+            borderBottomWidth={'1px'}
         >
             <Block
                 flexDirection={"row"}
@@ -29,9 +29,9 @@ const HeaderWithoutIcons: FC<Props> = ({ text, title }) => {
                 paddingVertical={'10px'}
                 paddingHorizontal={'5px'}
             >
-                <Text style={{color: 'blue'}}>Cancel</Text>
-                <Text style={{fontWeight: 'bold'}}>{title}</Text>
-                <Text style={{color: 'blue'}}>{text}</Text>
+                <Text color={'blue'}>Cancel</Text>
+                <Text fontWeight={'bold'}>{title}</Text>
+                <Text color={'blue'}>{text}</Text>
             </Block>
         </Block>
     );

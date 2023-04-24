@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 import {Block} from "../../styles/Block";
-import {Text} from "react-native";
+import {Text} from "../../styles/Text";
 import {Button} from "../../styles/Button";
 
 type Props = {
@@ -32,10 +32,13 @@ const SwitchBtn: FC<Props> = ({onButtonChange}) => {
                 justifyContent={"center"}
                 alignItems={"center"}
                 shadowColor={"#000"}
-                shadowOpacity={0.2}
                 elevation={1}
             >
-                <Text style={{color: "#000", fontSize: 12, fontWeight: "bold"}}>
+                <Text
+                    color={'#000'}
+                    fontSize={12}
+                    fontWeight={'bold'}
+                >
                     Cartons
                 </Text>
             </Button>
@@ -49,10 +52,14 @@ const SwitchBtn: FC<Props> = ({onButtonChange}) => {
                 justifyContent={"center"}
                 alignItems={"center"}
                 shadowColor={"#000"}
-                shadowOpacity={0.2}
                 elevation={1}
             >
-                <Text style={{color: "#000", fontSize: 12, fontWeight: "bold"}}>
+                <Text
+                    color={'#000'}
+                    fontSize={12}
+                    fontWeight={'bold'}
+
+                >
                     Articles
                 </Text>
             </Button>

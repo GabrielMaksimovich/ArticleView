@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, TouchableOpacity, Animated } from 'react-native';
+import { TouchableOpacity, Animated } from 'react-native';
 import { Block } from '../../styles/Block';
 import { Image } from '../../styles/Image';
+import { Text } from '../../styles/Text';
 import { Button } from '../../styles/Button';
 import longsleeve from '../../assets/longsleeve.webp';
 import rightArrow from '../../assets/right-arrow.png';
@@ -27,7 +28,7 @@ const ListItem: React.FC<Props> = ({
     return (
         <Block
             borderBottomColor={"grey"}
-            borderBottomWidth={"0.5px"}
+            borderBottomWidth={"1px"}
         >
             <Animated.View
                 style={{
@@ -56,16 +57,21 @@ const ListItem: React.FC<Props> = ({
                         </Animated.View>
 
                         <Block>
-                            <Text style={{ marginBottom: 5, fontSize: 10 }}>{item.code}</Text>
+                            <Text
+                                marginBottom={5}
+                                fontSize={10}
+                            >
+                                {item.code}
+                            </Text>
                             <Block
                                 flexDirection={"row"}
                                 justifyContent={"flex-start"}
                                 marginBottom={5}
                             >
-                                <Text style={{ marginRight: 30, fontSize: 10 }}>{item.color}</Text>
-                                <Text style={{ fontSize: 10 }}>{item.size}</Text>
+                                <Text marginRight={30} fontSize={10}>{item.color}</Text>
+                                <Text fontSize={10}>{item.size}</Text>
                             </Block>
-                            <Text style={{ color: "#9e9e9e", fontSize: 10 }}>
+                            <Text color={'#9e9e9e'} fontSize={10}>
                                 {item.description}
                             </Text>
                         </Block>
@@ -87,7 +93,7 @@ const ListItem: React.FC<Props> = ({
                                 justifyContent={"center"}
                                 alignItems={"center"}
                             >
-                                <Text style={{ color: "#fff", fontSize: 12 }}>{item.quantity}</Text>
+                                <Text color={'#fff'} fontSize={12}>{item.quantity}</Text>
                             </Button>
                         </Block>
 
@@ -117,7 +123,7 @@ const ListItem: React.FC<Props> = ({
                     right={"0"}
                 >
                     <Button onPress={handleDelete}>
-                        <Text style={{ color: "#fff" }}>Delete</Text>
+                        <Text color={'#fff'}>Delete</Text>
                     </Button>
                 </Block>
             )}

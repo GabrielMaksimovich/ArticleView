@@ -8,7 +8,7 @@
 
 import React, {FC} from "react";
 import {Block} from "../../styles/Block";
-import {Text} from "react-native";
+import {Text} from "../../styles/Text";
 import {Button} from "../../styles/Button";
 
 type Props = {
@@ -39,7 +39,13 @@ const Footer: FC<Props> = ({ title }) => {
                 justifyContent={'center'}
                 alignItems={'center'}
             >
-                <Text style={{color: '#7813ab', fontSize: 15, textAlign: 'center'}}>{title}</Text>
+                <Text
+                    color={'#7813ab'}
+                    fontSize={15}
+                    textAlign={'center'}
+                >
+                    {title}
+                </Text>
             </Button>
         </Block>
     );

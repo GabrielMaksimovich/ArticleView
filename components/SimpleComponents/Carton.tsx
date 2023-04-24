@@ -1,7 +1,8 @@
 import React, {FC, useState} from "react";
-import {Text, Animated, TouchableOpacity} from "react-native";
+import {Animated, TouchableOpacity} from "react-native";
 import {Block} from "../../styles/Block";
 import {Image} from "../../styles/Image";
+import {Text} from "../../styles/Text";
 import {Button} from "../../styles/Button";
 
 import rightArrow from '../../assets/right-arrow.png';
@@ -25,7 +26,7 @@ const Carton: FC = () => {
     return (
         <Block
             borderBottomColor={'grey'}
-            borderBottomWidth={'0.5px'}
+            borderBottomWidth={'1px'}
             height={'55%'}
         >
 
@@ -33,7 +34,7 @@ const Carton: FC = () => {
                 paddingVertical={'20px'}
                 paddingHorizontal={'10px'}
                 borderBottomColor={'grey'}
-                borderBottomWidth={'0.5px'}
+                borderBottomWidth={'1px'}
             >
                 <Block
                     flexDirection={'row'}
@@ -47,7 +48,13 @@ const Carton: FC = () => {
                     >
 
                         <Block>
-                            <Text style={{marginBottom: 5, fontSize: 10, fontWeight: 'bold'}}>25003900020001902003</Text>
+                            <Text
+                                marginBottom={5}
+                                fontSize={10}
+                                fontWeight={'bold'}
+                            >
+                                25003900020001902003
+                            </Text>
 
                         </Block>
                     </Block>
@@ -78,7 +85,12 @@ const Carton: FC = () => {
                                     justifyContent={'center'}
                                     alignItems={'center'}
                                 >
-                                    <Text style={{color: '#fff', fontSize: 12}}>9</Text>
+                                    <Text
+                                        color={'#fff'}
+                                        fontSize={12}
+                                    >
+                                        9
+                                    </Text>
                                 </Button>
                             </Block>
 
@@ -111,7 +123,7 @@ const Carton: FC = () => {
                     <Button
                         onPress={() => 'hello'}
                     >
-                        <Text style={{color: '#fff'}}>Delete</Text>
+                        <Text color={'#fff'}>Delete</Text>
                     </Button>
                 </Block>
             }
