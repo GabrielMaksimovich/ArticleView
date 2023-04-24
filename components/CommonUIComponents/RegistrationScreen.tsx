@@ -1,9 +1,9 @@
-import React, {FC, useState} from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import {Block} from "../../styles/Block";
-import {Text} from "../../styles/Text";
+import React, { FC, useState } from "react";
+import { Alert, TouchableOpacity, StyleSheet } from "react-native";
+import { Block } from "../../styles/Block";
+import { Text } from "../../styles/Text";
 import Logo from "../SimpleComponents/Logo";
-
+import SimpleInput from "../SimpleComponents/SimpleInput";
 
 const RegistrationScreen = () => {
     const [email, setEmail] = useState("");
@@ -31,7 +31,9 @@ const RegistrationScreen = () => {
         });
     };
 
-    const handleChange = (setter: (value: string) => void) => (text: string) => {
+    const handleChange = (setter: (value: string) => void) => (
+        text: string
+    ) => {
         setter(text);
         updateValidation();
     };
@@ -46,58 +48,55 @@ const RegistrationScreen = () => {
     };
 
     return (
-        <Block
-            flex={1}
-        >
+        <Block flex={1}>
             <Block
                 flex={1}
-                justifyContent={'center'}
-                alignItems={'center'}
-                bg={'orange'}
+                justifyContent={"center"}
+                alignItems={"center"}
+                bg={"orange"}
             >
-                <Logo/>
+                <Logo />
             </Block>
             <Block
                 flex={2}
-                justifyContent={'center'}
-                paddingHorizontal={'20px'}
+                paddingHorizontal={"20px"}
+                paddingTop={'5px'}
             >
-                <TextInput
-                    style={styles.input}
-                    onChangeText={handleChange(setEmail)}
+                <SimpleInput
+                    header="EMAIL"
                     value={email}
-                    placeholder="Email"
+                    onChangeText={handleChange(setEmail)}
                     keyboardType="email-address"
                     autoCapitalize="none"
                 />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={handleChange(setPassword)}
+                <SimpleInput
+                    header="PASSWORD"
                     value={password}
-                    placeholder="Password"
+                    onChangeText={handleChange(setPassword)}
                     secureTextEntry={true}
                 />
-                <View>
+                <Block
+                    marginTop={5}
+                >
                     <ValidationItem valid={validation.email} text="Valid email" />
                     <ValidationItem valid={validation.minLength} text="At least 8 characters" />
                     <ValidationItem valid={validation.hasNumbers} text="Includes numbers" />
                     <ValidationItem valid={validation.hasLetters} text="Includes letters" />
                     <ValidationItem valid={validation.hasSpecialChars} text="Includes special characters" />
                     <ValidationItem valid={validation.noRepetitions} text="No more than two repetitions of the same character" />
-                </View>
+                </Block>
                 <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>LOGIN</Text>
+                    <Text color={'#fff'}>LOGIN</Text>
                 </TouchableOpacity>
             </Block>
         </Block>
-
     );
 };
 
 type Props = {
     valid: boolean;
     text: string;
-}
+};
 
 const ValidationItem: FC<Props> = ({ valid, text }) => (
     <Text style={valid ? styles.valid : styles.invalid}>{text}</Text>
