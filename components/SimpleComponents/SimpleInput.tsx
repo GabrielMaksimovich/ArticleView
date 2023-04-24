@@ -7,9 +7,11 @@ import { Button } from "../../styles/Button";
 import { Text } from "../../styles/Text";
 import {ActivityIndicator, Platform, TextInputProps} from "react-native";
 import EyeIcon from "../../assets/eye.png";
-import EyeOffIcon from "../../assets/eye.png";
+import EyeOffIcon from "../../assets/eye-closed.png";
 import {Image} from "../../styles/Image";
-import badge from "../../assets/badge.png";
+import {PaddingProps} from "../../types/PaddingProps";
+import {PaddingStyle} from "../../styles/PaddingStyle";
+
 
 type TextInputType = {
     header: string;
@@ -24,15 +26,11 @@ type TextInputType = {
     placeholder?: string;
     isLoading?: boolean;
     paddingHorizontal?: string;
-    paddingTop?: string;
-    paddingBottom?: string;
-    paddingRight?: string;
-    paddingLeft?: string;
     paddingVertical?: string;
     keyboardType?: TextInputProps["keyboardType"];
     secureTextEntry?: boolean;
     autoCapitalize?: TextInputProps["autoCapitalize"];
-};
+} & PaddingProps;
 
 
 const StyledSimpleInput = styled.TextInput<Omit<TextInputType, 'header'>>`
@@ -46,10 +44,7 @@ const StyledSimpleInput = styled.TextInput<Omit<TextInputType, 'header'>>`
     paddingHorizontal && `padding-horizontal: ${paddingHorizontal}`};
   ${({ paddingVertical }): string | undefined =>
     paddingVertical && `padding-vertical: ${paddingVertical}`};
-  ${({ paddingTop }): string | undefined => paddingTop && `paddingTop: ${paddingTop}`};
-  ${({ paddingBottom }): string | undefined => paddingBottom && `paddingBottom: ${paddingBottom}`};
-  ${({ paddingRight }): string | undefined => paddingRight && `paddingRight: ${paddingRight}`};
-  ${({ paddingLeft }): string | undefined => paddingLeft && `paddingLeft: ${paddingLeft}`};
+  ${PaddingStyle};
 `;
 const isIos = Platform.OS === "ios";
 
@@ -63,7 +58,7 @@ const SimpleInputComponent: FC<TextInputType> = ({
         autoCapitalize,
         ...rest
     }) => {
-    const showClose = (value || '').length > 0;
+
     const [isSecureTextEntry, setIsSecureTextEntry] = useState(secureTextEntry);
 
     const toggleSecureTextEntry = () => {
@@ -80,7 +75,7 @@ const SimpleInputComponent: FC<TextInputType> = ({
             paddingTop={"10px"}
             paddingBottom={"10px"}
         >
-            <Block paddingHorizontal={'16px'} flexDirection={"row"} alignItems={"center"}>
+            <Block paddingHorizontal={'8px'} flexDirection={"row"} alignItems={"center"}>
                 <Text
                     marginRight={"8px"}
                     fontSize={15}
@@ -93,7 +88,7 @@ const SimpleInputComponent: FC<TextInputType> = ({
             </Block>
             <Block
                 flexDirection={"row"}
-                paddingLeft={isIos ? "16px" : "12px"}
+                paddingLeft={isIos ? "8px" : "6px"}
                 paddingRight={"8px"}
                 paddingBottom={isIos ? "12px" : ""}
                 paddingTop={isIos ? "9px" : ""}
@@ -112,7 +107,7 @@ const SimpleInputComponent: FC<TextInputType> = ({
                 {secureTextEntry && (
                     <Block
                         height={"100%"}
-                        right={showClose ? "40px" : "0"}
+                        right={"0"}
                         position={"absolute"}
                         top={Platform.OS === "ios" ? "8px" : "0px"}
                     >
@@ -130,7 +125,7 @@ const SimpleInputComponent: FC<TextInputType> = ({
                                     height='24px'
                                     onError={() => console.log('error')}
                                     onLoad={() => console.log('loaded')}
-                                    source={EyeIcon}
+                                    source={EyeOffIcon}
                                 />
                             ) : (
                                 <Image

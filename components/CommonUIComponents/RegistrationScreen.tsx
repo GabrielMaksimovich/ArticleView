@@ -105,12 +105,11 @@ const RegistrationScreen = () => {
                     <Text
                         color={'grey'}
                         textAlign={'center'}
-                        marginBottom={'10px'}
+                        marginBottom={10}
                     >
                         FORGOT PASSWORD?
                     </Text>
                     <Text
-                        marginTop={'5px'}
                         fontSize={8}
                         textAlign={'center'}
                     >
