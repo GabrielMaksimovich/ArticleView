@@ -1,9 +1,11 @@
-import React, { FC, useState } from "react";
-import { Alert, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { Alert } from "react-native";
 import { Block } from "../../styles/Block";
 import { Text } from "../../styles/Text";
 import Logo from "../SimpleComponents/Logo";
 import SimpleInput from "../SimpleComponents/SimpleInput";
+import {Button} from "../../styles/Button";
+import {ValidationItem} from "../SimpleComponents/ValidationItem";
 
 const RegistrationScreen = () => {
     const [email, setEmail] = useState("");
@@ -61,6 +63,7 @@ const RegistrationScreen = () => {
                 flex={2}
                 paddingHorizontal={"20px"}
                 paddingTop={'5px'}
+                alignItems={'center'}
             >
                 <SimpleInput
                     header="EMAIL"
@@ -76,7 +79,8 @@ const RegistrationScreen = () => {
                     secureTextEntry={true}
                 />
                 <Block
-                    marginTop={5}
+                    marginTop={'10px'}
+                    marginBottom={'10px'}
                 >
                     <ValidationItem valid={validation.email} text="Valid email" />
                     <ValidationItem valid={validation.minLength} text="At least 8 characters" />
@@ -85,51 +89,37 @@ const RegistrationScreen = () => {
                     <ValidationItem valid={validation.hasSpecialChars} text="Includes special characters" />
                     <ValidationItem valid={validation.noRepetitions} text="No more than two repetitions of the same character" />
                 </Block>
-                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <Button
+                    onPress={handleSubmit}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    bg={'#3b5998'}
+                    width={'100%'}
+                    height={'30px'}
+                >
                     <Text color={'#fff'}>LOGIN</Text>
-                </TouchableOpacity>
+                </Button>
+                <Block
+                    marginTop={'5px'}
+                >
+                    <Text
+                        color={'grey'}
+                        textAlign={'center'}
+                        marginBottom={'10px'}
+                    >
+                        FORGOT PASSWORD?
+                    </Text>
+                    <Text
+                        marginTop={'5px'}
+                        fontSize={8}
+                        textAlign={'center'}
+                    >
+                        2.3.19 (202012041745) - DEBUG
+                    </Text>
+                </Block>
             </Block>
         </Block>
     );
 };
-
-type Props = {
-    valid: boolean;
-    text: string;
-};
-
-const ValidationItem: FC<Props> = ({ valid, text }) => (
-    <Text style={valid ? styles.valid : styles.invalid}>{text}</Text>
-);
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        paddingHorizontal: 20,
-    },
-    input: {
-        height: 40,
-        borderColor: "gray",
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingLeft: 10,
-    },
-    button: {
-        alignItems: "center",
-        backgroundColor: "#3b5998",
-        padding: 10,
-        marginTop: 20,
-    },
-    buttonText: {
-        color: "white",
-    },
-    valid: {
-        color: "green",
-    },
-    invalid: {
-        color: "red",
-    },
-});
 
 export default RegistrationScreen;

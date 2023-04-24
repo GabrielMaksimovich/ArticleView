@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {FC, useState} from "react";
 
 import styled from "styled-components/native";
 
@@ -6,6 +6,10 @@ import { Block } from "../../styles/Block";
 import { Button } from "../../styles/Button";
 import { Text } from "../../styles/Text";
 import {ActivityIndicator, Platform, TextInputProps} from "react-native";
+import EyeIcon from "../../assets/eye.png";
+import EyeOffIcon from "../../assets/eye.png";
+import {Image} from "../../styles/Image";
+import badge from "../../assets/badge.png";
 
 type TextInputType = {
     header: string;
@@ -14,7 +18,6 @@ type TextInputType = {
     value?: string;
     fontFamily?: string;
     fontSize?: string;
-    // children: string | number;
     fontWeight?: string;
     bg?: string;
     onChangeText: (textValue: string) => void;
@@ -61,15 +64,21 @@ const SimpleInputComponent: FC<TextInputType> = ({
         ...rest
     }) => {
     const showClose = (value || '').length > 0;
+    const [isSecureTextEntry, setIsSecureTextEntry] = useState(secureTextEntry);
+
+    const toggleSecureTextEntry = () => {
+        setIsSecureTextEntry(!isSecureTextEntry);
+    };
+
     return (
         <Block
             flexDirection={"column"}
             bg={'#fff'}
-            height={"74px"}
+            height={"60px"}
             borderBottomWidth={"1px"}
-            borderBottomColor={'light-gret'}
-            paddingTop={"12px"}
-            paddingBottom={"12px"}
+            borderBottomColor={'light-grey'}
+            paddingTop={"10px"}
+            paddingBottom={"10px"}
         >
             <Block paddingHorizontal={'16px'} flexDirection={"row"} alignItems={"center"}>
                 <Text
@@ -96,14 +105,14 @@ const SimpleInputComponent: FC<TextInputType> = ({
                     paddingRight={"25px"}
                     onChangeText={onChangeText}
                     keyboardType={keyboardType}
-                    secureTextEntry={secureTextEntry}
+                    secureTextEntry={isSecureTextEntry}
                     autoCapitalize={autoCapitalize}
                     {...rest}
                 />
-                {showClose && (
+                {secureTextEntry && (
                     <Block
                         height={"100%"}
-                        right={"0"}
+                        right={showClose ? "40px" : "0"}
                         position={"absolute"}
                         top={Platform.OS === "ios" ? "8px" : "0px"}
                     >
@@ -112,10 +121,27 @@ const SimpleInputComponent: FC<TextInputType> = ({
                             paddingLeft={"12px"}
                             height={"100%"}
                             justifyContent={"center"}
-                            onPress={(): void => onChangeText("")}
+                            onPress={toggleSecureTextEntry}
                         >
-                            {/*<Close height={"14px"} width={"14px"} fill={'gray'} />*/}
-                            <Text>X</Text>
+                            {isSecureTextEntry ? (
+                                <Image
+                                    resizeMode={'contain'}
+                                    width='24px'
+                                    height='24px'
+                                    onError={() => console.log('error')}
+                                    onLoad={() => console.log('loaded')}
+                                    source={EyeIcon}
+                                />
+                            ) : (
+                                <Image
+                                    resizeMode={'contain'}
+                                    width='24px'
+                                    height='24px'
+                                    onError={() => console.log('error')}
+                                    onLoad={() => console.log('loaded')}
+                                    source={EyeIcon}
+                                />
+                            )}
                         </Button>
                     </Block>
                 )}
