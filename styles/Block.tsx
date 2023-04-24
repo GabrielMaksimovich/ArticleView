@@ -18,7 +18,7 @@ export type BlockInterface = {
     borderBottomWidth?: string;
     borderTopColor?: string;
     borderTopWidth?: string;
-    children: React.ReactNode | FC;
+    children?: React.ReactNode;
     position?: string;
     top?: string;
     left?: string;
@@ -29,6 +29,10 @@ export type BlockInterface = {
     borderWidth?: string;
     borderColor?: string;
     paddingHorizontal?: string;
+    paddingTop?:string;
+    paddingBottom?:string;
+    paddingRight?:string;
+    paddingLeft?:string;
     paddingVertical?: string;
     borderStyle?: string;
     marginTop?: number;
@@ -100,6 +104,10 @@ const StyledBlock = styled.View<BlockInterface>`
     paddingHorizontal && `padding-horizontal: ${paddingHorizontal}`};
   ${({ paddingVertical }): string | undefined =>
     paddingVertical && `padding-vertical: ${paddingVertical}`};
+  ${({ paddingTop }): string | undefined => paddingTop && `paddingTop: ${paddingTop}`};
+  ${({ paddingBottom }): string | undefined => paddingBottom && `paddingBottom: ${paddingBottom}`};
+  ${({ paddingRight }): string | undefined => paddingRight && `paddingRight: ${paddingRight}`};
+  ${({ paddingLeft }): string | undefined => paddingLeft && `paddingLeft: ${paddingLeft}`};
   ${({ borderStyle }): string | undefined => borderStyle && `border-style: ${borderStyle}`};
   ${({ overflow }): string | undefined => overflow && `overflow: ${overflow}`};
 `;

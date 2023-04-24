@@ -7,13 +7,13 @@
  */
 
 import React from "react";
-import {Text} from "react-native";
 import {Block} from "../../styles/Block";
 import {Image} from "../../styles/Image";
+import {Text} from "../../styles/Text";
 import box from '../../assets/box.png';
 import badge from '../../assets/badge.png';
 
-const BadgeSection = () => {
+const BadgeArticle = () => {
 
     return (
         <Block
@@ -36,7 +36,11 @@ const BadgeSection = () => {
                     onLoad={() => console.log('loaded')}
                     source={box}
                 />
-                <Text style={{marginLeft: 10}}>id number</Text>
+                <Text
+                    marginLeft={10}
+                >
+                    id number
+                </Text>
             </Block>
 
             <Block
@@ -52,10 +56,14 @@ const BadgeSection = () => {
                     onLoad={() => console.log('loaded')}
                     source={badge}
                 />
-                <Text style={{fontSize: 10}}>9</Text>
+                <Text
+                    fontSize={10}
+                >
+                    9
+                </Text>
             </Block>
         </Block>
     );
 };
 
-export default BadgeSection;
+export default BadgeArticle;
