@@ -82,7 +82,6 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
         };
     }, [data]);
 
-
     return (
         <Block>
             <ScrollView horizontal>
@@ -121,7 +120,6 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
             {renderModal()}
         </Block>
     );
-
 };
 
 export default HorizontalBarChart;
