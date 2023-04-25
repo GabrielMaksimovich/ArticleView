@@ -39,6 +39,8 @@ export type BlockInterface = {
     marginBottom?: string;
     marginLeft?: string;
     marginRight?: string;
+    marginVertical?: string;
+    marginHorizontal?: string;
     minHeight?: string;
     onLayout?: (value: SyntheticEvent) => void;
     translateY?: string;
@@ -100,6 +102,10 @@ const StyledBlock = styled.View<BlockInterface>`
     paddingHorizontal && `padding-horizontal: ${paddingHorizontal}`};
   ${({ paddingVertical }): string | undefined =>
     paddingVertical && `padding-vertical: ${paddingVertical}`};
+  ${({ marginVertical }): string | undefined =>
+          marginVertical && `margin-vertical: ${marginVertical}`};
+  ${({ marginHorizontal }): string | undefined =>
+          marginHorizontal && `margin-horizontal: ${marginHorizontal}`};
   ${({ paddingTop }): string | undefined => paddingTop && `paddingTop: ${paddingTop}`};
   ${({ paddingBottom }): string | undefined => paddingBottom && `paddingBottom: ${paddingBottom}`};
   ${({ paddingRight }): string | undefined => paddingRight && `paddingRight: ${paddingRight}`};

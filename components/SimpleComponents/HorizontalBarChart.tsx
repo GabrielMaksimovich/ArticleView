@@ -1,6 +1,10 @@
-import React, {FC, useState} from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Modal, StyleSheet } from 'react-native';
+import React, { FC, useState } from 'react';
+import { TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
+import { BarData } from '../../types/BarData';
+import { HorizontalBarChartProps } from '../../types/HorizontalBarChartProps';
+import { Block } from '../../styles/Block';
+import { Text } from '../../styles/Text';
 
 const chartConfig = {
     backgroundColor: '#fff',
@@ -11,15 +15,6 @@ const chartConfig = {
     labelFontSize: 12,
     gridColor: 'rgba(0, 0, 0, 0.1)',
     gridOpacity: 1,
-};
-
-type BarData = {
-    label: string;
-    value: number;
-};
-
-type HorizontalBarChartProps = {
-    data: BarData[];
 };
 
 const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
@@ -38,18 +33,41 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
             visible={modalVisible}
             onRequestClose={() => setModalVisible(false)}
         >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>{activeBar?.label}</Text>
-                    <Text style={styles.modalText}>Value: {activeBar?.value}</Text>
+            <Block alignItems="center" justifyContent="center" marginTop={'22px'} flex={1}>
+                <Block
+                    marginHorizontal={'20px'}
+                    marginVertical={'20px'}
+                    bg="white"
+                    borderRadius="20px"
+                    paddingHorizontal={'35px'}
+                    paddingVertical={'35px'}
+                    alignItems="center"
+                    shadowColor="#000"
+                    shadowOpacity={0.25}
+                    shadowRadius={4}
+                >
+                    <Text fontSize={16} marginBottom={15} textAlign="center">
+                        {activeBar?.label}
+                    </Text>
+                    <Text fontSize={16} marginBottom={15} textAlign="center">
+                        Value: {activeBar?.value}
+                    </Text>
                     <TouchableOpacity
-                        style={styles.closeButton}
+                        style={{
+                            backgroundColor: '#2196F3',
+                            borderRadius: 20,
+                            padding: 10,
+                            elevation: 2,
+                            width: 100,
+                        }}
                         onPress={() => setModalVisible(false)}
                     >
-                        <Text style={styles.closeButtonText}>Close</Text>
+                        <Text color="white" fontWeight="bold" textAlign="center">
+                            Close
+                        </Text>
                     </TouchableOpacity>
-                </View>
-            </View>
+                </Block>
+            </Block>
         </Modal>
     );
 
@@ -63,9 +81,9 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
     };
 
     return (
-        <View>
+        <Block>
             <ScrollView horizontal>
-                <View style={{ position: 'relative', width: data.length * 100, height: 300 }}>
+                <Block position="relative" width={`${data.length * 100}px`} height="300px">
                     <BarChart
                         data={chartData}
                         width={data.length * 100}
@@ -74,76 +92,33 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
                         fromZero
                         showBarTops={false}
                         showValuesOnTopOfBars
-                        withHorizontalLabels={true} // Show horizontal labels
-                        withInnerLines={true} // Show inner lines
-                        withVerticalLabels={true} // Show vertical labels
+                        withHorizontalLabels={true}
+                        withInnerLines={true}
+                        withVerticalLabels={true}
                         yAxisLabel=" "
                         xAxisLabel=" "
                         yAxisSuffix="k"
-                        style={{ marginVertical: 8 }}
                     />
-
-
-                    {data.map((item, index) => (
-                        <TouchableOpacity
-                            key={item.label}
-                            onPress={() => showBarInfo(item)}
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: index * 100,
-                                height: 300,
-                                width: 100,
-                            }}
-                        />
-                    ))}
-                </View>
+                </Block>
             </ScrollView>
+            <Block position="absolute" top={'0'} left={'0'} height="300px">
+                {data.map((item, index) => (
+                    <TouchableOpacity
+                        key={item.label}
+                        onPress={() => showBarInfo(item)}
+                        style={{
+                            position: "absolute",
+                            left: index * 100,
+                            width: 100,
+                            height: 300,
+                        }}
+                    />
+                ))}
+            </Block>
             {renderModal()}
-        </View>
+        </Block>
     );
+
 };
-
-
-const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 22,
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 35,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
-        fontSize: 16,
-    },
-    closeButton: {
-        backgroundColor: '#2196F3',
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-        width: 100,
-    },
-    closeButtonText: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-});
 
 export default HorizontalBarChart;
