@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useMemo, useCallback } from 'react';
 import { TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 import { BarData } from '../../types/BarData';
@@ -21,12 +21,12 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [activeBar, setActiveBar] = useState<BarData | null>(null);
 
-    const showBarInfo = (bar: BarData) => {
+    const showBarInfo = useCallback((bar: BarData) => {
         setActiveBar(bar);
         setModalVisible(true);
-    };
+    }, []);
 
-    const renderModal = () => (
+    const renderModal = useCallback(() => (
         <Modal
             animationType="slide"
             transparent={true}
@@ -69,16 +69,19 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
                 </Block>
             </Block>
         </Modal>
-    );
+    ), [modalVisible, activeBar]);
 
-    const chartData = {
-        labels: data.map((item) => item.label),
-        datasets: [
-            {
-                data: data.map((item) => item.value),
-            },
-        ],
-    };
+    const chartData = useMemo(() => {
+        return {
+            labels: data.map((item) => item.label),
+            datasets: [
+                {
+                    data: data.map((item) => item.value),
+                },
+            ],
+        };
+    }, [data]);
+
 
     return (
         <Block>
