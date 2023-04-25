@@ -1,12 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {Text} from "./styles/Text";
+import {Block} from "./styles/Block";
 
-import RegistrationScreen from "./components/CommonUIComponents/RegistrationScreen";
-
-// const Stack = createNativeStackNavigator();
 
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -21,7 +19,13 @@ const App = () => {
                 barStyle={'light-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-            <RegistrationScreen />
+            <Block
+                flex={1}
+                alignItems={'center'}
+                justifyContent={'center'}
+            >
+                <Text>Hello</Text>
+            </Block>
         </NavigationContainer>
     );
 };
