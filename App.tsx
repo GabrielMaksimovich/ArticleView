@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import {Text} from "./styles/Text";
-import {Block} from "./styles/Block";
+
+import RegistrationScreen from "./components/CommonUIComponents/RegistrationScreen";
 
 
 const App = () => {
@@ -19,13 +19,7 @@ const App = () => {
                 barStyle={'light-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-            <Block
-                flex={1}
-                alignItems={'center'}
-                justifyContent={'center'}
-            >
-                <Text>Hello</Text>
-            </Block>
+            <RegistrationScreen />
         </NavigationContainer>
     );
 };

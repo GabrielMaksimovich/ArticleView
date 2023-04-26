@@ -5,7 +5,13 @@ import styled from "styled-components/native";
 import { Block } from "../../styles/Block";
 import { Button } from "../../styles/Button";
 import { Text } from "../../styles/Text";
-import {ActivityIndicator, Platform, TextInputProps} from "react-native";
+import {
+    ActivityIndicator,
+    NativeSyntheticEvent,
+    Platform,
+    TextInputChangeEventData,
+    TextInputProps
+} from "react-native";
 import EyeIcon from "../../assets/eye.png";
 import EyeOffIcon from "../../assets/eye-closed.png";
 import {Image} from "../../styles/Image";
@@ -30,6 +36,8 @@ type TextInputType = {
     keyboardType?: TextInputProps["keyboardType"];
     secureTextEntry?: boolean;
     autoCapitalize?: TextInputProps["autoCapitalize"];
+    onBlur?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+    errorMessage?: string | false | undefined;
 } & PaddingProps;
 
 
