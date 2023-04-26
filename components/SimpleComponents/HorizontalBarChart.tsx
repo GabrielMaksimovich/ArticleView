@@ -5,6 +5,7 @@ import { BarData } from '../../types/BarData';
 import { HorizontalBarChartProps } from '../../types/HorizontalBarChartProps';
 import { Block } from '../../styles/Block';
 import { Text } from '../../styles/Text';
+import {Button} from "../../styles/Button";
 
 const chartConfig = {
     backgroundColor: '#fff',
@@ -52,20 +53,19 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
                     <Text fontSize={16} marginBottom={15} textAlign="center">
                         Value: {activeBar?.value}
                     </Text>
-                    <TouchableOpacity
-                        style={{
-                            backgroundColor: '#2196F3',
-                            borderRadius: 20,
-                            padding: 10,
-                            elevation: 2,
-                            width: 100,
-                        }}
+                    <Button
                         onPress={() => setModalVisible(false)}
+                        bg="#2196F3"
+                        borderRadius="20px"
+                        paddingHorizontal="10px"
+                        paddingVertical="10px"
+                        elevation={2}
+                        width="100px"
                     >
                         <Text color="white" fontWeight="bold" textAlign="center">
                             Close
                         </Text>
-                    </TouchableOpacity>
+                    </Button>
                 </Block>
             </Block>
         </Modal>
@@ -102,21 +102,21 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
                         yAxisSuffix="k"
                     />
                 </Block>
+                <Block position="absolute" top={'0'} left={'0'} height="300px" width={`${data.length * 100}px`}>
+                    {data.map((item, index) => (
+                        <Button
+                            key={item.label}
+                            onPress={() => showBarInfo(item)}
+                            position="absolute"
+                            left={`${index*100}`}
+                            width={"100px"}
+                            height={"300px"}
+                        >
+                        </Button>
+                    ))}
+                </Block>
             </ScrollView>
-            <Block position="absolute" top={'0'} left={'0'} height="300px">
-                {data.map((item, index) => (
-                    <TouchableOpacity
-                        key={item.label}
-                        onPress={() => showBarInfo(item)}
-                        style={{
-                            position: "absolute",
-                            left: index * 100,
-                            width: 100,
-                            height: 300,
-                        }}
-                    />
-                ))}
-            </Block>
+
             {renderModal()}
         </Block>
     );

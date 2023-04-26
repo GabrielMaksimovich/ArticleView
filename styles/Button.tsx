@@ -1,8 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components/native";
 import { BlockInterface } from "./Block";
+import {PaddingProps} from "../types/PaddingProps";
+import {MarginProps} from "../types/MarginProps";
+import {MarginStyle} from "./MarginStyle";
+import {PaddingStyle} from "./PaddingStyle";
 
-type ButtonInterface = BlockInterface & {
+type ButtonInterface = BlockInterface & PaddingProps & MarginProps &{
     onPress: () => void;
     shadowColor?: string;
     shadowOffset?: { height: number; width: number } | undefined | string;
@@ -12,6 +16,9 @@ type ButtonInterface = BlockInterface & {
     opacity?: string;
     children: React.ReactNode;
     boxShadow?: string;
+    position?: string;
+    height?: string;
+    left?: string | number;
 };
 
 const StyledButton = styled.TouchableOpacity<ButtonInterface>`
@@ -38,6 +45,10 @@ const StyledButton = styled.TouchableOpacity<ButtonInterface>`
     borderBottomColor &&
     borderBottomWidth &&
     `border-bottom-color: ${borderBottomColor}; border-bottom-width: ${borderBottomWidth}`};
+  ${({ position }): string | undefined => position && `position: ${position}`};
+  ${({ left }): string | undefined => left && `left: ${left}px`};
+  ${MarginStyle};
+  ${PaddingStyle};
 `;
 
 let disabled = false;
