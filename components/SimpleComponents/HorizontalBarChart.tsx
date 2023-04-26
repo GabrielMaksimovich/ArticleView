@@ -19,6 +19,13 @@ const chartConfig = {
     gridOpacity: 1,
 };
 
+const truncateLabel = (label: string, maxLength: number): string => {
+    if (label.length > maxLength) {
+        return `${label.substring(0, maxLength)}...`;
+    }
+    return label;
+};
+
 const HorizontalBarChart: FC<HorizontalBarChartProps> = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [activeBar, setActiveBar] = useState<BarData | null>(null);
@@ -76,7 +83,7 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = () => {
 
     const chartData = useMemo(() => {
         return {
-            labels: data.map((item) => item.label),
+            labels: data.map((item) => truncateLabel(item.label, 10)),
             datasets: [
                 {
                     data: data.map((item) => item.value),
