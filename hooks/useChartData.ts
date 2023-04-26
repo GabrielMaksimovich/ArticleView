@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BarData } from '../types/BarData';
 
-const useChartData = (): BarData[] => {
+const useChartData = () => {
     const [chartData, setChartData] = useState<BarData[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const fetchData = useCallback(async () => {
+        setIsLoading(true);
+        setIsError(false);
+
+        try {
             const response = await fetch('https://jsonplaceholder.typicode.com/todos');
             const data = await response.json();
             const formattedData: BarData[] = data.slice(0, 10).map((item: { id: number; title: string }) => ({
@@ -13,12 +18,18 @@ const useChartData = (): BarData[] => {
                 value: item.id,
             }));
             setChartData(formattedData);
-        };
-
-        fetchData();
+        } catch (error) {
+            setIsError(true);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
-    return chartData;
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    return { data: chartData, isLoading, isError, refetch: fetchData };
 };
 
 export default useChartData;
