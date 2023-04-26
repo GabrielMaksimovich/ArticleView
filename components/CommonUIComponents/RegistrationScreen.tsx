@@ -47,12 +47,24 @@ const RegistrationScreen = () => {
         ];
     }, [formik.values.password]);
 
+    const renderValidationItems = () => {
+        const { password } = formik.values;
+        return (
+            <>
+                <ValidationItem valid={validationSchema.isValidSync(password)} text="Valid password" />
+                {passwordValidations.map(({ key, validation }) => (
+                    <ValidationItem key={key} valid={validation()} text={key} />
+                ))}
+            </>
+        );
+    };
+
     return (
         <Block flex={1}>
             <Block flex={1} justifyContent={"center"} alignItems={"center"} bg={"orange"}>
                 <Logo />
             </Block>
-            <Block flex={2} paddingHorizontal={"20px"} paddingTop={"5px"} alignItems={"center"}>
+            <Block flex={2} paddingHorizontal={"20px"} paddingTop={"5px"}>
                 <SimpleInput
                     header="EMAIL"
                     value={formik.values.email}
@@ -71,10 +83,7 @@ const RegistrationScreen = () => {
                     errorMessage={formik.touched.password && formik.errors.password}
                 />
                 <Block marginTop={"10px"} marginBottom={"10px"}>
-                    <ValidationItem valid={validationSchema.isValidSync(formik.values.password)} text="Valid password" />
-                    {passwordValidations.map(({ key, validation }) => (
-                        <ValidationItem key={key} valid={validation()} text={key} />
-                    ))}
+                    {renderValidationItems()}
                 </Block>
                 <Button
                     onPress={handleSubmit}
