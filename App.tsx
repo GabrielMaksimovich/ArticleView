@@ -7,15 +7,6 @@ import HorizontalBarChart from "./components/SimpleComponents/HorizontalBarChart
 import {Block} from "./styles/Block";
 import {Text} from "./styles/Text";
 
-const data = [
-    { value: 50, label: 'Bar 1', index: 0 },
-    { value: 10, label: 'Bar 2', index: 1 },
-    { value: 150, label: 'Bar 3', index: 2 },
-    { value: 100, label: 'Bar 4', index: 3 },
-    { value: 75, label: 'Bar 5', index: 4 },
-];
-
-
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -36,7 +27,7 @@ const App = () => {
                 marginTop={'50px'}
             >
                 <Text>Vertical Chart Bar</Text>
-                <HorizontalBarChart data={data} />
+                <HorizontalBarChart />
             </Block>
         </NavigationContainer>
     );

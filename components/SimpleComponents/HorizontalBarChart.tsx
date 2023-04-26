@@ -2,7 +2,6 @@ import React, { FC, useState, useMemo, useCallback } from 'react';
 import { ScrollView, Modal } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 import { BarData } from '../../types/BarData';
-import { HorizontalBarChartProps } from '../../types/HorizontalBarChartProps';
 import { Block } from '../../styles/Block';
 import { Text } from '../../styles/Text';
 import {Button} from "../../styles/Button";
@@ -26,7 +25,7 @@ const truncateLabel = (label: string, maxLength: number): string => {
     return label;
 };
 
-const HorizontalBarChart: FC<HorizontalBarChartProps> = () => {
+const HorizontalBarChart = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [activeBar, setActiveBar] = useState<BarData | null>(null);
 
