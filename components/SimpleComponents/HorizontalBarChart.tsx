@@ -1,11 +1,12 @@
 import React, { FC, useState, useMemo, useCallback } from 'react';
-import { TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { ScrollView, Modal } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 import { BarData } from '../../types/BarData';
 import { HorizontalBarChartProps } from '../../types/HorizontalBarChartProps';
 import { Block } from '../../styles/Block';
 import { Text } from '../../styles/Text';
 import {Button} from "../../styles/Button";
+import useChartData from "../../hooks/useChartData";
 
 const chartConfig = {
     backgroundColor: '#fff',
@@ -18,9 +19,11 @@ const chartConfig = {
     gridOpacity: 1,
 };
 
-const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
+const HorizontalBarChart: FC<HorizontalBarChartProps> = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [activeBar, setActiveBar] = useState<BarData | null>(null);
+
+    const data = useChartData();
 
     const showBarInfo = useCallback((bar: BarData) => {
         setActiveBar(bar);
