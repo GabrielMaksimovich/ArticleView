@@ -35,10 +35,10 @@ export type BlockInterface = {
     paddingLeft?:string;
     paddingVertical?: string;
     borderStyle?: string;
-    marginTop?: number;
-    marginBottom?: number;
-    marginLeft?: number;
-    marginRight?: number;
+    marginTop?: string;
+    marginBottom?: string;
+    marginLeft?: string;
+    marginRight?: string;
     minHeight?: string;
     onLayout?: (value: SyntheticEvent) => void;
     translateY?: string;
@@ -57,10 +57,6 @@ export type BlockInterface = {
 const StyledBlock = styled.View<BlockInterface>`
   ${({ width }): string | undefined => width && `width: ${width}`};
   ${({ height }): string | undefined => height && `height: ${height}`};
-  ${({ marginTop }): number | undefined => marginTop};
-  ${({ marginBottom }): number | undefined => marginBottom};
-  ${({ marginLeft }): number | undefined => marginLeft};
-  ${({ marginRight }): number | undefined => marginRight};
   ${({ minHeight }): string | undefined => minHeight && `min-height: ${minHeight}px`};
   ${({ minWid }): string | undefined => minWid && `min-width: ${minWid}`};
   ${({ maxWid }): string | undefined => maxWid && `max-width: ${maxWid}`};
@@ -108,6 +104,10 @@ const StyledBlock = styled.View<BlockInterface>`
   ${({ paddingBottom }): string | undefined => paddingBottom && `paddingBottom: ${paddingBottom}`};
   ${({ paddingRight }): string | undefined => paddingRight && `paddingRight: ${paddingRight}`};
   ${({ paddingLeft }): string | undefined => paddingLeft && `paddingLeft: ${paddingLeft}`};
+  ${({ marginTop }): string | undefined => marginTop && `marginTop: ${marginTop}`};
+  ${({ marginBottom }): string | undefined => marginBottom && `marginBottom: ${marginBottom}`};
+  ${({ marginRight }): string | undefined => marginRight && `marginRight: ${marginRight}`};
+  ${({ marginLeft }): string | undefined => marginLeft && `marginLeft: ${marginLeft}`};
   ${({ borderStyle }): string | undefined => borderStyle && `border-style: ${borderStyle}`};
   ${({ overflow }): string | undefined => overflow && `overflow: ${overflow}`};
 `;
