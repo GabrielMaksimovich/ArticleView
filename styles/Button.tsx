@@ -6,7 +6,7 @@ import {MarginProps} from "../types/MarginProps";
 import {MarginStyle} from "./MarginStyle";
 import {PaddingStyle} from "./PaddingStyle";
 
-type ButtonInterface = BlockInterface & PaddingProps & MarginProps &{
+type ButtonInterface = {
     onPress: () => void;
     shadowColor?: string;
     shadowOffset?: { height: number; width: number } | undefined | string;
@@ -19,7 +19,7 @@ type ButtonInterface = BlockInterface & PaddingProps & MarginProps &{
     position?: string;
     height?: string;
     left?: string | number;
-};
+} & BlockInterface & PaddingProps & MarginProps;
 
 const StyledButton = styled.TouchableOpacity<ButtonInterface>`
   ${({ width }): string | undefined => width && `width: ${width}`};

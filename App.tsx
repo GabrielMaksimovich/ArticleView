@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import RegistrationScreen from "./components/CommonUIComponents/RegistrationScreen";
+import RegistrationScreen from "./screens/RegistrationScreen";
 
 
 const App = () => {

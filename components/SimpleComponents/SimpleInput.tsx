@@ -80,12 +80,12 @@ const SimpleInputComponent: FC<TextInputType> = ({
             height={"60px"}
             borderBottomWidth={"1px"}
             borderBottomColor={'light-grey'}
-            paddingTop={"10px"}
-            paddingBottom={"10px"}
+            paddingTop={10}
+            paddingBottom={10}
         >
-            <Block paddingHorizontal={'8px'} flexDirection={"row"} alignItems={"center"}>
+            <Block paddingHorizontal={8} flexDirection={"row"} alignItems={"center"}>
                 <Text
-                    marginRight={"8px"}
+                    marginRight={8}
                     fontSize={15}
                     fontWeight={"500"}
                     color={'grey'}
@@ -96,16 +96,16 @@ const SimpleInputComponent: FC<TextInputType> = ({
             </Block>
             <Block
                 flexDirection={"row"}
-                paddingLeft={isIos ? "8px" : "6px"}
-                paddingRight={"8px"}
-                paddingBottom={isIos ? "12px" : ""}
-                paddingTop={isIos ? "9px" : ""}
+                paddingLeft={isIos ? 8 : 6}
+                paddingRight={8}
+                paddingBottom={isIos ? 12 : ""}
+                paddingTop={isIos ? 9 : ""}
             >
                 <StyledSimpleInput
                     value={value}
                     fontSize={isIos ? "17px" : "15px"}
                     fontWeight={"400"}
-                    paddingRight={"25px"}
+                    paddingRight={25}
                     onChangeText={onChangeText}
                     keyboardType={keyboardType}
                     secureTextEntry={isSecureTextEntry}
@@ -120,8 +120,8 @@ const SimpleInputComponent: FC<TextInputType> = ({
                         top={Platform.OS === "ios" ? "8px" : "0px"}
                     >
                         <Button
-                            paddingRight={"14px"}
-                            paddingLeft={"12px"}
+                            paddingRight={14}
+                            paddingLeft={12}
                             height={"100%"}
                             justifyContent={"center"}
                             onPress={toggleSecureTextEntry}
@@ -129,8 +129,8 @@ const SimpleInputComponent: FC<TextInputType> = ({
                             {isSecureTextEntry ? (
                                 <Image
                                     resizeMode={'contain'}
-                                    width='24px'
-                                    height='24px'
+                                    width={"24px"}
+                                    height={"24px"}
                                     onError={() => console.log('error')}
                                     onLoad={() => console.log('loaded')}
                                     source={EyeOffIcon}
@@ -138,8 +138,8 @@ const SimpleInputComponent: FC<TextInputType> = ({
                             ) : (
                                 <Image
                                     resizeMode={'contain'}
-                                    width='24px'
-                                    height='24px'
+                                    width={"24px"}
+                                    height={"24px"}
                                     onError={() => console.log('error')}
                                     onLoad={() => console.log('loaded')}
                                     source={EyeIcon}

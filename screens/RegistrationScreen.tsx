@@ -2,12 +2,12 @@ import React, { useMemo } from "react";
 import { Alert } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Block } from "../../styles/Block";
-import { Text } from "../../styles/Text";
-import Logo from "../SimpleComponents/Logo";
-import SimpleInput from "../SimpleComponents/SimpleInput";
-import { Button } from "../../styles/Button";
-import { ValidationItem } from "../SimpleComponents/ValidationItem";
+import { Block } from "../styles/Block";
+import { Text } from "../styles/Text";
+import Logo from "../components/SimpleComponents/Logo";
+import SimpleInput from "../components/SimpleComponents/SimpleInput";
+import { Button } from "../styles/Button";
+import { ValidationItem } from "../components/SimpleComponents/ValidationItem";
 
 const RegistrationScreen = () => {
     const validationSchema = Yup.object().shape({
@@ -64,7 +64,7 @@ const RegistrationScreen = () => {
             <Block flex={1} justifyContent={"center"} alignItems={"center"} bg={"orange"}>
                 <Logo />
             </Block>
-            <Block flex={2} paddingHorizontal={"20px"} paddingTop={"5px"}>
+            <Block flex={2} paddingHorizontal={20} paddingTop={5}>
                 <SimpleInput
                     header="EMAIL"
                     value={formik.values.email}
@@ -82,7 +82,7 @@ const RegistrationScreen = () => {
                     secureTextEntry={true}
                     errorMessage={formik.touched.password && formik.errors.password}
                 />
-                <Block marginTop={"10px"} marginBottom={"10px"}>
+                <Block marginVertical={10}>
                     {renderValidationItems()}
                 </Block>
                 <Button

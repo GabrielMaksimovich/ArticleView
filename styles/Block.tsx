@@ -1,7 +1,11 @@
 import React, { FC, SyntheticEvent } from "react";
 import styled from "styled-components/native";
+import {PaddingProps} from "../types/PaddingProps";
+import {PaddingStyle} from "./PaddingStyle";
+import {MarginProps} from "../types/MarginProps";
+import {MarginStyle} from "./MarginStyle";
 
-export type BlockInterface = {
+export type BlockInterface = PaddingProps & MarginProps &{
     active?: boolean;
     width?: string;
     height?: string;
@@ -28,19 +32,7 @@ export type BlockInterface = {
     transform?: string;
     borderWidth?: string;
     borderColor?: string;
-    paddingHorizontal?: string;
-    paddingTop?:string;
-    paddingBottom?:string;
-    paddingRight?:string;
-    paddingLeft?:string;
-    paddingVertical?: string;
     borderStyle?: string;
-    marginTop?: string;
-    marginBottom?: string;
-    marginLeft?: string;
-    marginRight?: string;
-    marginVertical?: string;
-    marginHorizontal?: string;
     minHeight?: string;
     onLayout?: (value: SyntheticEvent) => void;
     translateY?: string;
@@ -98,24 +90,10 @@ const StyledBlock = styled.View<BlockInterface>`
     borderTopColor &&
     borderTopWidth &&
     `border-top-color: ${borderTopColor}; border-top-width: ${borderTopWidth}`};
-  ${({ paddingHorizontal }): string | undefined =>
-    paddingHorizontal && `padding-horizontal: ${paddingHorizontal}`};
-  ${({ paddingVertical }): string | undefined =>
-    paddingVertical && `padding-vertical: ${paddingVertical}`};
-  ${({ marginVertical }): string | undefined =>
-          marginVertical && `margin-vertical: ${marginVertical}`};
-  ${({ marginHorizontal }): string | undefined =>
-          marginHorizontal && `margin-horizontal: ${marginHorizontal}`};
-  ${({ paddingTop }): string | undefined => paddingTop && `paddingTop: ${paddingTop}`};
-  ${({ paddingBottom }): string | undefined => paddingBottom && `paddingBottom: ${paddingBottom}`};
-  ${({ paddingRight }): string | undefined => paddingRight && `paddingRight: ${paddingRight}`};
-  ${({ paddingLeft }): string | undefined => paddingLeft && `paddingLeft: ${paddingLeft}`};
-  ${({ marginTop }): string | undefined => marginTop && `marginTop: ${marginTop}`};
-  ${({ marginBottom }): string | undefined => marginBottom && `marginBottom: ${marginBottom}`};
-  ${({ marginRight }): string | undefined => marginRight && `marginRight: ${marginRight}`};
-  ${({ marginLeft }): string | undefined => marginLeft && `marginLeft: ${marginLeft}`};
   ${({ borderStyle }): string | undefined => borderStyle && `border-style: ${borderStyle}`};
   ${({ overflow }): string | undefined => overflow && `overflow: ${overflow}`};
+  ${PaddingStyle};
+  ${MarginStyle};
 `;
 
 export const Block: FC<BlockInterface> = ({ children, ...rest }) => (
