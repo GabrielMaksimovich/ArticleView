@@ -1,22 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Text } from "./styles/Text";
-import { View } from "react-native";
 import HorizontalBarChart from './screens/HorizontalBarChart';
 import RegistrationScreen from "./screens/RegistrationScreen";
 import Summary from "./screens/Summary";
 import Article from "./screens/Article";
+import HomeScreen from "./components/SimpleComponents/Home";
 
 const Drawer = createDrawerNavigator();
-
-function HomeScreen() {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home screen</Text>
-        </View>
-    );
-}
 
 const App = () => {
     return (
