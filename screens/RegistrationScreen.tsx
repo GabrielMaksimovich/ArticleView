@@ -4,10 +4,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Block } from "../styles/Block";
 import { Text } from "../styles/Text";
-import Logo from "../components/SimpleComponents/Logo";
-import SimpleInput from "../components/SimpleComponents/SimpleInput";
+import Logo from "../components/Logo";
+import SimpleInput from "../components/SimpleInput";
 import { Button } from "../styles/Button";
-import { ValidationItem } from "../components/SimpleComponents/ValidationItem";
+import { ValidationItem } from "../components/ValidationItem";
 
 const RegistrationScreen = () => {
     const validationSchema = Yup.object().shape({

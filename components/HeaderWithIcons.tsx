@@ -7,13 +7,13 @@
  */
 
 import React from "react";
-import {Block} from "../../styles/Block";
+import {Block} from "../styles/Block";
 import {Text} from "react-native";
-import {Image} from "../../styles/Image";
+import {Image} from "../styles/Image";
 
-import bluetoothImage from '../../assets/bluetooth.png';
-import wifiImage from '../../assets/wi-fi.png';
-import cloud from '../../assets/cloud.png';
+import bluetoothImage from '../assets/bluetooth.png';
+import wifiImage from '../assets/wi-fi.png';
+import cloud from '../assets/cloud.png';
 
 const HeaderWithIcons = () => {
 

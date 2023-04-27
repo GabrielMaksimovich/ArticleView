@@ -5,7 +5,7 @@ import HorizontalBarChart from './screens/HorizontalBarChart';
 import RegistrationScreen from "./screens/RegistrationScreen";
 import Summary from "./screens/Summary";
 import Article from "./screens/Article";
-import HomeScreen from "./components/SimpleComponents/Home";
+import HomeScreen from "./components/Home";
 
 const Drawer = createDrawerNavigator();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Text } from '../../styles/Text';
-import {Block} from "../../styles/Block";
+import { Text } from '../styles/Text';
+import {Block} from "../styles/Block";
 
 const Logo = () => {
     return (

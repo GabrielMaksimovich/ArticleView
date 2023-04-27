@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Animated } from 'react-native';
-import { Block } from '../../styles/Block';
-import { Image } from '../../styles/Image';
-import { Text } from '../../styles/Text';
-import { Button } from '../../styles/Button';
-import longsleeve from '../../assets/longsleeve.webp';
-import rightArrow from '../../assets/right-arrow.png';
-import DataItem from "../../types/DataItem";
+import { Block } from '../styles/Block';
+import { Image } from '../styles/Image';
+import { Text } from '../styles/Text';
+import { Button } from '../styles/Button';
+import longsleeve from '../assets/longsleeve.webp';
+import rightArrow from '../assets/right-arrow.png';
+import DataItem from "../types/DataItem";
 
 type Props = {
     item: DataItem;

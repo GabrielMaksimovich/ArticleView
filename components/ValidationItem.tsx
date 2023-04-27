@@ -1,4 +1,4 @@
-import { Text } from "../../styles/Text";
+import { Text } from "../styles/Text";
 import {FC} from "react";
 
 type Props = {

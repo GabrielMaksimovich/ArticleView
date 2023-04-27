@@ -1,11 +1,11 @@
 import React, {FC, useState} from "react";
 import {Animated, TouchableOpacity} from "react-native";
-import {Block} from "../../styles/Block";
-import {Image} from "../../styles/Image";
-import {Text} from "../../styles/Text";
-import {Button} from "../../styles/Button";
+import {Block} from "../styles/Block";
+import {Image} from "../styles/Image";
+import {Text} from "../styles/Text";
+import {Button} from "../styles/Button";
 
-import rightArrow from '../../assets/right-arrow.png';
+import rightArrow from '../assets/right-arrow.png';
 
 
 

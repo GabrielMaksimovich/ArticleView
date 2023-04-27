@@ -1,7 +1,7 @@
 
-import {Text} from "../../styles/Text";
+import {Text} from "../styles/Text";
 import React from "react";
-import {Block} from "../../styles/Block";
+import {Block} from "../styles/Block";
 
 function HomeScreen() {
     return (

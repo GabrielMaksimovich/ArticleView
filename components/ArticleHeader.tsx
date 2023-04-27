@@ -7,8 +7,8 @@
  */
 
 import React, {FC} from "react";
-import {Block} from "../../styles/Block";
-import {Text} from "../../styles/Text";
+import {Block} from "../styles/Block";
+import {Text} from "../styles/Text";
 
 type Props = {
     title: string;

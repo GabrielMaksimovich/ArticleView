@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react";
-import {Block} from "../../styles/Block";
-import {Text} from "../../styles/Text";
-import {Button} from "../../styles/Button";
+import {Block} from "../styles/Block";
+import {Text} from "../styles/Text";
+import {Button} from "../styles/Button";
 
 type Props = {
     onButtonChange: (value: string) => void;
