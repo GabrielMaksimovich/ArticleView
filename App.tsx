@@ -1,25 +1,29 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar, useColorScheme } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Text } from "./styles/Text";
+import { View } from "react-native";
+import HorizontalBarChart from './screens/HorizontalBarChart';
 import RegistrationScreen from "./screens/RegistrationScreen";
 
+const Drawer = createDrawerNavigator();
+
+function HomeScreen() {
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Home screen</Text>
+        </View>
+    );
+}
 
 const App = () => {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.white,
-    };
-
     return (
         <NavigationContainer>
-            <StatusBar
-                barStyle={'light-content'}
-                backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <RegistrationScreen />
+            <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen name="Home" component={HomeScreen} />
+                <Drawer.Screen name="Registration" component={RegistrationScreen} />
+                <Drawer.Screen name="Chart bar" component={HorizontalBarChart} />
+            </Drawer.Navigator>
         </NavigationContainer>
     );
 };
