@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { ScrollView, Modal } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
-import { BarData } from '../../types/BarData';
-import { Block } from '../../styles/Block';
-import { Text } from '../../styles/Text';
-import { Button } from '../../styles/Button';
-import useChartData from '../../hooks/useChartData';
+import { BarData } from '../types/BarData';
+import { Block } from '../styles/Block';
+import { Text } from '../styles/Text';
+import { Button } from '../styles/Button';
+import useChartData from '../hooks/useChartData';
 
 const chartConfig = {
     backgroundColor: '#fff',

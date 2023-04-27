@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Alert } from "react-native";
-import { Block } from "../../styles/Block";
-import { Text } from "../../styles/Text";
-import Logo from "../SimpleComponents/Logo";
-import SimpleInput from "../SimpleComponents/SimpleInput";
-import {Button} from "../../styles/Button";
-import {ValidationItem} from "../SimpleComponents/ValidationItem";
+import { Block } from "../styles/Block";
+import { Text } from "../styles/Text";
+import Logo from "../components/SimpleComponents/Logo";
+import SimpleInput from "../components/SimpleComponents/SimpleInput";
+import {Button} from "../styles/Button";
+import {ValidationItem} from "../components/SimpleComponents/ValidationItem";
 
 const RegistrationScreen = () => {
     const [email, setEmail] = useState("");

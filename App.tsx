@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import HorizontalBarChart from "./components/SimpleComponents/HorizontalBarChart";
+import HorizontalBarChart from "./screens/HorizontalBarChart";
 import {Block} from "./styles/Block";
 import {Text} from "./styles/Text";
 
