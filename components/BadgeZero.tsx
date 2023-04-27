@@ -20,6 +20,7 @@ const BadgeZero = () => {
             paddingVertical={10}
             paddingHorizontal={10}
             flexDirection={'row'}
+            alignItems={'center'}
         >
             <Image
                 resizeMode={'contain'}
@@ -31,6 +32,9 @@ const BadgeZero = () => {
             />
             <Text
                 marginLeft={10}
+                color={'grey'}
+                fontWeight={'bold'}
+                fontSize={12}
             >
                 25003900020001902003
             </Text>
