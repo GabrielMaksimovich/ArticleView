@@ -26,10 +26,13 @@ const Summary = () => {
             {activeButton === "Articles" ? (
                 <ArticleSection />
             ) : (
-                <>
+                <Block
+                    justifyContent={'space-between'}
+                    height={'61%'}
+                >
                     <Carton />
                     <Footer title="Pull the trigger to scan a carton barcode." />
-                </>
+                </Block>
             )}
         </Block>
     );

@@ -27,102 +27,88 @@ const Carton: FC = () => {
         <Block
             borderBottomColor={'grey'}
             borderBottomWidth={'1px'}
-            height={'55%'}
         >
-
             <Block
-                paddingVertical={20}
-                paddingHorizontal={10}
-                borderBottomColor={'grey'}
-                borderBottomWidth={'1px'}
+                flexDirection={'row'}
+                alignItems={'center'}
+                justifyContent={'space-between'}
+                paddingHorizontal={5}
             >
-                <Block
-                    flexDirection={'row'}
-                    alignItems={'center'}
-                    justifyContent={'space-between'}
+                <Block>
+                    <Text
+                        paddingVertical={20}
+                        fontSize={10}
+                        fontWeight={'bold'}
+                    >
+                        25003900020001902003
+                    </Text>
+                </Block>
+
+                <Animated.View
+                    style={{
+                        transform: [
+                            { translateX: slideAnimation },
+                            { scaleX: showDeleteButton ? 0.9 : 1 }
+                        ]
+                    }}
                 >
                     <Block
                         flexDirection={'row'}
                         alignItems={'center'}
-                    >
-                        <Block>
-                            <Text
-                                marginBottom={5}
-                                fontSize={10}
-                                fontWeight={'bold'}
-                            >
-                                25003900020001902003
-                            </Text>
-                        </Block>
-                    </Block>
-
-                    <Animated.View
-                        style={{
-                            transform: [
-                                { translateX: slideAnimation },
-                                { scaleX: showDeleteButton ? 0.9 : 1 }
-                            ]
-                        }}
+                        justifyContent={'space-around'}
                     >
                         <Block
-                            flexDirection={'row'}
-                            alignItems={'center'}
-                            justifyContent={'space-around'}
+                            marginRight={10}
                         >
-                            <Block
-                                marginRight={10}
+                            <Button
+                                onPress={handlePress}
+                                width={'80px'}
+                                height={'15px'}
+                                bg={'grey'}
+                                borderRadius={'10px'}
+                                justifyContent={'center'}
+                                alignItems={'center'}
                             >
-                                <Button
-                                    onPress={handlePress}
-                                    width={'80px'}
-                                    height={'15px'}
-                                    bg={'grey'}
-                                    borderRadius={'10px'}
-                                    justifyContent={'center'}
-                                    alignItems={'center'}
+                                <Text
+                                    color={'#fff'}
+                                    fontSize={12}
                                 >
-                                    <Text
-                                        color={'#fff'}
-                                        fontSize={12}
-                                    >
-                                        9
-                                    </Text>
-                                </Button>
-                            </Block>
-
-                            <TouchableOpacity onPress={handlePress}>
-                                <Image
-                                    resizeMode={'contain'}
-                                    width={'10px'}
-                                    height={'10px'}
-                                    onError={() => console.log('error')}
-                                    onLoad={() => console.log('loaded')}
-                                    source={rightArrow}
-                                />
-                            </TouchableOpacity>
+                                    9
+                                </Text>
+                            </Button>
                         </Block>
-                    </Animated.View>
-                </Block>
-            </Block>
 
-            {showDeleteButton &&
-                <Block
-                    bg={'red'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    height={'20%'}
-                    width={'50px'}
-                    position={'absolute'}
-                    top={'0'}
-                    right={'0'}
-                >
-                    <Button
-                        onPress={() => 'hello'}
+                        <TouchableOpacity onPress={handlePress}>
+                            <Image
+                                resizeMode={'contain'}
+                                width={'10px'}
+                                height={'10px'}
+                                onError={() => console.log('error')}
+                                onLoad={() => console.log('loaded')}
+                                source={rightArrow}
+                            />
+                        </TouchableOpacity>
+                    </Block>
+                </Animated.View>
+                {showDeleteButton &&
+                    <Block
+                        bg={'red'}
+                        justifyContent={'center'}
+                        alignItems={'center'}
+                        width={'50px'}
+                        height={'100%'}
+                        position={'absolute'}
+                        top={'0'}
+                        right={'0'}
                     >
-                        <Text color={'#fff'}>Delete</Text>
-                    </Button>
-                </Block>
-            }
+                        <Button
+                            onPress={() => 'hello'}
+                        >
+                            <Text color={'#fff'}>Delete</Text>
+                        </Button>
+                    </Block>
+                }
+            </Block>
         </Block>
     );
 };
