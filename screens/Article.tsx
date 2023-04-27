@@ -7,11 +7,11 @@
  */
 
 import React from "react";
-import HeaderWithoutIcons from "../SimpleComponents/HeaderWithoutIcons";
-import BadgeArticle from "../SimpleComponents/BadgeArticle";
-import {Block} from "../../styles/Block";
-import ArticleSection from "../SimpleComponents/ArticleSection";
-import Footer from "../SimpleComponents/Footer";
+import HeaderWithoutIcons from "../components/SimpleComponents/HeaderWithoutIcons";
+import BadgeArticle from "../components/SimpleComponents/BadgeArticle";
+import {Block} from "../styles/Block";
+import ArticleSection from "../components/SimpleComponents/ArticleSection";
+import Footer from "../components/SimpleComponents/Footer";
 
 const Article = () => {
     return (

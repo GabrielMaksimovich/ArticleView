@@ -66,7 +66,7 @@ const ListItem: React.FC<Props> = ({
                             <Block
                                 flexDirection={"row"}
                                 justifyContent={"flex-start"}
-                                marginBottom={5}
+                                marginBottom="5px"
                             >
                                 <Text marginRight={30} fontSize={10}>{item.color}</Text>
                                 <Text fontSize={10}>{item.size}</Text>
@@ -83,7 +83,7 @@ const ListItem: React.FC<Props> = ({
                         alignItems={"center"}
                         justifyContent={"space-around"}
                     >
-                        <Block marginRight={10}>
+                        <Block marginRight="10px">
                             <Button
                                 onPress={() => 'clicked'}
                                 width={"80px"}

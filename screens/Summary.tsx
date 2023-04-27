@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import HeaderWithoutIcons from "../SimpleComponents/HeaderWithoutIcons";
-import { Block } from "../../styles/Block";
-import ArticleSection from "../SimpleComponents/ArticleSection";
-import Footer from "../SimpleComponents/Footer";
-import BadgeSummary from "../SimpleComponents/BadgeSummary";
-import SwitchBtn from "../SimpleComponents/SwitchBtn";
-import ArticleHeader from "../SimpleComponents/ArticleHeader";
-import Carton from "../SimpleComponents/Carton";
+import HeaderWithoutIcons from "../components/SimpleComponents/HeaderWithoutIcons";
+import { Block } from "../styles/Block";
+import ArticleSection from "../components/SimpleComponents/ArticleSection";
+import Footer from "../components/SimpleComponents/Footer";
+import BadgeSummary from "../components/SimpleComponents/BadgeSummary";
+import SwitchBtn from "../components/SimpleComponents/SwitchBtn";
+import ArticleHeader from "../components/SimpleComponents/ArticleHeader";
+import Carton from "../components/SimpleComponents/Carton";
 
 const Summary = () => {
     const [activeButton, setActiveButton] = useState("Cartons");
