@@ -7,6 +7,7 @@ import BadgeSummary from "../components/SimpleComponents/BadgeSummary";
 import SwitchBtn from "../components/SimpleComponents/SwitchBtn";
 import ArticleHeader from "../components/SimpleComponents/ArticleHeader";
 import Carton from "../components/SimpleComponents/Carton";
+import HeaderWithIcons from "../components/SimpleComponents/HeaderWithIcons";
 
 const Summary = () => {
     const [activeButton, setActiveButton] = useState("Cartons");
@@ -17,6 +18,7 @@ const Summary = () => {
 
     return (
         <Block>
+            <HeaderWithIcons />
             <HeaderWithoutIcons text="Prepare" title="Summary" />
             <BadgeSummary />
             <SwitchBtn onButtonChange={handleActiveButtonChange} />

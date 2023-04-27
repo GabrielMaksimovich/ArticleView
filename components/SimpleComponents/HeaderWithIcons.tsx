@@ -23,9 +23,9 @@ const HeaderWithIcons = () => {
             <Block
                 flexDirection={'row'}
                 justifyContent={'space-between'}
-                paddingTop={'30px'}
-                paddingVertical={'10px'}
-                paddingHorizontal={'10px'}
+                paddingTop={30}
+                paddingVertical={10}
+                paddingHorizontal={10}
                 borderBottomColor={'grey'}
                 borderBottomWidth={'1px'}
             >
@@ -36,8 +36,8 @@ const HeaderWithIcons = () => {
                 >
                     <Image
                         resizeMode={'contain'}
-                        width='35px'
-                        height='35px'
+                        width={'35px'}
+                        height={'35px'}
                         onError={() => console.log('error')}
                         onLoad={() => console.log('loaded')}
                         source={bluetoothImage}
@@ -50,8 +50,8 @@ const HeaderWithIcons = () => {
                 >
                     <Image
                         resizeMode={'contain'}
-                        width='35px'
-                        height='35px'
+                        width={'35px'}
+                        height={'35px'}
                         onError={() => console.log('error')}
                         onLoad={() => console.log('loaded')}
                         source={wifiImage}
@@ -63,8 +63,8 @@ const HeaderWithIcons = () => {
                 >
                     <Image
                         resizeMode={'contain'}
-                        width='40px'
-                        height='40px'
+                        width={'40px'}
+                        height={'40px'}
                         onError={() => console.log('error')}
                         onLoad={() => console.log('loaded')}
                         source={cloud}

@@ -12,10 +12,12 @@ import BadgeArticle from "../components/SimpleComponents/BadgeArticle";
 import {Block} from "../styles/Block";
 import ArticleSection from "../components/SimpleComponents/ArticleSection";
 import Footer from "../components/SimpleComponents/Footer";
+import HeaderWithIcons from "../components/SimpleComponents/HeaderWithIcons";
 
 const Article = () => {
     return (
         <Block>
+            <HeaderWithIcons />
             <HeaderWithoutIcons text='Confirm' title='Article in Carton'/>
             <BadgeArticle />
             <ArticleSection />

@@ -26,8 +26,8 @@ const HeaderWithoutIcons: FC<Props> = ({ text, title }) => {
                 flexDirection={"row"}
                 justifyContent={'space-between'}
                 alignItems={'center'}
-                paddingVertical={'10px'}
-                paddingHorizontal={'5px'}
+                paddingVertical={10}
+                paddingHorizontal={5}
             >
                 <Text color={'blue'}>Cancel</Text>
                 <Text fontWeight={'bold'}>{title}</Text>

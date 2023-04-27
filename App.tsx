@@ -5,6 +5,8 @@ import { Text } from "./styles/Text";
 import { View } from "react-native";
 import HorizontalBarChart from './screens/HorizontalBarChart';
 import RegistrationScreen from "./screens/RegistrationScreen";
+import Summary from "./screens/Summary";
+import Article from "./screens/Article";
 
 const Drawer = createDrawerNavigator();
 
@@ -23,6 +25,8 @@ const App = () => {
                 <Drawer.Screen name="Home" component={HomeScreen} />
                 <Drawer.Screen name="Registration" component={RegistrationScreen} />
                 <Drawer.Screen name="Chart bar" component={HorizontalBarChart} />
+                <Drawer.Screen name="Summary" component={Summary} />
+                <Drawer.Screen name="Article" component={Article} />
             </Drawer.Navigator>
         </NavigationContainer>
     );

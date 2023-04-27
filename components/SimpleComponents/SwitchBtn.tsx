@@ -18,8 +18,8 @@ const SwitchBtn: FC<Props> = ({onButtonChange}) => {
     return (
         <Block
             bg={"#e9e9e9"}
-            paddingVertical={"2px"}
-            paddingHorizontal={"5px"}
+            paddingVertical={2}
+            paddingHorizontal={5}
             flexDirection={"row"}
             justifyContent={"space-between"}
         >

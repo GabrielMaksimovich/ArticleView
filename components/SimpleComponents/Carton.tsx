@@ -31,8 +31,8 @@ const Carton: FC = () => {
         >
 
             <Block
-                paddingVertical={'20px'}
-                paddingHorizontal={'10px'}
+                paddingVertical={20}
+                paddingHorizontal={10}
                 borderBottomColor={'grey'}
                 borderBottomWidth={'1px'}
             >
@@ -44,9 +44,7 @@ const Carton: FC = () => {
                     <Block
                         flexDirection={'row'}
                         alignItems={'center'}
-
                     >
-
                         <Block>
                             <Text
                                 marginBottom={5}
@@ -55,7 +53,6 @@ const Carton: FC = () => {
                             >
                                 25003900020001902003
                             </Text>
-
                         </Block>
                     </Block>
 
@@ -67,7 +64,6 @@ const Carton: FC = () => {
                             ]
                         }}
                     >
-
                         <Block
                             flexDirection={'row'}
                             alignItems={'center'}
@@ -97,8 +93,8 @@ const Carton: FC = () => {
                             <TouchableOpacity onPress={handlePress}>
                                 <Image
                                     resizeMode={'contain'}
-                                    width='10px'
-                                    height='10px'
+                                    width={'10px'}
+                                    height={'10px'}
                                     onError={() => console.log('error')}
                                     onLoad={() => console.log('loaded')}
                                     source={rightArrow}
