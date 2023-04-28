@@ -7,9 +7,9 @@
  */
 
 import React, {FC} from "react";
-import {Block} from "../../styles/Block";
-import {Text} from "../../styles/Text";
-import {Button} from "../../styles/Button";
+import {Block} from "../styles/Block";
+import {Text} from "../styles/Text";
+import {Button} from "../styles/Button";
 
 type Props = {
     title: string;
@@ -26,8 +26,7 @@ const Footer: FC<Props> = ({ title }) => {
             flexDirection={'row'}
             alignItems={'center'}
             alignSelf={'center'}
-            justifyContent={'flex-end'}
-            paddingVertical={'10px'}
+            paddingVertical={10}
         >
             <Button
                 onPress={handlePress}

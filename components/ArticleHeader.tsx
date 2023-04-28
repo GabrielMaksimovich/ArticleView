@@ -7,8 +7,8 @@
  */
 
 import React, {FC} from "react";
-import {Block} from "../../styles/Block";
-import {Text} from "../../styles/Text";
+import {Block} from "../styles/Block";
+import {Text} from "../styles/Text";
 
 type Props = {
     title: string;
@@ -20,8 +20,8 @@ const ArticleHeader: FC<Props> = ({ title }) => {
         <Block
             flexDirection={'row'}
             justifyContent={'space-between'}
-            paddingHorizontal={'20px'}
-            paddingVertical={'10px'}
+            paddingHorizontal={20}
+            paddingVertical={10}
             borderBottomColor={'grey'}
             borderBottomWidth={'1px'}
         >

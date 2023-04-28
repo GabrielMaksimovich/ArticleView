@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Animated } from 'react-native';
-import { Block } from '../../styles/Block';
-import { Image } from '../../styles/Image';
-import { Text } from '../../styles/Text';
-import { Button } from '../../styles/Button';
-import longsleeve from '../../assets/longsleeve.webp';
-import rightArrow from '../../assets/right-arrow.png';
-import DataItem from "../../types/DataItem";
+import { Block } from '../styles/Block';
+import { Image } from '../styles/Image';
+import { Text } from '../styles/Text';
+import { Button } from '../styles/Button';
+import longsleeve from '../assets/longsleeve.webp';
+import rightArrow from '../assets/right-arrow.png';
+import DataItem from "../types/DataItem";
 
 type Props = {
     item: DataItem;
@@ -42,14 +42,14 @@ const ListItem: React.FC<Props> = ({
                     flexDirection={"row"}
                     alignItems={"center"}
                     justifyContent={"space-between"}
-                    paddingVertical={"10px"}
+                    paddingVertical={10}
                 >
                     <Block flexDirection={"row"} alignItems={"center"}>
                         <Animated.View style={{ opacity: imageOpacity}}>
                             <Image
                                 resizeMode={"contain"}
-                                width="80px"
-                                height="80px"
+                                width={"80px"}
+                                height={"80px"}
                                 onError={() => console.log("error")}
                                 onLoad={() => console.log("loaded")}
                                 source={longsleeve}
@@ -66,7 +66,7 @@ const ListItem: React.FC<Props> = ({
                             <Block
                                 flexDirection={"row"}
                                 justifyContent={"flex-start"}
-                                marginBottom="5px"
+                                marginBottom={5}
                             >
                                 <Text marginRight={30} fontSize={10}>{item.color}</Text>
                                 <Text fontSize={10}>{item.size}</Text>
@@ -83,7 +83,7 @@ const ListItem: React.FC<Props> = ({
                         alignItems={"center"}
                         justifyContent={"space-around"}
                     >
-                        <Block marginRight="10px">
+                        <Block marginRight={10}>
                             <Button
                                 onPress={() => 'clicked'}
                                 width={"80px"}
@@ -100,8 +100,8 @@ const ListItem: React.FC<Props> = ({
                         <TouchableOpacity onPress={() => handlePress(item.id)}>
                             <Image
                                 resizeMode={"contain"}
-                                width="10px"
-                                height="10px"
+                                width={"10px"}
+                                height={"10px"}
                                 onError={() => console.log("error")}
                                 onLoad={() => console.log("loaded")}
                                 source={rightArrow}

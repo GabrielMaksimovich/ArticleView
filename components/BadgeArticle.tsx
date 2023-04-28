@@ -7,11 +7,11 @@
  */
 
 import React from "react";
-import {Block} from "../../styles/Block";
-import {Image} from "../../styles/Image";
-import {Text} from "../../styles/Text";
-import box from '../../assets/box.png';
-import badge from '../../assets/badge.png';
+import {Block} from "../styles/Block";
+import {Image} from "../styles/Image";
+import {Text} from "../styles/Text";
+import box from '../assets/box.png';
+import badge from '../assets/badge.png';
 
 const BadgeArticle = () => {
 

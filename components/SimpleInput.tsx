@@ -2,9 +2,9 @@ import React, {FC, useState} from "react";
 
 import styled from "styled-components/native";
 
-import { Block } from "../../styles/Block";
-import { Button } from "../../styles/Button";
-import { Text } from "../../styles/Text";
+import { Block } from "../styles/Block";
+import { Button } from "../styles/Button";
+import { Text } from "../styles/Text";
 import {
     ActivityIndicator,
     NativeSyntheticEvent,
@@ -12,11 +12,11 @@ import {
     TextInputChangeEventData,
     TextInputProps
 } from "react-native";
-import EyeIcon from "../../assets/eye.png";
-import EyeOffIcon from "../../assets/eye-closed.png";
-import {Image} from "../../styles/Image";
-import {PaddingProps} from "../../types/PaddingProps";
-import {PaddingStyle} from "../../styles/PaddingStyle";
+import EyeIcon from "../assets/eye.png";
+import EyeOffIcon from "../assets/eye-closed.png";
+import {Image} from "../styles/Image";
+import {PaddingProps} from "../types/PaddingProps";
+import {PaddingStyle} from "../styles/PaddingStyle";
 
 
 type TextInputType = {

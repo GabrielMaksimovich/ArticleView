@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Animated } from "react-native";
-import { Block } from "../../styles/Block";
-import data from "../../data/data";
+import { Block } from "../styles/Block";
+import data from "../data/data";
 import ListItem from "./ListItem";
 
 const ArticleSection: FC = () => {

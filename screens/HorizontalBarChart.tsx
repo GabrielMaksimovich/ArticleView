@@ -60,7 +60,11 @@ const HorizontalBarChart = () => {
             ) : (
                 <>
                 <ScrollView horizontal>
-                    <Block position="relative" width={`${data.length * 100}px`} height="300px">
+                    <Block
+                        position="relative"
+                        width={`${data.length * 100}px`}
+                        height="300px"
+                    >
                         <BarChart
                             data={chartData}
                             width={data.length * 100}
@@ -97,14 +101,19 @@ const HorizontalBarChart = () => {
                     visible={modalVisible}
                     onRequestClose={() => setModalVisible(false)}
                 >
-                    <Block alignItems="center" justifyContent="center" marginTop={'22px'} flex={1}>
+                    <Block
+                        flex={1}
+                        alignItems="center"
+                        justifyContent="center"
+                        marginTop={22}
+                    >
                         <Block
-                            marginHorizontal={'20px'}
-                            marginVertical={'20px'}
+                            marginHorizontal={20}
+                            marginVertical={20}
                             bg="white"
                             borderRadius="20px"
-                            paddingHorizontal={'35px'}
-                            paddingVertical={'35px'}
+                            paddingHorizontal={35}
+                            paddingVertical={35}
                             alignItems="center"
                             shadowColor="#000"
                             shadowOpacity={0.25}
