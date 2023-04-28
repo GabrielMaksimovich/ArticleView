@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { Block } from '../styles/Block';
+import { Block } from '../components/SimpleComponents/Block';
 import Header from '../components/Header';
 import BadgeZero from '../components/BadgeZero';
-import { Text } from '../styles/Text';
+import { Text } from '../components/SimpleComponents/Text';
 import Wifi from '../assets/icons/signal-white.svg';
 
 const ZeroCartons = () => {

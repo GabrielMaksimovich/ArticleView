@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components/native";
 import { BlockInterface } from "./Block";
-import {PaddingProps} from "../types/PaddingProps";
-import {MarginProps} from "../types/MarginProps";
-import {MarginStyle} from "./MarginStyle";
-import {PaddingStyle} from "./PaddingStyle";
+import {PaddingProps} from "../../types/PaddingProps";
+import {MarginProps} from "../../types/MarginProps";
+import {MarginStyle} from "../../styles/MarginStyle";
+import {PaddingStyle} from "../../styles/PaddingStyle";
 
 type ButtonInterface = {
     onPress: () => void;

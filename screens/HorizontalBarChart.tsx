@@ -2,9 +2,9 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { ScrollView, Modal } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 import { BarData } from '../types/BarData';
-import { Block } from '../styles/Block';
-import { Text } from '../styles/Text';
-import { Button } from '../styles/Button';
+import { Block } from '../components/SimpleComponents/Block';
+import { Text } from '../components/SimpleComponents/Text';
+import { Button } from '../components/SimpleComponents/Button';
 import useChartData from '../hooks/useChartData';
 
 const chartConfig = {

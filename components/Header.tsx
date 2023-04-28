@@ -7,8 +7,8 @@
  */
 
 import React from "react";
-import {Block} from "../styles/Block";
-import {Text} from "../styles/Text";
+import {Block} from "./SimpleComponents/Block";
+import {Text} from "./SimpleComponents/Text";
 import Bluetooth from "../assets/icons/bluetooth-svgrepo-com.svg";
 import WiFi from "../assets/icons/signal-white.svg";
 import Cloud from "../assets/icons/cloud-check-7.svg";

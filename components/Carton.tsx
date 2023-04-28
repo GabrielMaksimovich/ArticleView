@@ -1,8 +1,8 @@
 import React, {FC, useState} from "react";
 import {Animated, TouchableOpacity} from "react-native";
-import {Block} from "../styles/Block";
-import {Text} from "../styles/Text";
-import {Button} from "../styles/Button";
+import {Block} from "./SimpleComponents/Block";
+import {Text} from "./SimpleComponents/Text";
+import {Button} from "./SimpleComponents/Button";
 
 import ArrowRight from "../assets/icons/right-arrow-9.svg";
 

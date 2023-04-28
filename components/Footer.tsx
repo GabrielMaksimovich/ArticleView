@@ -7,9 +7,9 @@
  */
 
 import React, {FC} from "react";
-import {Block} from "../styles/Block";
-import {Text} from "../styles/Text";
-import {Button} from "../styles/Button";
+import {Block} from "./SimpleComponents/Block";
+import {Text} from "./SimpleComponents/Text";
+import {Button} from "./SimpleComponents/Button";
 
 type Props = {
     title: string;

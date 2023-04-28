@@ -1,9 +1,9 @@
 import React, { FC, SyntheticEvent } from "react";
 import styled from "styled-components/native";
-import {PaddingProps} from "../types/PaddingProps";
-import {PaddingStyle} from "./PaddingStyle";
-import {MarginProps} from "../types/MarginProps";
-import {MarginStyle} from "./MarginStyle";
+import {PaddingProps} from "../../types/PaddingProps";
+import {PaddingStyle} from "../../styles/PaddingStyle";
+import {MarginProps} from "../../types/MarginProps";
+import {MarginStyle} from "../../styles/MarginStyle";
 
 export type BlockInterface = PaddingProps & MarginProps &{
     active?: boolean;

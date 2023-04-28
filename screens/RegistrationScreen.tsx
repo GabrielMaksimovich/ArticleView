@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { Alert } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Block } from "../styles/Block";
-import { Text } from "../styles/Text";
+import { Block } from "../components/SimpleComponents/Block";
+import { Text } from "../components/SimpleComponents/Text";
 import Logo from "../components/Logo";
 import SimpleInput from "../components/SimpleInput";
-import { Button } from "../styles/Button";
+import { Button } from "../components/SimpleComponents/Button";
 import { ValidationItem } from "../components/ValidationItem";
 
 const RegistrationScreen = () => {

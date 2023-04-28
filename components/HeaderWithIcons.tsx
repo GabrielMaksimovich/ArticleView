@@ -1,5 +1,5 @@
 import React from "react";
-import {Block} from "../styles/Block";
+import {Block} from "./SimpleComponents/Block";
 import {Text} from "react-native";
 
 import BluetoothIcon from "../assets/icons/bluetooth-svgrepo-com.svg";

@@ -1,6 +1,6 @@
 import React from "react";
-import {Block} from "../styles/Block";
-import {Text} from "../styles/Text";
+import {Block} from "./SimpleComponents/Block";
+import {Text} from "./SimpleComponents/Text";
 import Box from "../assets/icons/box-full-4.svg";
 
 const BadgeZero = () => {

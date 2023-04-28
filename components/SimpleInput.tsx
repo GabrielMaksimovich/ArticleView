@@ -2,9 +2,9 @@ import React, {FC, useState} from "react";
 
 import styled from "styled-components/native";
 
-import { Block } from "../styles/Block";
-import { Button } from "../styles/Button";
-import { Text } from "../styles/Text";
+import { Block } from "./SimpleComponents/Block";
+import { Button } from "./SimpleComponents/Button";
+import { Text } from "./SimpleComponents/Text";
 import {
     ActivityIndicator,
     NativeSyntheticEvent,
