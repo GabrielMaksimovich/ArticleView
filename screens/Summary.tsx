@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HeaderWithoutIcons from "../components/HeaderWithoutIcons";
-import { Block } from "../styles/Block";
+import { Block } from "../components/SimpleComponents/Block";
 import ArticleSection from "../components/ArticleSection";
 import Footer from "../components/Footer";
 import BadgeSummary from "../components/BadgeSummary";

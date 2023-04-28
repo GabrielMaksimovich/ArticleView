@@ -7,14 +7,13 @@
  */
 
 import React from "react";
-import {Block} from "../styles/Block";
-import {Image} from "../styles/Image";
-import {Text} from "../styles/Text";
-import box from '../assets/box.png';
-import badge from '../assets/badge.png';
+import {Block} from "./SimpleComponents/Block";
+import {Text} from "./SimpleComponents/Text";
+import Badge from "../assets/icons/price-tag-15.svg";
+import Box from "../assets/icons/box-full-4.svg";
+
 
 const BadgeSummary = () => {
-
     return (
         <Block
             bg={'#c9c9c9'}
@@ -46,14 +45,7 @@ const BadgeSummary = () => {
                     alignItems={'center'}
                     marginRight={10}
                 >
-                    <Image
-                        resizeMode={'contain'}
-                        width={'18px'}
-                        height={'18px'}
-                        onError={() => console.log('error')}
-                        onLoad={() => console.log('loaded')}
-                        source={box}
-                    />
+                    <Box width={20} height={20} fill={'#000'} />
                     <Text
                         fontSize={10}
                         marginLeft={5}
@@ -63,15 +55,8 @@ const BadgeSummary = () => {
                 </Block>
 
                 <Block flexDirection={'row'} alignItems={'center'}>
-                    <Image
-                        resizeMode={'contain'}
-                        width={'24px'}
-                        height={'24px'}
-                        onError={() => console.log('error')}
-                        onLoad={() => console.log('loaded')}
-                        source={badge}
-                    />
-                    <Text fontSize={10}>9</Text>
+                    <Badge width={15} height={15} fill={'#000'}/>
+                    <Text fontSize={10} marginLeft={5}>9</Text>
                 </Block>
             </Block>
         </Block>

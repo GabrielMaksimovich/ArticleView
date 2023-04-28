@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TextProps } from "react-native";
-import {MarginProps} from "../types/MarginProps";
-import {PaddingProps} from "../types/PaddingProps";
-import {MarginStyle} from "./MarginStyle";
-import {PaddingStyle} from "./PaddingStyle";
+import {MarginProps} from "../../types/MarginProps";
+import {PaddingProps} from "../../types/PaddingProps";
+import {MarginStyle} from "../../styles/MarginStyle";
+import {PaddingStyle} from "../../styles/PaddingStyle";
 
 type CustomTextProps = {
     color?: string;

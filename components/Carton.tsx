@@ -1,11 +1,10 @@
 import React, {FC, useState} from "react";
 import {Animated, TouchableOpacity} from "react-native";
-import {Block} from "../styles/Block";
-import {Image} from "../styles/Image";
-import {Text} from "../styles/Text";
-import {Button} from "../styles/Button";
+import {Block} from "./SimpleComponents/Block";
+import {Text} from "./SimpleComponents/Text";
+import {Button} from "./SimpleComponents/Button";
 
-import rightArrow from '../assets/right-arrow.png';
+import ArrowRight from "../assets/icons/right-arrow-9.svg";
 
 
 
@@ -79,14 +78,7 @@ const Carton: FC = () => {
                         </Block>
 
                         <TouchableOpacity onPress={handlePress}>
-                            <Image
-                                resizeMode={'contain'}
-                                width={'10px'}
-                                height={'10px'}
-                                onError={() => console.log('error')}
-                                onLoad={() => console.log('loaded')}
-                                source={rightArrow}
-                            />
+                            <ArrowRight width={10} height={10} fill={'#000'}/>
                         </TouchableOpacity>
                     </Block>
                 </Animated.View>
