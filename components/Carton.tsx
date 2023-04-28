@@ -4,7 +4,7 @@ import {Block} from "../styles/Block";
 import {Text} from "../styles/Text";
 import {Button} from "../styles/Button";
 
-import ArrowRight from "../assets/icons/ArrowRight";
+import ArrowRight from "../assets/icons/right-arrow-9.svg";
 
 
 

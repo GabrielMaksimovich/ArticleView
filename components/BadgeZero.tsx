@@ -1,7 +1,7 @@
 import React from "react";
 import {Block} from "../styles/Block";
 import {Text} from "../styles/Text";
-import Box from "../assets/icons/Box";
+import Box from "../assets/icons/box-full-4.svg";
 
 const BadgeZero = () => {
     return (
@@ -12,7 +12,7 @@ const BadgeZero = () => {
             flexDirection={'row'}
             alignItems={'center'}
         >
-            <Box width={20} height={20} fill={'#000'} />
+            <Box width={24} height={24} fill={'#000'} />
             <Text
                 marginLeft={10}
                 color={'grey'}

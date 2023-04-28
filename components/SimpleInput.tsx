@@ -15,8 +15,8 @@ import {
 
 import {PaddingProps} from "../types/PaddingProps";
 import {PaddingStyle} from "../styles/PaddingStyle";
-import Eye from "../assets/icons/Eye";
-import EyeClosed from "../assets/icons/EyeClosed";
+import Eye from "../assets/icons/eye-svgrepo-com.svg";
+import EyeClosed from "../assets/icons/eye-slash-svgrepo-com.svg";
 
 
 type TextInputType = {

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { Block } from '../styles/Block';
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import BadgeZero from '../components/BadgeZero';
 import { Text } from '../styles/Text';
-import WifiIcon from '../assets/icons/WifiIcon';
+import Wifi from '../assets/icons/signal-white.svg';
 
 const ZeroCartons = () => {
     const [count, setCount] = useState(0);
@@ -46,7 +45,7 @@ const ZeroCartons = () => {
                 <Text fontSize={100} color={'#161957'}>
                     {count}
                 </Text>
-                <WifiIcon width={100} height={100} fill={'#505050'} />
+                <Wifi width={100} height={100} fill={'#676967'} />
                 <Text fontSize={24} color={'grey'}>
                     Reading RFID...
                 </Text>

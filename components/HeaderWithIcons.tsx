@@ -2,9 +2,9 @@ import React from "react";
 import {Block} from "../styles/Block";
 import {Text} from "react-native";
 
-import BluetoothIcon from "../assets/icons/BluetoothIcon";
-import WifiIcon from "../assets/icons/WifiIcon";
-import Cloud from "../assets/icons/Cloud";
+import BluetoothIcon from "../assets/icons/bluetooth-svgrepo-com.svg";
+import WifiIcon from "../assets/icons/signal-white.svg";
+import Cloud from "../assets/icons/cloud-check-7.svg";
 
 const HeaderWithIcons = () => {
 

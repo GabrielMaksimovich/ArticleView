@@ -6,7 +6,7 @@ import { Text } from '../styles/Text';
 import { Button } from '../styles/Button';
 import longsleeve from '../assets/longsleeve.webp';
 import DataItem from "../types/DataItem";
-import ArrowRight from "../assets/icons/ArrowRight";
+import ArrowRight from "../assets/icons/right-arrow-9.svg";
 
 type Props = {
     item: DataItem;

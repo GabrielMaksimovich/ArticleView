@@ -9,8 +9,8 @@
 import React from "react";
 import {Block} from "../styles/Block";
 import {Text} from "../styles/Text";
-import Badge from "../assets/icons/Badge";
-import Box from "../assets/icons/Box";
+import Badge from "../assets/icons/price-tag-15.svg";
+import Box from "../assets/icons/box-full-4.svg";
 
 
 const BadgeSummary = () => {
@@ -55,8 +55,8 @@ const BadgeSummary = () => {
                 </Block>
 
                 <Block flexDirection={'row'} alignItems={'center'}>
-                    <Badge width={20} height={20} fill={'#000'}/>
-                    <Text fontSize={10}>9</Text>
+                    <Badge width={15} height={15} fill={'#000'}/>
+                    <Text fontSize={10} marginLeft={5}>9</Text>
                 </Block>
             </Block>
         </Block>

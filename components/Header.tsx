@@ -9,9 +9,9 @@
 import React from "react";
 import {Block} from "../styles/Block";
 import {Text} from "../styles/Text";
-import BluetoothIcon from "../assets/icons/BluetoothIcon";
-import WifiIcon from "../assets/icons/WifiIcon";
-import Cloud from "../assets/icons/Cloud";
+import Bluetooth from "../assets/icons/bluetooth-svgrepo-com.svg";
+import WiFi from "../assets/icons/signal-white.svg";
+import Cloud from "../assets/icons/cloud-check-7.svg";
 
 const Header = () => {
     return (
@@ -30,14 +30,14 @@ const Header = () => {
                     alignItems={'center'}
                     width={'13%'}
                 >
-                    <BluetoothIcon width={20} height={20} fill={'#fff'}/>
+                    <Bluetooth width={20} height={20} fill={'#fff'}/>
                     <Text color={'white'}>100%</Text>
                 </Block>
                 <Block
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-                    <WifiIcon width={30} height={30} fill={'#fff'} />
+                    <WiFi width={35} height={35} fill={'#fff'} />
                 </Block>
                 <Block
                     alignItems={'center'}
