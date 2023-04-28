@@ -9,11 +9,9 @@
 import React from "react";
 import {Block} from "../styles/Block";
 import {Text} from "../styles/Text";
-import {Image} from "../styles/Image";
-
-import bluetoothImage from '../assets/bluetooth.png';
-import wifiImage from '../assets/wi-fi.png';
-import cloud from '../assets/cloud.png';
+import BluetoothIcon from "../assets/icons/BluetoothIcon";
+import WifiIcon from "../assets/icons/WifiIcon";
+import Cloud from "../assets/icons/Cloud";
 
 const Header = () => {
     return (
@@ -32,41 +30,20 @@ const Header = () => {
                     alignItems={'center'}
                     width={'13%'}
                 >
-                    <Image
-                        resizeMode={'contain'}
-                        width={'35px'}
-                        height={'35px'}
-                        onError={() => console.log('error')}
-                        onLoad={() => console.log('loaded')}
-                        source={bluetoothImage}
-                    />
+                    <BluetoothIcon width={20} height={20} fill={'#fff'}/>
                     <Text color={'white'}>100%</Text>
                 </Block>
                 <Block
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-                    <Image
-                        resizeMode={'contain'}
-                        width={'35px'}
-                        height={'35px'}
-                        onError={() => console.log('error')}
-                        onLoad={() => console.log('loaded')}
-                        source={wifiImage}
-                    />
+                    <WifiIcon width={30} height={30} fill={'#fff'} />
                 </Block>
                 <Block
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-                    <Image
-                        resizeMode={'contain'}
-                        width={'40px'}
-                        height={'40px'}
-                        onError={() => console.log('error')}
-                        onLoad={() => console.log('loaded')}
-                        source={cloud}
-                    />
+                    <Cloud width={30} height={30} fill={'#fff'}/>
                 </Block>
             </Block>
             <Block

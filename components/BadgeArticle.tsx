@@ -8,18 +8,17 @@
 
 import React from "react";
 import {Block} from "../styles/Block";
-import {Image} from "../styles/Image";
 import {Text} from "../styles/Text";
-import box from '../assets/box.png';
-import badge from '../assets/badge.png';
+import Badge from "../assets/icons/Badge";
+import Box from "../assets/icons/Box";
 
 const BadgeArticle = () => {
 
     return (
         <Block
             bg={'#c9c9c9'}
-            paddingVertical={'5px'}
-            paddingHorizontal={'5px'}
+            paddingVertical={5}
+            paddingHorizontal={5}
             flexDirection={'row'}
             justifyContent={'space-between'}
         >
@@ -28,14 +27,7 @@ const BadgeArticle = () => {
                 alignItems={'center'}
                 justifyContent={'space-between'}
             >
-                <Image
-                    resizeMode={'contain'}
-                    width='18px'
-                    height='18px'
-                    onError={() => console.log('error')}
-                    onLoad={() => console.log('loaded')}
-                    source={box}
-                />
+                <Box width={20} height={20} fill={'#000'} />
                 <Text
                     marginLeft={10}
                 >
@@ -48,14 +40,7 @@ const BadgeArticle = () => {
                 alignItems={'center'}
                 justifyContent={'space-between'}
             >
-                <Image
-                    resizeMode={'contain'}
-                    width='24px'
-                    height='24px'
-                    onError={() => console.log('error')}
-                    onLoad={() => console.log('loaded')}
-                    source={badge}
-                />
+                <Badge width={20} height={20} fill={'#000'}/>
                 <Text
                     fontSize={10}
                 >

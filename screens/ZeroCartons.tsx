@@ -1,52 +1,91 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
 
-import React from "react";
-
-import {Block} from "../styles/Block";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import BadgeZero from "../components/BadgeZero";
-import {Text} from "../styles/Text";
-import {Image} from "../styles/Image";
-import wifi from "../assets/wi-fi.png";
+import { Block } from '../styles/Block';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import BadgeZero from '../components/BadgeZero';
+import { Text } from '../styles/Text';
+import WifiIcon from '../assets/icons/WifiIcon';
 
 const ZeroCartons = () => {
+    const [count, setCount] = useState(0);
+    const [isReading, setIsReading] = useState(false);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        let interval: ReturnType<typeof setTimeout>;
+
+        if (isReading) {
+            interval = setInterval(() => {
+                const result = Math.random() >= 0.5; // Random true or false
+
+                if (result) {
+                    setCount((prevCount) => prevCount + 1);
+                    setError(false);
+                } else {
+                    setError(true);
+                }
+            }, 3000);
+        }
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [isReading]);
+
+    const toggleReading = () => {
+        setIsReading((prevReading) => !prevReading);
+    };
+
     return (
         <Block>
             <Header />
             <BadgeZero />
-            <Block
-                alignItems={'center'}
-                marginBottom={10}
-            >
-                <Text
-                    fontSize={120}
-                    color={'#161957'}
-                >
-                    9
+            <Block alignItems={'center'} marginBottom={10}>
+                <Text fontSize={100} color={'#161957'}>
+                    {count}
                 </Text>
-                <Image
-                    resizeMode={'contain'}
-                    width='110px'
-                    height='110px'
-                    onError={() => console.log('error')}
-                    onLoad={() => console.log('loaded')}
-                    source={wifi}
-                />
-                <Text
-                    fontSize={24}
-                    color={'grey'}
-                >
+                <WifiIcon width={100} height={100} fill={'#505050'} />
+                <Text fontSize={24} color={'grey'}>
                     Reading RFID...
                 </Text>
+                {error && (
+                    <Block
+                        bg={'red'}
+                        paddingVertical={5}
+                        paddingHorizontal={10}
+                        borderRadius={'5px'}
+                        marginTop={10}
+                    >
+                        <Text fontSize={18} color={'white'}>
+                            Invalid barcode
+                        </Text>
+                    </Block>
+                )}
             </Block>
-            <Footer title='Pull the trigger to start reading'/>
+            <TouchableOpacity onPress={toggleReading}>
+                <Block
+                    bg={isReading ? '#ff0000' : 'transparent'}
+                    marginHorizontal={10}
+                    paddingVertical={10}
+                    paddingHorizontal={20}
+                    borderRadius={'5px'}
+                    alignSelf={'center'}
+                    marginBottom={10}
+                    borderWidth={'1px'}
+                    borderColor={'#161957'}
+                >
+                    <Text
+                        fontSize={18}
+                        color={'#161957'}
+                        textAlign={'center'}
+                    >
+                        {isReading ? 'Pull the trigger to stop scanning a carton barcode.' : 'Pull the trigger to start scanning a carton barcode.'}
+                    </Text>
+                </Block>
+            </TouchableOpacity>
+            {/*<Footer title='Pull the trigger to start scanning a carton barcode.' />*/}
         </Block>
     );
 };

@@ -5,8 +5,8 @@ import { Image } from '../styles/Image';
 import { Text } from '../styles/Text';
 import { Button } from '../styles/Button';
 import longsleeve from '../assets/longsleeve.webp';
-import rightArrow from '../assets/right-arrow.png';
 import DataItem from "../types/DataItem";
+import ArrowRight from "../assets/icons/ArrowRight";
 
 type Props = {
     item: DataItem;
@@ -98,14 +98,7 @@ const ListItem: React.FC<Props> = ({
                         </Block>
 
                         <TouchableOpacity onPress={() => handlePress(item.id)}>
-                            <Image
-                                resizeMode={"contain"}
-                                width={"10px"}
-                                height={"10px"}
-                                onError={() => console.log("error")}
-                                onLoad={() => console.log("loaded")}
-                                source={rightArrow}
-                            />
+                            <ArrowRight width={10} height={10} fill={'#000'}/>
                         </TouchableOpacity>
                     </Block>
                 </Block>

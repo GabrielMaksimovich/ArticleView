@@ -12,11 +12,11 @@ import {
     TextInputChangeEventData,
     TextInputProps
 } from "react-native";
-import EyeIcon from "../assets/eye.png";
-import EyeOffIcon from "../assets/eye-closed.png";
-import {Image} from "../styles/Image";
+
 import {PaddingProps} from "../types/PaddingProps";
 import {PaddingStyle} from "../styles/PaddingStyle";
+import Eye from "../assets/icons/Eye";
+import EyeClosed from "../assets/icons/EyeClosed";
 
 
 type TextInputType = {
@@ -127,23 +127,9 @@ const SimpleInputComponent: FC<TextInputType> = ({
                             onPress={toggleSecureTextEntry}
                         >
                             {isSecureTextEntry ? (
-                                <Image
-                                    resizeMode={'contain'}
-                                    width={"24px"}
-                                    height={"24px"}
-                                    onError={() => console.log('error')}
-                                    onLoad={() => console.log('loaded')}
-                                    source={EyeOffIcon}
-                                />
+                                <EyeClosed width={25} height={25} fill={'#000'}/>
                             ) : (
-                                <Image
-                                    resizeMode={'contain'}
-                                    width={"24px"}
-                                    height={"24px"}
-                                    onError={() => console.log('error')}
-                                    onLoad={() => console.log('loaded')}
-                                    source={EyeIcon}
-                                />
+                                <Eye width={25} height={25} fill={'#000'}/>
                             )}
                         </Button>
                     </Block>
