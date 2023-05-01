@@ -15,6 +15,9 @@
       "@types/cypress",
       "@types/testing-library__cypress",
       "@types/styled-components-react-native"
+    ],
+    "include": [
+      "types/**/*.d.ts",
     ]
   },
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"],

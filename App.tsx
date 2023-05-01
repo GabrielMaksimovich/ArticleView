@@ -7,6 +7,7 @@ import Summary from "./screens/Summary";
 import Article from "./screens/Article";
 import HomeScreen from "./components/Home";
 import ZeroCartons from "./screens/ZeroCartons";
+import SignatureScreen from "./screens/SignatureScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
                 <Drawer.Screen name="Summary" component={Summary} />
                 <Drawer.Screen name="Article" component={Article} />
                 <Drawer.Screen name="Zero cartons" component={ZeroCartons} />
+                <Drawer.Screen name="Signature" component={SignatureScreen} />
             </Drawer.Navigator>
         </NavigationContainer>
     );
