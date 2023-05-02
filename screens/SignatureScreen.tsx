@@ -1,23 +1,25 @@
 import React, { useRef } from 'react';
-import { Button, Alert } from 'react-native';
+import { Button, Alert, Platform } from 'react-native';
 import Signature, { SignatureViewRef } from 'react-native-signature-canvas';
 import RNFS from 'react-native-fs';
-import CameraRoll  from "@react-native-camera-roll/camera-roll";
-import {Block} from "../components/SimpleComponents/Block";
+import { Block } from '../components/SimpleComponents/Block';
 
 const saveSignature = async (base64Signature: string) => {
-    const imagePath = `${RNFS.DocumentDirectoryPath}/signature.png`;
+    const fileName = 'signature.png';
+    const folderPath = `${
+        Platform.OS === 'android' ? RNFS.ExternalStorageDirectoryPath : RNFS.DocumentDirectoryPath
+    }/YourAppName`;
+
+    // Create folder if it doesn't exist
+    if (!(await RNFS.exists(folderPath))) {
+        await RNFS.mkdir(folderPath);
+    }
+
+    const imagePath = `${folderPath}/${fileName}`;
 
     await RNFS.writeFile(imagePath, base64Signature, 'base64');
 
-    CameraRoll.save(imagePath, { type: 'photo', album: 'YourAppName' })
-        .then(() => {
-            Alert.alert('Success', 'Signature saved to gallery successfully!');
-        })
-        .catch((error: string) => {
-            Alert.alert('Error', 'Failed to save the signature to the gallery.');
-            console.error(error);
-        });
+    Alert.alert('Success', 'Signature saved to device storage successfully!');
 };
 
 const SignatureScreen = () => {
@@ -31,16 +33,13 @@ const SignatureScreen = () => {
         try {
             await saveSignature(base64Signature);
         } catch (error) {
-            console.error("Failed to save signature:", error);
+            console.error('Failed to save signature:', error);
         }
     };
 
     return (
         <Block flex={1}>
-            <Signature
-                ref={signatureRef}
-                onOK={handleOK}
-            />
+            <Signature ref={signatureRef} onOK={handleOK} />
             <Button title="Save Signature" onPress={handleSave} />
         </Block>
     );
