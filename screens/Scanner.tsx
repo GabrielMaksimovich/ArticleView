@@ -1,19 +1,44 @@
 import React from "react";
-import {Camera, useCameraDevices } from 'react-native-vision-camera';
-import {Block} from "../components/SimpleComponents/Block";
-import {Linking, View} from "react-native";
+import { Camera, useCameraDevices } from "react-native-vision-camera";
+import { Linking, View, StyleSheet } from "react-native";
+import { Platform, PermissionsAndroid } from "react-native";
 
 const Scanner = () => {
     const [isDeviceReady, setIsDeviceReady] = React.useState(false);
 
-    //Camera
+    // Camera
     const devices = useCameraDevices();
     const device = devices.back;
 
     const requestCameraPermission = React.useCallback(async () => {
-        const permission = await Camera.requestCameraPermission();
-
-        if (permission === 'denied') await Linking.openSettings()
+        try {
+            if (Platform.OS === "android") {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.CAMERA,
+                    {
+                        title: "Camera Permission",
+                        message: "This app needs camera access",
+                        buttonNeutral: "Ask Me Later",
+                        buttonNegative: "Cancel",
+                        buttonPositive: "OK",
+                    }
+                );
+                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                    setIsDeviceReady(true);
+                } else {
+                    console.log("Camera permission denied");
+                }
+            } else {
+                const permission = await Camera.requestCameraPermission();
+                if (permission === "authorized") {
+                    setIsDeviceReady(true);
+                } else {
+                    console.log("Camera permission denied");
+                }
+            }
+        } catch (err) {
+            console.warn(err);
+        }
     }, []);
 
     React.useEffect(() => {
@@ -26,26 +51,16 @@ const Scanner = () => {
         }
     }, []);
 
-
-    //Handler
+    // Handler
     function renderCamera() {
         if (!isDeviceReady || device == null) {
-            return (
-                <View
-                    style={{
-                        flex: 1,
-                    }}
-                />
-            );
+            console.log("Devices: ", devices);
+            return <View style={styles.container} />;
         } else {
             return (
-                <View
-                    style={{
-                        flex: 1,
-                    }}
-                >
+                <View style={styles.container}>
                     <Camera
-                        style={{ flex: 1 }}
+                        style={styles.camera}
                         device={device}
                         isActive={true}
                         enableZoomGesture
@@ -55,12 +70,18 @@ const Scanner = () => {
         }
     }
 
-
-    return (
-        <Block flex={1} alignItems={'center'} justifyContent={'center'}>
-            {renderCamera()}
-        </Block>
-    );
+    return <View style={styles.container}>{renderCamera()}</View>;
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    camera: {
+        flex: 1,
+    },
+});
 
 export default Scanner;
