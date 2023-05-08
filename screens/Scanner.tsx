@@ -1,11 +1,14 @@
 import React, { useRef } from 'react';
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet } from 'react-native';
 import {
     Camera,
     CameraType,
 } from 'react-native-camera-kit';
 import RNFS from 'react-native-fs';
 import { check, PERMISSIONS, request } from 'react-native-permissions';
+import {Block} from "../components/SimpleComponents/Block";
+import {Button} from "../components/SimpleComponents/Button";
+import {Text} from "../components/SimpleComponents/Text";
 
 const Scanner: React.FC = () => {
     const cameraRef = useRef<Camera>(null);
@@ -38,37 +41,33 @@ const Scanner: React.FC = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <Block flex={1}>
             <Camera
                 ref={cameraRef}
                 style={styles.camera}
                 cameraType={CameraType.Back}
-                // Add barcode scanning props
                 scanBarcode={true}
                 onReadCode={handleReadCode}
                 showFrame={true}
                 laserColor="red"
                 frameColor="white"
             />
-            <TouchableOpacity style={styles.captureButton} onPress={handleCapture}>
+            <Button
+                position={'absolute'}
+                bottom={'30px'}
+                alignSelf={'center'}
+                onPress={handleCapture}
+            >
                 <Text>Capture</Text>
-            </TouchableOpacity>
-        </View>
+            </Button>
+        </Block>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     camera: {
         flex: 1,
-    },
-    captureButton: {
-        position: 'absolute',
-        bottom: 30,
-        alignSelf: 'center',
-    },
+    }
 });
 
 export default Scanner;
