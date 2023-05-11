@@ -9,8 +9,9 @@ const ModalScreen = () => {
 
     return (
         <Block
+            flex={1}
+            justifyContent={'center'}
             alignItems={'center'}
-            marginTop={50}
         >
             <Modal
                 animationType="slide"
