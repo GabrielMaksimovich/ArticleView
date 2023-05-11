@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Alert, Text } from 'react-native';
+import React from 'react';
 import { Notifications } from 'react-native-notifications';
 import { Button } from './SimpleComponents/Button';
 import { Block } from './SimpleComponents/Block';
+import { Text } from './SimpleComponents/Text';
 
 function HomeScreen() {
     const showNotification = () => {
