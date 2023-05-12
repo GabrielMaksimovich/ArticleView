@@ -1,6 +1,9 @@
 import React from 'react';
-import {View, Button, Alert} from 'react-native';
+import { Alert} from 'react-native';
 import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics';
+import {Block} from "../components/SimpleComponents/Block";
+import {Button} from "../components/SimpleComponents/Button";
+import {Text} from "../components/SimpleComponents/Text";
 
 const BiometricsTest: React.FC = () => {
     const handleBiometricsPress = () => {
@@ -16,7 +19,6 @@ const BiometricsTest: React.FC = () => {
                 }
 
                 if (biometryType === BiometryTypes.FaceID) {
-                    // You can add any additional handling for Face ID here
                     console.log('FaceID is supported')
                 } else if (biometryType === BiometryTypes.TouchID) {
                     console.log('TouchID is supported')
@@ -33,7 +35,8 @@ const BiometricsTest: React.FC = () => {
                         if (!keysExist) {
                             rnBiometrics.createKeys()
                                 .then((resultObject) => {
-                                    console.log('Keys created!')
+                                    const { publicKey } = resultObject
+                                    console.log(publicKey)
                                 })
                                 .catch((error: any) => {
                                     Alert.alert('Key creation failed', 'Error: ' + error.message);
@@ -70,9 +73,11 @@ const BiometricsTest: React.FC = () => {
     };
 
     return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Button title="Use biometrics" onPress={handleBiometricsPress} />
-        </View>
+        <Block flex={1} justifyContent={'center'} alignItems={'center'}>
+            <Button onPress={handleBiometricsPress}>
+                <Text>Use biometrics</Text>
+            </Button>
+        </Block>
     );
 };
 
