@@ -11,6 +11,7 @@ import SignatureScreen from "./screens/SignatureScreen";
 import Scanner from "./screens/Scanner";
 import SplashScreen from "./screens/Splash";
 import ModalScreen from "./screens/Modal";
+import Biometrics from "./screens/Biometrics";
 
 const Drawer = createDrawerNavigator();
 
@@ -37,6 +38,7 @@ const App = () => {
                         <Drawer.Screen name="Signature" component={SignatureScreen} />
                         <Drawer.Screen name="Scanner" component={Scanner} />
                         <Drawer.Screen name="Modal" component={ModalScreen} />
+                        <Drawer.Screen name="Biometrics" component={Biometrics} />
                     </Drawer.Navigator>
                 </NavigationContainer>
             )}
