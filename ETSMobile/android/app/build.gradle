@@ -1,6 +1,5 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
-apply plugin: 'kotlin-android'
 
 import com.android.build.OutputFile
 
@@ -13,9 +12,9 @@ react {
     //   The root of your project, i.e. where "package.json" lives. Default is '..'
     // root = file("../")
     //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
-    // reactNativeDir = file("../node_modules/react-native")
+    // reactNativeDir = file("../node-modules/react-native")
     //   The folder where the react-native Codegen package is. Default is ../node_modules/react-native-codegen
-    // codegenDir = file("../node_modules/react-native-codegen")
+    // codegenDir = file("../node-modules/react-native-codegen")
     //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
     // cliFile = file("../node_modules/react-native/cli.js")
 
@@ -94,10 +93,10 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.articleview"
+    namespace "com.etsmobile"
     defaultConfig {
-        applicationId "com.articleview"
-        minSdkVersion 23
+        applicationId "com.etsmobile"
+        minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -154,7 +153,6 @@ dependencies {
     implementation("com.facebook.react:react-android")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.20")
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
