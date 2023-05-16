@@ -39,10 +39,19 @@ const Picture: React.FC = () => {
         );
     };
 
+    const handleRemove = () => {
+        setImageUri('');
+    };
+
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Button title="Capture Image" onPress={handleCapture} />
-            {imageUri ? <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} /> : null}
+            {imageUri ? (
+                <>
+                    <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+                    <Button title="Remove Image" onPress={handleRemove} />
+                </>
+            ) : null}
         </View>
     );
 };
