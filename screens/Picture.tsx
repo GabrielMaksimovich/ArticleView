@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Image, View } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 import RNFS from 'react-native-fs';
+import {Block} from "../components/SimpleComponents/Block";
+import {Button} from "../components/SimpleComponents/Button";
+import {Image} from "../components/SimpleComponents/Image";
+import {Text} from "../components/SimpleComponents/Text";
 
 const Picture: React.FC = () => {
     const [imageUri, setImageUri] = useState('');
@@ -44,15 +47,29 @@ const Picture: React.FC = () => {
     };
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Button title="Capture Image" onPress={handleCapture} />
+        <Block
+            flex={1}
+            justifyContent={'center'}
+            alignItems={'center'}
+        >
+            <Button onPress={handleCapture}>
+                <Text>Capture Image</Text>
+            </Button>
             {imageUri ? (
                 <>
-                    <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-                    <Button title="Remove Image" onPress={handleRemove} />
+                    <Image
+                        source={{ uri: imageUri }}
+                        width={200}
+                        height={200}
+                        onError={() => console.log("error")}
+                        onLoad={() => console.log("loaded")}
+                    />
+                    <Button onPress={handleRemove}>
+                        <Text>Remove Image</Text>
+                    </Button>
                 </>
             ) : null}
-        </View>
+        </Block>
     );
 };
 
