@@ -39,10 +39,14 @@
 	<string>App needs access to your Camera.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>App needs access to your camera to take Face ID.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>This app requires access to the microphone.</string>
 	<key>NSLocalizableString</key>
 	<string>Allow $APP_NAME to send notifications?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>This app requires access to your location when open.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app requires access to your location always, even when not open.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>For saving photos</string>
 	<key>NSRemoteNotificationType</key>

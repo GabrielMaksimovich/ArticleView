@@ -10,12 +10,10 @@
     "test": "jest",
     "setup-ios-permissions": "react-native setup-ios-permissions"
   },
-  "config": {
-    "reactNativePermissionsIOS": [
-      "camera",
-      "photoLibrary"
-    ]
-  },
+  "reactNativePermissionsIOS": [
+    "Camera",
+    "PhotoLibrary"
+  ],
   "dependencies": {
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
