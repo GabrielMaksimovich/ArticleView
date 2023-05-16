@@ -1,33 +1,39 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import Biometrics from 'react-native-biometrics';
 import { Block } from '../components/SimpleComponents/Block';
 import { Button } from '../components/SimpleComponents/Button';
 import { Text } from '../components/SimpleComponents/Text';
-import ReactNativeBiometrics from "react-native-biometrics";
+import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
 
 const BiometricsTest: React.FC = () => {
-    const handleBiometricsPress = () => {
+    const handleBiometricsPress = async () => {
         const rnBiometrics = new ReactNativeBiometrics();
+        const { biometryType } = await rnBiometrics.isSensorAvailable();
 
-        rnBiometrics.isSensorAvailable()
-            .then((result) => {
-                if (!result.available) {
-                    Alert.alert('Biometrics not supported');
-                    return;
-                }
+        if (biometryType === BiometryTypes.FaceID) {
+            console.log('FaceID is supported');
 
-                if (result.biometryType === 'FaceID') {
-                    console.log('FaceID is supported');
-                    // Perform Face ID authentication here
-                } else {
-                    console.log('FaceID not supported');
-                    // Handle other biometric types here if needed
-                }
+            const promptMessage = 'Confirm your biometrics'
+            const payload = 'Transaction to be signed'
+
+            rnBiometrics.createSignature({
+                promptMessage,
+                payload
             })
-            .catch((error: any) => {
-                Alert.alert('Biometrics not supported', 'Error: ' + error.message);
-            });
+                .then((resultObject) => {
+                    const { success, signature } = resultObject;
+
+                    if (success) {
+                        console.log(signature);
+                        Alert.alert('Authentication successful');
+                    } else {
+                        Alert.alert('Authentication failed');
+                    }
+                });
+        } else {
+            console.log('FaceID not supported');
+            // Handle other biometric types here if needed
+        }
     };
 
     return (
