@@ -55,5 +55,13 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
     <string>$(PRODUCT_NAME) needs access to your Camera.</string>
+    <key>NSLocalizableString</key>
+    <string>Allow $APP_NAME to send notifications?</string>
+    <key>NSRemoteNotificationType</key>
+    <string>enabled</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+    </array>
 </dict>
 </plist>

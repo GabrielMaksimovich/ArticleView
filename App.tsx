@@ -10,6 +10,7 @@ import ZeroCartons from "./screens/ZeroCartons";
 import SignatureScreen from "./screens/SignatureScreen";
 import Scanner from "./screens/Scanner";
 import SplashScreen from "./screens/Splash";
+import ModalScreen from "./screens/Modal";
 
 const Drawer = createDrawerNavigator();
 
@@ -35,6 +36,7 @@ const App = () => {
                         <Drawer.Screen name="Zero cartons" component={ZeroCartons} />
                         <Drawer.Screen name="Signature" component={SignatureScreen} />
                         <Drawer.Screen name="Scanner" component={Scanner} />
+                        <Drawer.Screen name="Modal" component={ModalScreen} />
                     </Drawer.Navigator>
                 </NavigationContainer>
             )}
