@@ -7,8 +7,13 @@
     "ios": "react-native run-ios",
     "lint": "eslint",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "setup-ios-permissions": "react-native setup-ios-permissions"
   },
+  "reactNativePermissionsIOS": [
+    "Camera",
+    "PhotoLibrary"
+  ],
   "dependencies": {
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
@@ -17,10 +22,11 @@
     "formik": "^2.2.9",
     "link": "^1.5.1",
     "lottie-ios": "^3.4.0",
-    "lottie-react-native": "^5.1.5",
+    "lottie-react-native": "^5.1.6",
     "react": "18.2.0",
     "react-devtools": "^4.27.6",
     "react-native": "^0.71.7",
+    "react-native-biometrics": "^3.0.1",
     "react-native-camera-kit": "^13.0.0",
     "react-native-chart-kit": "^6.12.0",
     "react-native-fs": "^2.20.0",

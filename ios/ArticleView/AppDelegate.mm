@@ -1,5 +1,5 @@
-#import "AppDelegate.h"
 #import "RNNotifications.h"
+#import "AppDelegate.h"
 #import <UserNotifications/UNUserNotificationCenter.h>
 #import <React/RCTBundleURLProvider.h>
 
