@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player';
-import { Text, View, Button } from 'react-native';
+import { Button } from 'react-native';
+import {Block} from "../components/SimpleComponents/Block";
+import {Text} from "../components/SimpleComponents/Text";
 
 const MusicPlayer = () => {
     useEffect(() => {
@@ -58,7 +60,8 @@ const MusicPlayer = () => {
     };
 
     const stopPlayback = async () => {
-        await TrackPlayer.reset();
+        await TrackPlayer.pause();
+        await TrackPlayer.seekTo(0);
     };
 
     const skipToNext = async () => {
@@ -72,7 +75,7 @@ const MusicPlayer = () => {
     const { position, buffered, duration } = useProgress();
 
     return (
-        <View>
+        <Block>
             <Button title="Play Track" onPress={startPlayback} />
             <Button title="Pause Track" onPress={pausePlayback} />
             <Button title="Stop Track" onPress={stopPlayback} />
@@ -81,7 +84,7 @@ const MusicPlayer = () => {
             <Text>Current Position: {position}</Text>
             <Text>Buffered Position: {buffered}</Text>
             <Text>Duration: {duration}</Text>
-        </View>
+        </Block>
     );
 };
 
