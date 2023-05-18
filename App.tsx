@@ -14,6 +14,7 @@ import ModalScreen from "./screens/Modal";
 import Biometrics from "./screens/Biometrics";
 import Picture from "./screens/Picture";
 import Bubble from "./screens/Bubble";
+import Media from "./screens/Media";
 
 const Drawer = createDrawerNavigator();
 
@@ -43,6 +44,7 @@ const App = () => {
                         <Drawer.Screen name="Biometrics" component={Biometrics} />
                         <Drawer.Screen name="Picture" component={Picture} />
                         <Drawer.Screen name="Bubble" component={Bubble} />
+                        <Drawer.Screen name="Media" component={Media} />
                     </Drawer.Navigator>
                 </NavigationContainer>
             )}
