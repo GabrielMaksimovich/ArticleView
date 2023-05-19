@@ -15,6 +15,7 @@ import Biometrics from "./screens/Biometrics";
 import Picture from "./screens/Picture";
 import Bubble from "./screens/Bubble";
 import Media from "./screens/Media";
+import Camera from "./screens/Camera";
 
 const Drawer = createDrawerNavigator();
 
@@ -45,6 +46,7 @@ const App = () => {
                         <Drawer.Screen name="Picture" component={Picture} />
                         <Drawer.Screen name="Bubble" component={Bubble} />
                         <Drawer.Screen name="Media" component={Media} />
+                        <Drawer.Screen name="Camera" component={Camera} />
                     </Drawer.Navigator>
                 </NavigationContainer>
             )}
