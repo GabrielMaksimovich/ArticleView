@@ -1,8 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { Camera, CameraType } from 'react-native-camera-kit';
-import { TouchableOpacity, Image, View, StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import RNFS from 'react-native-fs';
+import {Block} from "../components/SimpleComponents/Block";
+import {Text} from "../components/SimpleComponents/Text";
+import {Image} from "../components/SimpleComponents/Image";
+import {Button} from "../components/SimpleComponents/Button";
 
 const CameraComponent = () => {
     const cameraRef = useRef<Camera | null>(null);
@@ -34,62 +37,80 @@ const CameraComponent = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <Block flex={1}>
             <Camera
                 ref={cameraRef}
                 style={{flex: 1}}
                 cameraType={CameraType.Back}
             />
-            <View style={styles.overlay}>
-                <TouchableOpacity style={styles.button} onPress={goBack}>
-                    <Text style={styles.text}>Back</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={captureImage}>
-                    <Text style={styles.text}>Take picture</Text>
-                </TouchableOpacity>
+            <Block
+                position={'absolute'}
+                bottom={'20px'}
+                left={'0px'}
+                right={'0px'}
+                flexDirection={'row'}
+                justifyContent={'space-between'}
+                alignItems={'flex-end'}
+                paddingHorizontal={20}
+            >
+                <Button
+                    onPress={goBack}
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                >
+                    <Text
+                        color={'#fff'}
+                    >
+                        Back
+                    </Text>
+                </Button>
+                <Button
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                    onPress={captureImage}
+                >
+                    <Text
+                        color={'#fff'}
+                    >
+                        Take picture
+                    </Text>
+                </Button>
                 {pictureUri && (
-                    <View style={styles.previewContainer}>
-                        <Image source={{uri: pictureUri}} style={styles.previewImage} />
-                        <TouchableOpacity style={styles.button} onPress={deleteImage}>
-                            <Text style={styles.text}>Delete picture</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <Block
+                        alignItems={'flex-end'}
+                    >
+                        <Block marginBottom={10}>
+                            <Image
+                                source={{uri: pictureUri}}
+                                width={100}
+                                height={100}
+                                onError={() => console.log("error")}
+                                onLoad={() => console.log("loaded")}
+                            />
+                        </Block>
+
+                        <Button
+                            paddingHorizontal={10}
+                            paddingVertical={10}
+                            borderRadius={'25px'}
+                            bg={'rgba(0, 0, 0, 0.5)'}
+                            onPress={deleteImage}
+                        >
+                            <Text
+                                color={'#fff'}
+                            >
+                                Delete picture
+                            </Text>
+                        </Button>
+                    </Block>
                 )}
-            </View>
-        </View>
+            </Block>
+        </Block>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    overlay: {
-        position: 'absolute',
-        bottom: 20,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-    },
-    button: {
-        padding: 10,
-        borderRadius: 25,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent
-    },
-    text: {
-        color: '#fff',
-    },
-    previewContainer: {
-        alignItems: 'center',
-    },
-    previewImage: {
-        width: 100,
-        height: 100,
-        marginBottom: 10,
-    }
-});
 
 export default CameraComponent;
