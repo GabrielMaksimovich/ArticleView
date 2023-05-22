@@ -18,6 +18,7 @@ import Media from "./screens/Media";
 import Camera from "./screens/Camera";
 import Player from "./screens/Player";
 import Date from "./screens/Date";
+import Progress from "./screens/Progress";
 
 const Drawer = createDrawerNavigator();
 
@@ -40,6 +41,7 @@ const App = () => {
                         {/*<Drawer.Screen name="Chart bar" component={HorizontalBarChart} />*/}
                         <Drawer.Screen name="Summary" component={Summary} />
                         <Drawer.Screen name="Article" component={Article} />
+                        <Drawer.Screen name="Progress" component={Progress} />
                         <Drawer.Screen name="Date" component={Date} />
                         <Drawer.Screen name="Player">
                             {(props) => <Player {...props} soundFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />}
