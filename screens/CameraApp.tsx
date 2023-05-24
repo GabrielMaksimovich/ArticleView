@@ -9,7 +9,7 @@ import {Text} from "../components/SimpleComponents/Text";
 
 type RootStackParamList = {
     Camera: undefined;
-    Edit: { imageUri: string };
+    Edit: { imageUri: string, removeImage: (imageUri: string) => void };
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -37,9 +37,13 @@ const CameraComponent = () => {
         navigation.goBack();
     };
 
+    const removeImage = (imageUri: string) => {
+        setPictures(pictures.filter(picture => picture !== imageUri));
+    };
+
     const handleImagePress = (item: string) => {
         // Navigate to the edit screen with the image uri
-        navigation.navigate('Edit', { imageUri: item });
+        navigation.navigate('Edit', { imageUri: item, removeImage });
     };
 
     const renderItem = ({ item }: { item: string }) => (
@@ -47,7 +51,6 @@ const CameraComponent = () => {
             <Image source={{ uri: item }} style={{ width: 100, height: 100 }} />
         </TouchableOpacity>
     );
-
 
     return (
         <Block flex={1} flexDirection="column">
@@ -60,21 +63,42 @@ const CameraComponent = () => {
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
                 style={{ width: width, height: height / 2 }}
+                horizontal={true}
             />
-            <Button
-                onPress={goBack}
+            <Block
+                flexDirection={'row'}
+                justifyContent={'space-between'}
+                alignItems={'flex-end'}
+                paddingHorizontal={20}
+                paddingVertical={20}
             >
-                <Text>
-                    Back
-                </Text>
-            </Button>
-            <Button
-                onPress={captureImage}
-            >
-                <Text>
-                    Take picture
-                </Text>
-            </Button>
+                <Button
+                    onPress={goBack}
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                >
+                    <Text
+                        color={'#fff'}
+                    >
+                        Back
+                    </Text>
+                </Button>
+                <Button
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                    onPress={captureImage}
+                >
+                    <Text
+                        color={'#fff'}
+                    >
+                        Take picture
+                    </Text>
+                </Button>
+            </Block>
         </Block>
     );
 };

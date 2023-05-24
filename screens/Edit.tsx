@@ -1,19 +1,27 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import { Image, Button, View, StyleSheet } from 'react-native';
 
 type EditParams = {
     imageUri: string;
+    removeImage: (imageUri: string) => void;
 };
 
-const EditComponent = () => {
+const EditComponent: React.FC = () => {
     const route = useRoute<RouteProp<Record<string, EditParams>, 'Edit'>>();
-    const { imageUri } = route.params;
+    const navigation = useNavigation();
+    const { imageUri, removeImage } = route.params;
 
     return (
         <View style={styles.container}>
             <Image source={{ uri: imageUri }} style={styles.image} />
-            {/* TODO: Add image editing functionality */}
+            <Button
+                title="Remove Image"
+                onPress={() => {
+                    removeImage(imageUri);
+                    navigation.goBack();
+                }}
+            />
         </View>
     );
 };
@@ -25,8 +33,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        width: 300,
-        height: 300,
+        width: '100%',
+        height: '70%',
+        marginBottom: 20,
     },
 });
 
