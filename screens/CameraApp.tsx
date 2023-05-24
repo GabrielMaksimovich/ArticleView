@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { Camera } from 'react-native-camera-kit';
 import { useNavigation } from '@react-navigation/native';
-import { FlatList, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { FlatList, Dimensions, TouchableOpacity } from 'react-native';
 import {NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button } from "../components/SimpleComponents/Button";
 import {Block} from "../components/SimpleComponents/Block";
 import {Text} from "../components/SimpleComponents/Text";
+import {Image} from "../components/SimpleComponents/Image";
 
 type RootStackParamList = {
     Camera: undefined;
@@ -48,7 +49,13 @@ const CameraComponent = () => {
 
     const renderItem = ({ item }: { item: string }) => (
         <TouchableOpacity onPress={() => handleImagePress(item)}>
-            <Image source={{ uri: item }} style={{ width: 100, height: 100 }} />
+            <Image
+                source={{ uri: item }}
+                width={'100px'}
+                height={'100px'}
+                onError={() => console.log("error")}
+                onLoad={() => console.log("loaded")}
+            />
         </TouchableOpacity>
     );
 

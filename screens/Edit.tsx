@@ -1,6 +1,9 @@
 import React from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import { Image, Button, View, StyleSheet } from 'react-native';
+import {Block} from "../components/SimpleComponents/Block";
+import {Image} from "../components/SimpleComponents/Image";
+import {Button} from "../components/SimpleComponents/Button";
+import {Text} from "../components/SimpleComponents/Text";
 
 type EditParams = {
     imageUri: string;
@@ -13,30 +16,41 @@ const EditComponent: React.FC = () => {
     const { imageUri, removeImage } = route.params;
 
     return (
-        <View style={styles.container}>
-            <Image source={{ uri: imageUri }} style={styles.image} />
+        <Block
+            flex={1}
+            alignItems={'center'}
+            justifyContent={'center'}
+        >
+            <Block
+                marginBottom={20}
+            >
+                <Image
+                    source={{ uri: imageUri }}
+                    onError={() => console.log("error")}
+                    onLoad={() => console.log("loaded")}
+                    width='400%'
+                    height='400%'
+                />
+            </Block>
+
             <Button
-                title="Remove Image"
                 onPress={() => {
                     removeImage(imageUri);
                     navigation.goBack();
                 }}
-            />
-        </View>
+                paddingVertical={10}
+                paddingHorizontal={10}
+                borderRadius={'25px'}
+                bg={'rgba(0, 0, 0, 0.5)'}
+            >
+                <Text
+                    color={'#fff'}
+                >
+                    Remove Image
+                </Text>
+            </Button>
+        </Block>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        width: '100%',
-        height: '70%',
-        marginBottom: 20,
-    },
-});
 
 export default EditComponent;
