@@ -5,6 +5,7 @@ import {Image} from "../components/SimpleComponents/Image";
 import {Button} from "../components/SimpleComponents/Button";
 import {Text} from "../components/SimpleComponents/Text";
 import {usePictureContext} from "../PictureContext";
+import ImageCropPicker from 'react-native-image-crop-picker';
 
 type EditParams = {
     imageUri: string;
@@ -20,6 +21,29 @@ const EditComponent: React.FC = () => {
     const removeImage = (imageUri: string) => {
         setPictures((prevPictures: string[]) => prevPictures.filter(picture => picture !== imageUri));
     };
+
+    const openCropper = () => {
+        ImageCropPicker.openCropper({
+            path: imageUri,
+            width: 300,
+            height: 400,
+            mediaType: 'photo',
+        })
+            .then(image => {
+                console.log(image);
+                setPictures((prevPictures: string[]) => {
+                    return prevPictures.map((picture) => {
+                        if (picture === imageUri) {
+                            return image.path;
+                        } else {
+                            return picture;
+                        }
+                    });
+                });
+            });
+    };
+
+
 
     return (
         <Block
@@ -39,22 +63,42 @@ const EditComponent: React.FC = () => {
                 />
             </Block>
 
-            <Button
-                onPress={() => {
-                    removeImage(imageUri);
-                    navigation.goBack();
-                }}
-                paddingVertical={10}
-                paddingHorizontal={10}
-                borderRadius={'25px'}
-                bg={'rgba(0, 0, 0, 0.5)'}
+            <Block
+                flexDirection={'row'}
+                justifyContent={'space-between'}
             >
-                <Text
-                    color={'#fff'}
+                <Button
+                    onPress={openCropper}
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                    marginRight={20}
                 >
-                    Remove Image
-                </Text>
-            </Button>
+                    <Text
+                        color={'#fff'}
+                    >
+                        Crop Image
+                    </Text>
+                </Button>
+
+                <Button
+                    onPress={() => {
+                        removeImage(imageUri);
+                        navigation.goBack();
+                    }}
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                >
+                    <Text
+                        color={'#fff'}
+                    >
+                        Remove Image
+                    </Text>
+                </Button>
+            </Block>
         </Block>
     );
 };
