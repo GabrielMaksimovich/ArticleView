@@ -12,6 +12,7 @@ import Date from "./screens/Date";
 import Progress from "./screens/Progress";
 import CameraApp from "./screens/CameraApp";
 import Edit from "./screens/Edit";
+import {PictureProvider} from "./PictureContext";
 
 const CameraStack = createNativeStackNavigator();
 
@@ -38,19 +39,21 @@ const App = () => {
             {showSplash ? (
                 <SplashScreen onAnimationFinish={onAnimationFinish} />
             ) : (
-                <NavigationContainer>
-                    <Drawer.Navigator initialRouteName="Summary">
-                        <Drawer.Screen name="Summary" component={Summary} />
-                        <Drawer.Screen name="Article" component={Article} />
-                        <Drawer.Screen name="Progress" component={Progress} />
-                        <Drawer.Screen name="Date" component={Date} />
-                        <Drawer.Screen name="Camera" component={CameraStackNavigator} />
-                        <Drawer.Screen name="Player">
-                            {(props) => <Player {...props} soundFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />}
-                        </Drawer.Screen>
-                    </Drawer.Navigator>
-                    <FlashMessage position="top" />
-                </NavigationContainer>
+                <PictureProvider>
+                    <NavigationContainer>
+                        <Drawer.Navigator initialRouteName="Summary">
+                            <Drawer.Screen name="Summary" component={Summary} />
+                            <Drawer.Screen name="Article" component={Article} />
+                            <Drawer.Screen name="Progress" component={Progress} />
+                            <Drawer.Screen name="Date" component={Date} />
+                            <Drawer.Screen name="Camera" component={CameraStackNavigator} />
+                            <Drawer.Screen name="Player">
+                                {(props) => <Player {...props} soundFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />}
+                            </Drawer.Screen>
+                        </Drawer.Navigator>
+                        <FlashMessage position="top" />
+                    </NavigationContainer>
+                </PictureProvider>
             )}
         </>
     );

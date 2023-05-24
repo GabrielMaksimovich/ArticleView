@@ -4,16 +4,22 @@ import {Block} from "../components/SimpleComponents/Block";
 import {Image} from "../components/SimpleComponents/Image";
 import {Button} from "../components/SimpleComponents/Button";
 import {Text} from "../components/SimpleComponents/Text";
+import {usePictureContext} from "../PictureContext";
 
 type EditParams = {
     imageUri: string;
-    removeImage: (imageUri: string) => void;
+    setPictures: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const EditComponent: React.FC = () => {
     const route = useRoute<RouteProp<Record<string, EditParams>, 'Edit'>>();
     const navigation = useNavigation();
-    const { imageUri, removeImage } = route.params;
+    const { setPictures } = usePictureContext();
+    const { imageUri } = route.params;
+
+    const removeImage = (imageUri: string) => {
+        setPictures((prevPictures: string[]) => prevPictures.filter(picture => picture !== imageUri));
+    };
 
     return (
         <Block

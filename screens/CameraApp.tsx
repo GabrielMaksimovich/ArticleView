@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Camera } from 'react-native-camera-kit';
+import React, { SetStateAction, useRef } from 'react';
+import { Camera as CameraKit } from 'react-native-camera-kit';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList, Dimensions, TouchableOpacity } from 'react-native';
 import {NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,19 +7,20 @@ import { Button } from "../components/SimpleComponents/Button";
 import {Block} from "../components/SimpleComponents/Block";
 import {Text} from "../components/SimpleComponents/Text";
 import {Image} from "../components/SimpleComponents/Image";
+import {usePictureContext} from "../PictureContext";
 
 type RootStackParamList = {
     Camera: undefined;
-    Edit: { imageUri: string, removeImage: (imageUri: string) => void };
+    Edit: { imageUri: string };
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const { width, height } = Dimensions.get('window');
 
-const CameraComponent = () => {
-    const cameraRef = useRef<Camera | null>(null);
-    const [pictures, setPictures] = useState<string[]>([]);
+const CameraScreen = () => {
+    const cameraRef = useRef<CameraKit | null>(null);
+    const { pictures, setPictures } = usePictureContext();
     const navigation = useNavigation<NavigationProp>();
 
     const captureImage = async () => {
@@ -38,13 +39,9 @@ const CameraComponent = () => {
         navigation.goBack();
     };
 
-    const removeImage = (imageUri: string) => {
-        setPictures(pictures.filter(picture => picture !== imageUri));
-    };
-
     const handleImagePress = (item: string) => {
         // Navigate to the edit screen with the image uri
-        navigation.navigate('Edit', { imageUri: item, removeImage });
+        navigation.navigate('Edit', { imageUri: item });
     };
 
     const renderItem = ({ item }: { item: string }) => (
@@ -61,7 +58,7 @@ const CameraComponent = () => {
 
     return (
         <Block flex={1} flexDirection="column">
-            <Camera
+            <CameraKit
                 ref={cameraRef}
                 style={{ width: width, height: height / 2 }}
             />
@@ -110,4 +107,4 @@ const CameraComponent = () => {
     );
 };
 
-export default CameraComponent;
+export default CameraScreen;
