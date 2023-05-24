@@ -19,7 +19,7 @@ const CameraStack = createNativeStackNavigator();
 const CameraStackNavigator = () => {
     return (
         <CameraStack.Navigator>
-            <CameraStack.Screen name="Camera" component={CameraApp} />
+            <CameraStack.Screen name="CameraScreen" component={CameraApp} />
             <CameraStack.Screen name="Edit" component={Edit} />
         </CameraStack.Navigator>
     );
