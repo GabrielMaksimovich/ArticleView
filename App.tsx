@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import FlashMessage from "react-native-flash-message";
 import HorizontalBarChart from './screens/HorizontalBarChart';
 import RegistrationScreen from "./screens/RegistrationScreen";
 import Summary from "./screens/Summary";
@@ -56,6 +57,7 @@ const App = () => {
                         {/*<Drawer.Screen name="Media" component={Media} />*/}
                         {/*<Drawer.Screen name="Camera" component={Camera} />*/}
                     </Drawer.Navigator>
+                    <FlashMessage position="top" />
                 </NavigationContainer>
             )}
         </>
