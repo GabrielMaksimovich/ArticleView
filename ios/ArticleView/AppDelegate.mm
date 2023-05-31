@@ -1,4 +1,3 @@
-#import "RNNotifications.h"
 #import "AppDelegate.h"
 #import <UserNotifications/UNUserNotificationCenter.h>
 #import <React/RCTBundleURLProvider.h>
@@ -12,7 +11,6 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
-  [RNNotifications startMonitorNotifications];
 
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -42,17 +40,4 @@
 {
   return true;
 }
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-  [RNNotifications didReceiveBackgroundNotification:userInfo withCompletionHandler:completionHandler];
-}
-
 @end

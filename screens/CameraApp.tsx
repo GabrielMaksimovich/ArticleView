@@ -1,4 +1,4 @@
-import React, { SetStateAction, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Camera as CameraKit } from 'react-native-camera-kit';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList, Dimensions, TouchableOpacity } from 'react-native';
