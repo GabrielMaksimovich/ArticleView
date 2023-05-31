@@ -37,9 +37,9 @@ const App = () => {
             ) : (
                 <NavigationContainer>
                     <Drawer.Navigator initialRouteName="Summary">
-                        {/*<Drawer.Screen name="Home" component={HomeScreen} />*/}
-                        {/*<Drawer.Screen name="Registration" component={RegistrationScreen} />*/}
-                        {/*<Drawer.Screen name="Chart bar" component={HorizontalBarChart} />*/}
+                        <Drawer.Screen name="Home" component={HomeScreen} />
+                        <Drawer.Screen name="Registration" component={RegistrationScreen} />
+                        <Drawer.Screen name="Chart bar" component={HorizontalBarChart} />
                         <Drawer.Screen name="Summary" component={Summary} />
                         <Drawer.Screen name="Article" component={Article} />
                         <Drawer.Screen name="Progress" component={Progress} />
@@ -47,15 +47,15 @@ const App = () => {
                         <Drawer.Screen name="Player">
                             {(props) => <Player {...props} soundFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />}
                         </Drawer.Screen>
-                        {/*<Drawer.Screen name="Zero cartons" component={ZeroCartons} />*/}
-                        {/*<Drawer.Screen name="Signature" component={SignatureScreen} />*/}
-                        {/*<Drawer.Screen name="Scanner" component={Scanner} />*/}
-                        {/*<Drawer.Screen name="Modal" component={ModalScreen} />*/}
-                        {/*<Drawer.Screen name="Biometrics" component={Biometrics} />*/}
-                        {/*<Drawer.Screen name="Picture" component={Picture} />*/}
-                        {/*<Drawer.Screen name="Bubble" component={Bubble} />*/}
-                        {/*<Drawer.Screen name="Media" component={Media} />*/}
-                        {/*<Drawer.Screen name="Camera" component={Camera} />*/}
+                        <Drawer.Screen name="Zero cartons" component={ZeroCartons} />
+                        <Drawer.Screen name="Signature" component={SignatureScreen} />
+                        <Drawer.Screen name="Scanner" component={Scanner} />
+                        <Drawer.Screen name="Modal" component={ModalScreen} />
+                        <Drawer.Screen name="Biometrics" component={Biometrics} />
+                        <Drawer.Screen name="Picture" component={Picture} />
+                        <Drawer.Screen name="Bubble" component={Bubble} />
+                        <Drawer.Screen name="Media" component={Media} />
+                        <Drawer.Screen name="Camera" component={Camera} />
                     </Drawer.Navigator>
                     <FlashMessage position="top" />
                 </NavigationContainer>
