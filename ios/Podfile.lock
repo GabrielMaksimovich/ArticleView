@@ -284,6 +284,9 @@ PODS:
     - RCTTypeSafety
     - React-Core
     - ReactCommon/turbomodule/core
+  - react-native-track-player (3.2.0):
+    - React-Core
+    - SwiftAudioEx (= 0.15.3)
   - react-native-webview (12.0.2):
     - React-Core
   - React-perflogger (0.71.7)
@@ -410,8 +413,11 @@ PODS:
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
+  - RNSensors (7.3.6):
+    - React-Core
   - RNSVG (13.9.0):
     - React-Core
+  - SwiftAudioEx (0.15.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -444,6 +450,7 @@ DEPENDENCIES:
   - "react-native-image-resizer (from `../node_modules/@bam.tech/react-native-image-resizer`)"
   - react-native-notifications (from `../node_modules/react-native-notifications`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-track-player (from `../node_modules/react-native-track-player`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -465,6 +472,7 @@ DEPENDENCIES:
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSensors (from `../node_modules/react-native-sensors`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -472,6 +480,7 @@ SPEC REPOS:
   trunk:
     - fmt
     - libevent
+    - SwiftAudioEx
 
 EXTERNAL SOURCES:
   boost:
@@ -528,6 +537,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-notifications"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-track-player:
+    :path: "../node_modules/react-native-track-player"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -570,6 +581,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSensors:
+    :path: "../node_modules/react-native-sensors"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -605,6 +618,7 @@ SPEC CHECKSUMS:
   react-native-image-resizer: 00ceb0e05586c7aadf061eea676957a6c2ec60fa
   react-native-notifications: 83b4fd4a127a6c918fc846cae90da60f84819e44
   react-native-safe-area-context: f5549f36508b1b7497434baa0cd97d7e470920d4
+  react-native-track-player: 0c26d981b5097910486cbbeb6d8f5352d41be069
   react-native-webview: 203b6a1c7507737f777c91d7e10c30e7e67c1a17
   React-perflogger: 2d505bbe298e3b7bacdd9e542b15535be07220f6
   React-RCTActionSheet: 0e96e4560bd733c9b37efbf68f5b1a47615892fb
@@ -623,10 +637,12 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
-  RNPermissions: 3dae5a683e39cb7031dd771a434788008ac1cfbb
+  RNPermissions: 29f5b625de0e6a2bff5130c3e60ae94d5921febb
   RNReanimated: b1220a0e5168745283ff5d53bfc7d2144b2cee1b
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  RNSensors: 117ba71c7eeeea0407ea0c0bb79e3495d602049b
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
+  SwiftAudioEx: 83eabba2940924fc1c0d5cb0896049921365229c
   Yoga: d56980c8914db0b51692f55533409e844b66133c
 
 PODFILE CHECKSUM: 45bb87d7c84265f890bbead8181aac4372ba30fa
