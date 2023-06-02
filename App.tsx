@@ -1,29 +1,22 @@
 import React, {useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import FlashMessage from "react-native-flash-message";
-
-import Summary from "./screens/Summary";
-import Article from "./screens/Article";
-import SplashScreen from "./screens/Splash";
-import Player from "./screens/Player";
-import Date from "./screens/Date";
-import Progress from "./screens/Progress";
-import CameraApp from "./screens/CameraApp";
-import Edit from "./screens/Edit";
+import HorizontalBarChart from './src/screens/HorizontalBarChart';
+import RegistrationScreen from "./src/screens/RegistrationScreen";
+import Summary from "./src/screens/Summary";
+import Article from "./src/screens/Article";
+import HomeScreen from "./src/components/Home";
+import ZeroCartons from "./src/screens/ZeroCartons";
+import SignatureScreen from "./src/screens/SignatureScreen";
+import Scanner from "./src/screens/Scanner";
+import SplashScreen from "./src/screens/Splash";
+import ModalScreen from "./src/screens/Modal";
+import Biometrics from "./src/screens/Biometrics";
+import Picture from "./src/screens/Picture";
+import Bubble from "./src/screens/Bubble";
+import Media from "./src/screens/Media";
 import {PictureProvider} from "./PictureContext";
-
-const CameraStack = createNativeStackNavigator();
-
-const CameraStackNavigator = () => {
-    return (
-        <CameraStack.Navigator>
-            <CameraStack.Screen name="CameraScreen" component={CameraApp} />
-            <CameraStack.Screen name="Edit" component={Edit} />
-        </CameraStack.Navigator>
-    );
-};
+import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
 
 const Drawer = createDrawerNavigator();
 
@@ -41,17 +34,22 @@ const App = () => {
             ) : (
                 <PictureProvider>
                     <NavigationContainer>
-                        <Drawer.Navigator initialRouteName="Summary">
+                        <Drawer.Navigator initialRouteName="Home">
+                            <Drawer.Screen name="Home" component={HomeScreen} />
+                            <Drawer.Screen name="Registration" component={RegistrationScreen} />
+                            <Drawer.Screen name="Chart bar" component={HorizontalBarChart} />
                             <Drawer.Screen name="Summary" component={Summary} />
                             <Drawer.Screen name="Article" component={Article} />
-                            <Drawer.Screen name="Progress" component={Progress} />
-                            {/*<Drawer.Screen name="Date" component={Date} />*/}
-                            {/*<Drawer.Screen name="Camera" component={CameraStackNavigator} />*/}
-                            {/*<Drawer.Screen name="Player">*/}
-                            {/*    {(props) => <Player {...props} soundFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />}*/}
-                            {/*</Drawer.Screen>*/}
+                            <Drawer.Screen name="Zero cartons" component={ZeroCartons} />
+                            <Drawer.Screen name="Signature" component={SignatureScreen} />
+                            <Drawer.Screen name="Scanner" component={Scanner} />
+                            <Drawer.Screen name="Modal" component={ModalScreen} />
+                            <Drawer.Screen name="Biometrics" component={Biometrics} />
+                            <Drawer.Screen name="Picture" component={Picture} />
+                            <Drawer.Screen name="Bubble" component={Bubble} />
+                            <Drawer.Screen name="Media" component={Media} />
+                            <Drawer.Screen name="Camera" component={CameraStackNavigator} />
                         </Drawer.Navigator>
-                        {/*<FlashMessage position="top" />*/}
                     </NavigationContainer>
                 </PictureProvider>
             )}
