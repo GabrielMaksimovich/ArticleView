@@ -7,7 +7,7 @@ import { Button } from "../components/SimpleComponents/Button";
 import {Block} from "../components/SimpleComponents/Block";
 import {Text} from "../components/SimpleComponents/Text";
 import {Image} from "../components/SimpleComponents/Image";
-import {usePictureContext} from "../PictureContext";
+import {usePictureContext} from "../../PictureContext";
 import { check, PERMISSIONS, RESULTS, request } from 'react-native-permissions';
 
 type RootStackParamList = {

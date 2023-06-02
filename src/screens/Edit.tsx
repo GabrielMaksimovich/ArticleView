@@ -4,7 +4,7 @@ import {Block} from "../components/SimpleComponents/Block";
 import {Image} from "../components/SimpleComponents/Image";
 import {Button} from "../components/SimpleComponents/Button";
 import {Text} from "../components/SimpleComponents/Text";
-import {usePictureContext} from "../PictureContext";
+import {usePictureContext} from "../../PictureContext";
 import ImageCropPicker from 'react-native-image-crop-picker';
 
 type EditParams = {

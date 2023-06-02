@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HorizontalBarChart from './screens/HorizontalBarChart';
-import RegistrationScreen from "./screens/RegistrationScreen";
-import Summary from "./screens/Summary";
-import Article from "./screens/Article";
-import HomeScreen from "./components/Home";
-import ZeroCartons from "./screens/ZeroCartons";
-import SignatureScreen from "./screens/SignatureScreen";
-import Scanner from "./screens/Scanner";
-import SplashScreen from "./screens/Splash";
-import ModalScreen from "./screens/Modal";
-import Biometrics from "./screens/Biometrics";
-import Picture from "./screens/Picture";
-import Bubble from "./screens/Bubble";
-import Media from "./screens/Media";
+import HorizontalBarChart from './src/screens/HorizontalBarChart';
+import RegistrationScreen from "./src/screens/RegistrationScreen";
+import Summary from "./src/screens/Summary";
+import Article from "./src/screens/Article";
+import HomeScreen from "./src/components/Home";
+import ZeroCartons from "./src/screens/ZeroCartons";
+import SignatureScreen from "./src/screens/SignatureScreen";
+import Scanner from "./src/screens/Scanner";
+import SplashScreen from "./src/screens/Splash";
+import ModalScreen from "./src/screens/Modal";
+import Biometrics from "./src/screens/Biometrics";
+import Picture from "./src/screens/Picture";
+import Bubble from "./src/screens/Bubble";
+import Media from "./src/screens/Media";
 import {PictureProvider} from "./PictureContext";
-import CameraStackNavigator from "./screens/navigation/CameraStackNavigator";
+import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
 
 const Drawer = createDrawerNavigator();
 
