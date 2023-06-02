@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Alert } from "react-native";
+import {Alert, KeyboardTypeOptions } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Block } from "../components/SimpleComponents/Block";
@@ -8,6 +8,19 @@ import Logo from "../components/Logo";
 import SimpleInput from "../components/SimpleInput";
 import { Button } from "../components/SimpleComponents/Button";
 import { ValidationItem } from "../components/ValidationItem";
+
+type FormField = 'email' | 'password';
+
+type AutoCapitalizeOptions = "none" | "sentences" | "words" | "characters";
+
+type InputFieldConfig = {
+    key: FormField,
+    header: string,
+    keyboardType?: KeyboardTypeOptions,
+    autoCapitalize?: AutoCapitalizeOptions,
+    secureTextEntry?: boolean,
+};
+
 
 const RegistrationScreen = () => {
     const validationSchema = Yup.object().shape({
@@ -59,29 +72,39 @@ const RegistrationScreen = () => {
         );
     };
 
+    const inputFields: InputFieldConfig[] = useMemo(() => ([
+        {
+            key: "email",
+            header: "EMAIL",
+            keyboardType: "email-address",
+            autoCapitalize: "none"
+        },
+        {
+            key: "password",
+            header: "PASSWORD",
+            secureTextEntry: true
+        }
+    ]), []);
+
     return (
         <Block flex={1}>
             <Block flex={1} justifyContent={"center"} alignItems={"center"} bg={"orange"}>
                 <Logo />
             </Block>
             <Block flex={2} paddingHorizontal={20} paddingTop={5}>
-                <SimpleInput
-                    header="EMAIL"
-                    value={formik.values.email}
-                    onChangeText={formik.handleChange("email")}
-                    onBlur={formik.handleBlur("email")}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    errorMessage={formik.touched.email && formik.errors.email}
-                />
-                <SimpleInput
-                    header="PASSWORD"
-                    value={formik.values.password}
-                    onChangeText={formik.handleChange("password")}
-                    onBlur={formik.handleBlur("password")}
-                    secureTextEntry={true}
-                    errorMessage={formik.touched.password && formik.errors.password}
-                />
+                {inputFields.map(({ key, header, keyboardType, autoCapitalize, secureTextEntry }) => (
+                    <SimpleInput
+                        key={key}
+                        header={header}
+                        value={formik.values[key]}
+                        onChangeText={formik.handleChange(key)}
+                        onBlur={formik.handleBlur(key)}
+                        keyboardType={keyboardType}
+                        autoCapitalize={autoCapitalize}
+                        secureTextEntry={secureTextEntry}
+                        errorMessage={formik.touched[key] && formik.errors[key]}
+                    />
+                ))}
                 <Block marginVertical={10}>
                     {renderValidationItems()}
                 </Block>

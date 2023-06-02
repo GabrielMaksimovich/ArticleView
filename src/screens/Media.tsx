@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import TrackPlayer, { useProgress, Capability } from 'react-native-track-player';
 import { Button } from 'react-native';
-import {Block} from "../components/SimpleComponents/Block";
 import {Text} from "../components/SimpleComponents/Text";
 
 const MusicPlayer = () => {
@@ -75,7 +74,7 @@ const MusicPlayer = () => {
     const { position, buffered, duration } = useProgress();
 
     return (
-        <Block>
+        <>
             <Button title="Play Track" onPress={startPlayback} />
             <Button title="Pause Track" onPress={pausePlayback} />
             <Button title="Stop Track" onPress={stopPlayback} />
@@ -84,7 +83,7 @@ const MusicPlayer = () => {
             <Text>Current Position: {position}</Text>
             <Text>Buffered Position: {buffered}</Text>
             <Text>Duration: {duration}</Text>
-        </Block>
+        </>
     );
 };
 
