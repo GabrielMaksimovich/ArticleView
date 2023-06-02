@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Animated } from 'react-native';
 import { accelerometer } from 'react-native-sensors';
 import {Block} from "../components/SimpleComponents/Block";
 
 const BubbleLevel = () => {
     const [data, setData] = useState({ x: 0, y: 0, z: 0 });
+    const isMounted = useRef(true);
 
     useEffect(() => {
         const subscription = accelerometer.subscribe(({ x, y, z }) => {
-            setData({ x, y, z });
+            if (isMounted.current) {
+                setData({ x, y, z });
+            }
         });
 
         return () => {
+            isMounted.current = false;
             subscription.unsubscribe();
         };
     }, []);
