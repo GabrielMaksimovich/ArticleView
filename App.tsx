@@ -15,6 +15,21 @@ import Biometrics from "./screens/Biometrics";
 import Picture from "./screens/Picture";
 import Bubble from "./screens/Bubble";
 import Media from "./screens/Media";
+import CameraApp from "./screens/Camera";
+import Edit from "./screens/Edit";
+import {PictureProvider} from "./PictureContext";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+
+const CameraStack = createNativeStackNavigator();
+
+const CameraStackNavigator = () => {
+    return (
+        <CameraStack.Navigator>
+            <CameraStack.Screen name="CameraScreen" component={CameraApp} />
+            <CameraStack.Screen name="Edit" component={Edit} />
+        </CameraStack.Navigator>
+    );
+};
 
 const Drawer = createDrawerNavigator();
 
@@ -30,23 +45,26 @@ const App = () => {
             {showSplash ? (
                 <SplashScreen onAnimationFinish={onAnimationFinish} />
             ) : (
-                <NavigationContainer>
-                    <Drawer.Navigator initialRouteName="Home">
-                        <Drawer.Screen name="Home" component={HomeScreen} />
-                        <Drawer.Screen name="Registration" component={RegistrationScreen} />
-                        <Drawer.Screen name="Chart bar" component={HorizontalBarChart} />
-                        <Drawer.Screen name="Summary" component={Summary} />
-                        <Drawer.Screen name="Article" component={Article} />
-                        <Drawer.Screen name="Zero cartons" component={ZeroCartons} />
-                        <Drawer.Screen name="Signature" component={SignatureScreen} />
-                        <Drawer.Screen name="Scanner" component={Scanner} />
-                        <Drawer.Screen name="Modal" component={ModalScreen} />
-                        <Drawer.Screen name="Biometrics" component={Biometrics} />
-                        <Drawer.Screen name="Picture" component={Picture} />
-                        <Drawer.Screen name="Bubble" component={Bubble} />
-                        <Drawer.Screen name="Media" component={Media} />
-                    </Drawer.Navigator>
-                </NavigationContainer>
+                <PictureProvider>
+                    <NavigationContainer>
+                        <Drawer.Navigator initialRouteName="Home">
+                            <Drawer.Screen name="Home" component={HomeScreen} />
+                            <Drawer.Screen name="Registration" component={RegistrationScreen} />
+                            <Drawer.Screen name="Chart bar" component={HorizontalBarChart} />
+                            <Drawer.Screen name="Summary" component={Summary} />
+                            <Drawer.Screen name="Article" component={Article} />
+                            <Drawer.Screen name="Zero cartons" component={ZeroCartons} />
+                            <Drawer.Screen name="Signature" component={SignatureScreen} />
+                            <Drawer.Screen name="Scanner" component={Scanner} />
+                            <Drawer.Screen name="Modal" component={ModalScreen} />
+                            <Drawer.Screen name="Biometrics" component={Biometrics} />
+                            <Drawer.Screen name="Picture" component={Picture} />
+                            <Drawer.Screen name="Bubble" component={Bubble} />
+                            <Drawer.Screen name="Media" component={Media} />
+                            <Drawer.Screen name="Camera" component={CameraStackNavigator} />
+                        </Drawer.Navigator>
+                    </NavigationContainer>
+                </PictureProvider>
             )}
         </>
     );
