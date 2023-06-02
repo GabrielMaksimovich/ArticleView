@@ -1,13 +1,14 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import { Camera as CameraKit } from 'react-native-camera-kit';
 import { useNavigation } from '@react-navigation/native';
-import { FlatList, Dimensions, TouchableOpacity } from 'react-native';
+import {FlatList, Dimensions, TouchableOpacity, Platform, Alert} from 'react-native';
 import {NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button } from "../components/SimpleComponents/Button";
 import {Block} from "../components/SimpleComponents/Block";
 import {Text} from "../components/SimpleComponents/Text";
 import {Image} from "../components/SimpleComponents/Image";
 import {usePictureContext} from "../PictureContext";
+import { check, PERMISSIONS, RESULTS, request } from 'react-native-permissions';
 
 type RootStackParamList = {
     Camera: undefined;
@@ -55,6 +56,33 @@ const CameraScreen = () => {
             />
         </TouchableOpacity>
     );
+
+    useEffect(() => {
+        const checkCameraPermission = async () => {
+            let permissionResult;
+            if (Platform.OS === 'ios') {
+                permissionResult = await check(PERMISSIONS.IOS.CAMERA);
+            } else {
+                permissionResult = await check(PERMISSIONS.ANDROID.CAMERA);
+            }
+
+            if (permissionResult === RESULTS.DENIED) {
+                let requestResult;
+                if (Platform.OS === 'ios') {
+                    requestResult = await request(PERMISSIONS.IOS.CAMERA);
+                } else {
+                    requestResult = await request(PERMISSIONS.ANDROID.CAMERA);
+                }
+
+                if (requestResult !== RESULTS.GRANTED) {
+                    // Handle the case when the user didn't grant the camera permission
+                    Alert.alert('Sorry, we need camera permissions to make this work!');
+                }
+            }
+        };
+
+        checkCameraPermission();
+    }, []);
 
     return (
         <Block flex={1} flexDirection="column">
