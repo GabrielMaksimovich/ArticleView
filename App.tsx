@@ -15,21 +15,8 @@ import Biometrics from "./screens/Biometrics";
 import Picture from "./screens/Picture";
 import Bubble from "./screens/Bubble";
 import Media from "./screens/Media";
-import CameraApp from "./screens/Camera";
-import Edit from "./screens/Edit";
 import {PictureProvider} from "./PictureContext";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-
-const CameraStack = createNativeStackNavigator();
-
-const CameraStackNavigator = () => {
-    return (
-        <CameraStack.Navigator>
-            <CameraStack.Screen name="CameraScreen" component={CameraApp} />
-            <CameraStack.Screen name="Edit" component={Edit} />
-        </CameraStack.Navigator>
-    );
-};
+import CameraStackNavigator from "./screens/navigation/CameraStackNavigator";
 
 const Drawer = createDrawerNavigator();
 
