@@ -17,6 +17,7 @@ import Bubble from "./src/screens/Bubble";
 import Media from "./src/screens/Media";
 import {PictureProvider} from "./PictureContext";
 import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
+import Map from "./src/screens/Map";
 
 const Drawer = createDrawerNavigator();
 
@@ -49,6 +50,7 @@ const App = () => {
                             <Drawer.Screen name="Bubble" component={Bubble} />
                             <Drawer.Screen name="Media" component={Media} />
                             <Drawer.Screen name="Camera" component={CameraStackNavigator} />
+                            <Drawer.Screen name="Map Tracker" component={Map} />
                         </Drawer.Navigator>
                     </NavigationContainer>
                 </PictureProvider>
