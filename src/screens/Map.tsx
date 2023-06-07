@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import firestore from '@react-native-firebase/firestore';
-import { PermissionsAndroid, Platform } from 'react-native';
+import {PermissionsAndroid, Platform} from 'react-native';
 import {Block} from "../components/SimpleComponents/Block";
 import {Button} from "../components/SimpleComponents/Button";
 import {Text} from "../components/SimpleComponents/Text";
@@ -10,6 +10,7 @@ import {Text} from "../components/SimpleComponents/Text";
 const MapTracker: React.FC = () => {
     const [route, setRoute] = useState<LatLng[]>([]);
     const [watchId, setWatchId] = useState<number | null>(null);
+    const [routeId, setRouteId] = useState<string | null>(null);
 
     const requestLocationPermission = async () => {
         if (Platform.OS === 'android') {
@@ -41,13 +42,26 @@ const MapTracker: React.FC = () => {
             return;
         }
 
+        // Create a new document ID for the current route
+        const newRouteId = firestore().collection('routes').doc().id;
+        setRouteId(newRouteId);
+
+        const startTime = new Date();
+        await firestore()
+            .collection('routes')
+            .doc(newRouteId)
+            .set({ startTime: startTime.toISOString() });
+
         const id = Geolocation.watchPosition(
-            (position) => {
+            async (position) => {
                 const { latitude, longitude } = position.coords;
                 setRoute((currentRoute) => [...currentRoute, { latitude, longitude }]);
 
-                firestore()
+                // Add the location point to the current route's subcollection
+                await firestore()
                     .collection('routes')
+                    .doc(newRouteId)
+                    .collection('locationPoints')
                     .add({ latitude, longitude, timestamp: Date.now() });
             },
             (error) => console.log(error),
@@ -57,20 +71,21 @@ const MapTracker: React.FC = () => {
         setWatchId(id);
     };
 
-    const stopTracking = () => {
+    const stopTracking = async () => {
         if (watchId !== null) {
             Geolocation.clearWatch(watchId);
             setWatchId(null);
+            // When you stop tracking, save the end time
+            if (routeId !== null) {
+                const endTime = new Date();
+                await firestore()
+                    .collection('routes')
+                    .doc(routeId)
+                    .set({ endTime: endTime.toISOString() }, { merge: true });
+                setRouteId(null);
+            }
         }
     };
-
-    useEffect(() => {
-        startTracking();
-
-        return () => {
-            stopTracking();
-        };
-    }, []);
 
     return (
         <Block flex={1}>
@@ -80,6 +95,7 @@ const MapTracker: React.FC = () => {
                 showsMyLocationButton={true}
                 followsUserLocation={true}
                 showsUserLocation={true}
+                zoomControlEnabled={true}
             >
                 <Polyline coordinates={route} />
             </MapView>
