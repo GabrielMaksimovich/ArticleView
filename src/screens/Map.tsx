@@ -98,7 +98,7 @@ const MapTracker: React.FC = () => {
                 // Set a new motionless timeout
                 const timeoutId = setTimeout(() => {
                     Alert.alert('You have been motionless for 5 minutes. Stopping tracking.');
-                    stopTracking();
+                    stopTracking(newRouteId);
                 }, 5 * 60 * 1000);
 
                 setMotionlessTimeout(timeoutId);
@@ -112,16 +112,18 @@ const MapTracker: React.FC = () => {
         Alert.alert('Tracking is now active.');
     };
 
-    const stopTracking = async () => {
+
+    const stopTracking = async (idToStop?: string) => {
         if (watchId !== null) {
             Geolocation.clearWatch(watchId);
             setWatchId(null);
 
-            if (routeId !== null) {
+            const id = idToStop ?? routeId;
+            if (id !== null) {
                 const endTime = new Date();
                 await firestore()
                     .collection('routes')
-                    .doc(routeId)
+                    .doc(id)
                     .set({ endTime: endTime.toISOString() }, { merge: true });
                 setRouteId(null);
             }
