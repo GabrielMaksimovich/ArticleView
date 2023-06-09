@@ -11,7 +11,7 @@
   self.moduleName = @"ArticleView";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
-  [GMSServices provideAPIKey:@"AIzaSyCAvexlMX-ZD_jiGPUjQV-u7qfFoPK9vNk"];
+  [GMSServices provideAPIKey:@"AIzaSyA8MaCkBYt1zdFYWbo-e-hud_IoF-c_W4I"];
   self.initialProps = @{};
 
     if ([FIRApp defaultApp] == nil) {  // Add this line
