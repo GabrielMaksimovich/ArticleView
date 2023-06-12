@@ -1,8 +1,8 @@
 #import "AppDelegate.h"
 #import <UserNotifications/UNUserNotificationCenter.h>
 #import <React/RCTBundleURLProvider.h>
-#import <GoogleMaps/GoogleMaps.h>
-@import Firebase;
+// #import <GoogleMaps/GoogleMaps.h>
+
 
 @implementation AppDelegate
 
@@ -11,12 +11,8 @@
   self.moduleName = @"ArticleView";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
-  [GMSServices provideAPIKey:@"AIzaSyA8MaCkBYt1zdFYWbo-e-hud_IoF-c_W4I"];
+//   [GMSServices provideAPIKey:@"AIzaSyA8MaCkBYt1zdFYWbo-e-hud_IoF-c_W4I"];
   self.initialProps = @{};
-
-    if ([FIRApp defaultApp] == nil) {  // Add this line
-        [FIRApp configure];  // And this line
-      }
 
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
