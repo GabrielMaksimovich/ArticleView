@@ -18,6 +18,7 @@ import Media from "./src/screens/Media";
 import {PictureProvider} from "./PictureContext";
 import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
 import Map from "./src/screens/Map";
+import GoogleSearchScreen from "./src/screens/GoogleSearchScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -51,6 +52,7 @@ const App = () => {
                             <Drawer.Screen name="Media" component={Media} />
                             <Drawer.Screen name="Camera" component={CameraStackNavigator} />
                             <Drawer.Screen name="Map Tracker" component={Map} />
+                            <Drawer.Screen name="Search" component={GoogleSearchScreen} />
                         </Drawer.Navigator>
                     </NavigationContainer>
                 </PictureProvider>
