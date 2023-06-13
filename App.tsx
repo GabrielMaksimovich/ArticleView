@@ -17,6 +17,7 @@ import Bubble from "./src/screens/Bubble";
 import Media from "./src/screens/Media";
 import {PictureProvider} from "./PictureContext";
 import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
+import GoogleSearch from "./src/screens/GoogleSearch";
 
 const Drawer = createDrawerNavigator();
 
@@ -49,6 +50,7 @@ const App = () => {
                             <Drawer.Screen name="Bubble" component={Bubble} />
                             <Drawer.Screen name="Media" component={Media} />
                             <Drawer.Screen name="Camera" component={CameraStackNavigator} />
+                            <Drawer.Screen name="Google" component={GoogleSearch} />
                         </Drawer.Navigator>
                     </NavigationContainer>
                 </PictureProvider>
