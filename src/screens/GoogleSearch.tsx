@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { TextInput, Button, Alert } from 'react-native';
+import { TextInput, Alert } from 'react-native';
 import { InAppBrowser } from 'react-native-inappbrowser-reborn';
 import {Block} from "../components/SimpleComponents/Block";
+import {Button} from "../components/SimpleComponents/Button";
+import {Text} from "../components/SimpleComponents/Text";
 
 const GoogleSearchScreen = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -56,12 +58,31 @@ const GoogleSearchScreen = () => {
     };
 
     return (
-        <Block flex={1}>
+        <Block
+            flex={1}
+            alignItems={'center'}
+            justifyContent={'center'}
+        >
             <TextInput
                 value={searchTerm}
                 onChangeText={setSearchTerm}
             />
-            <Button title="Search Google" onPress={searchGoogle} />
+            <Button
+                alignItems={'center'}
+                justifyContent={'center'}
+                onPress={searchGoogle}
+                bg={'grey'}
+                width={'200px'}
+                height={'50px'}
+                borderRadius={'10px'}
+                paddingHorizontal={5}
+            >
+                <Text
+                    color={'white'}
+                >
+                    Search Google
+                </Text>
+            </Button>
         </Block>
     );
 };
