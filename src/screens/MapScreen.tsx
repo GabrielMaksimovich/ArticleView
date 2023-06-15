@@ -1,11 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-
+import realm from '../models/Route';
 import {Alert, PermissionsAndroid, Platform} from 'react-native';
 import {Block} from "../components/SimpleComponents/Block";
 import {Button} from "../components/SimpleComponents/Button";
 import {Text} from "../components/SimpleComponents/Text";
+
+interface Location {
+    latitude: number;
+    longitude: number;
+    timestamp: number;
+}
+
+interface Route {
+    id: string;
+    startTime: Date;
+    endTime?: Date;
+    locations: Location[];
+}
 
 const MapTracker: React.FC = () => {
     const [route, setRoute] = useState<LatLng[]>([]);
@@ -47,37 +60,25 @@ const MapTracker: React.FC = () => {
         return true;
     };
 
-    const addToFirestore = async (newRouteId: string, latitude: number, longitude: number, timestamp: number) => {
-        // Add the location point to the current route's subcollection
-        if (timestamp - lastFirestoreUpdate >= 10000) {
-            await firestore()
-                .collection('routes')
-                .doc(newRouteId)
-                .collection('locationPoints')
-                .add({ latitude, longitude, timestamp });
-            setLastFirestoreUpdate(timestamp);
-        }
-    }
-
     const startTracking = async () => {
         if (!(await requestLocationPermission())) {
             return;
         }
 
         // Create a new document ID for the current route
-        const newRouteId = firestore().collection('routes').doc().id;
-        setRouteId(newRouteId);
+        const newRouteId = Math.random().toString(36).substring(2, 15); // You can generate your own unique ID here.
 
         const startTime = new Date();
-        await firestore()
-            .collection('routes')
-            .doc(newRouteId)
-            .set({ startTime: startTime.toISOString() });
+        realm.write(() => {
+            const newRoute = realm.create('Route', {
+                id: newRouteId,
+                startTime: startTime,
+            });
+        });
 
         const id = Geolocation.watchPosition(
             async (position) => {
                 const { latitude, longitude } = position.coords;
-                const timestamp = Date.now();
 
                 setRoute((currentRoute) => {
                     const newRoute = [...currentRoute, { latitude, longitude }];
@@ -87,8 +88,6 @@ const MapTracker: React.FC = () => {
                     }
                     return newRoute;
                 });
-
-                await addToFirestore(newRouteId, latitude, longitude, timestamp);
 
                 // Cancel the previous motionless timeout
                 if (motionlessTimeout) {
@@ -112,6 +111,16 @@ const MapTracker: React.FC = () => {
         Alert.alert('Tracking is now active.');
     };
 
+    const addToRealm = async (newRouteId: string, latitude: number, longitude: number, timestamp: number) => {
+        if (timestamp - lastFirestoreUpdate >= 10000) {
+            realm.write(() => {
+                const route = realm.objects<Route>('Route').filtered(`id == "${newRouteId}"`)[0];
+                route.locations.push({ latitude, longitude, timestamp });
+            });
+            setLastFirestoreUpdate(timestamp);
+        }
+    };
+
 
     const stopTracking = async (idToStop?: string) => {
         if (watchId !== null) {
@@ -121,10 +130,10 @@ const MapTracker: React.FC = () => {
             const id = idToStop ?? routeId;
             if (id !== null) {
                 const endTime = new Date();
-                await firestore()
-                    .collection('routes')
-                    .doc(id)
-                    .set({ endTime: endTime.toISOString() }, { merge: true });
+                realm.write(() => {
+                    const route = realm.objects<Route>('Route').filtered(`id == "${id}"`)[0];
+                    route.endTime = endTime;
+                });
                 setRouteId(null);
             }
         }
