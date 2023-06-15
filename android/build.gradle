@@ -24,3 +24,13 @@ buildscript {
         classpath('com.google.gms:google-services:4.3.15')
     }
 }
+
+subprojects {
+    configurations.configureEach {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+        }
+    }
+}
