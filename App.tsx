@@ -19,7 +19,6 @@ import {PictureProvider} from "./PictureContext";
 import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
 import GoogleSearch from "./src/screens/GoogleSearch";
 import { RealmProvider } from './src/contexts/RealmContext';
-import RealmExampleScreen from "./src/screens/Realm";
 
 const Drawer = createDrawerNavigator();
 
@@ -54,7 +53,6 @@ const App = () => {
                                 <Drawer.Screen name="Media" component={Media} />
                                 <Drawer.Screen name="Camera" component={CameraStackNavigator} />
                                 <Drawer.Screen name="Google" component={GoogleSearch} />
-                                <Drawer.Screen name="Realm Example" component={RealmExampleScreen} />
                             </Drawer.Navigator>
                         </NavigationContainer>
                     </PictureProvider>
