@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import realm from '../../models/Route';
-import {Alert, PermissionsAndroid, Platform, Modal, FlatList} from 'react-native';
+import {Alert, PermissionsAndroid, Platform} from 'react-native';
 import {Block} from "../../components/SimpleComponents/Block";
-import {Button} from "../../components/SimpleComponents/Button";
-import {Text} from "../../components/SimpleComponents/Text";
 import {Route} from "../../types/Route";
+import {MapButtons} from "./MapButtons";
+import {RouteModal} from "./RouteModal";
 
 const MapTracker: React.FC = () => {
     const [route, setRoute] = useState<LatLng[]>([]);
@@ -161,71 +161,16 @@ const MapTracker: React.FC = () => {
             >
                 <Polyline coordinates={route} />
             </MapView>
-            <Block
-                flexDirection={'row'}
-                justifyContent={'space-between'}
-                alignItems={'flex-end'}
-                paddingHorizontal={20}
-                paddingVertical={20}
-            >
-                <Button
-                    onPress={startTracking}
-                    paddingVertical={10}
-                    paddingHorizontal={10}
-                    borderRadius={'25px'}
-                    bg={'rgba(0, 0, 0, 0.5)'}
-                >
-                    <Text color={'#fff'}>Start Tracking</Text>
-                </Button>
-                <Button
-                    onPress={() => setModalVisible(true)}
-                    paddingVertical={10}
-                    paddingHorizontal={10}
-                    borderRadius={'25px'}
-                    bg={'rgba(0, 0, 0, 0.5)'}
-                >
-                    <Text color={'#fff'}>Show Routes</Text>
-                </Button>
-                <Button
-                    onPress={stopTracking}
-                    paddingVertical={10}
-                    paddingHorizontal={10}
-                    borderRadius={'25px'}
-                    bg={'rgba(0, 0, 0, 0.5)'}
-                >
-                    <Text color={'#fff'}>Stop Tracking</Text>
-                </Button>
-            </Block>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <Block flex={1} justifyContent={'center'} alignItems={'center'}>
-                    <Block
-                        bg={'white'}
-                        marginVertical={90}
-                        paddingVertical={20}
-                        paddingHorizontal={20}
-                        borderRadius={'10px'}
-                    >
-                        <FlatList
-                            data={routes}
-                            keyExtractor={(item) => item.id}
-                            renderItem={({item}) => <Text>{item.startTime.toISOString()}</Text>} // Render route data however you want
-                        />
-                        <Button
-                            onPress={() => setModalVisible(false)}
-
-                        >
-                            <Text>Close</Text>
-                        </Button>
-                    </Block>
-                </Block>
-            </Modal>
+            <MapButtons
+                onStartTracking={startTracking}
+                onStopTracking={stopTracking}
+                onShowRoutes={() => setModalVisible(true)}
+            />
+            <RouteModal
+                modalVisible={modalVisible}
+                onClose={() => setModalVisible(false)}
+                routes={routes}
+            />
         </Block>
     );
 
