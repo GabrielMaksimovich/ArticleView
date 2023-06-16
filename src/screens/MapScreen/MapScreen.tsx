@@ -1,25 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import realm from '../models/Route';
-import {Alert, PermissionsAndroid, Platform} from 'react-native';
-import {Modal, FlatList, View} from 'react-native';
-import {Block} from "../components/SimpleComponents/Block";
-import {Button} from "../components/SimpleComponents/Button";
-import {Text} from "../components/SimpleComponents/Text";
-
-interface Location {
-    latitude: number;
-    longitude: number;
-    timestamp: number;
-}
-
-interface Route {
-    id: string;
-    startTime: Date;
-    endTime?: Date;
-    locations: Location[];
-}
+import realm from '../../models/Route';
+import {Alert, PermissionsAndroid, Platform, Modal, FlatList} from 'react-native';
+import {Block} from "../../components/SimpleComponents/Block";
+import {Button} from "../../components/SimpleComponents/Button";
+import {Text} from "../../components/SimpleComponents/Text";
+import {Route} from "../../types/Route";
 
 const MapTracker: React.FC = () => {
     const [route, setRoute] = useState<LatLng[]>([]);
@@ -139,7 +126,6 @@ const MapTracker: React.FC = () => {
         }
     };
 
-
     const stopTracking = async (idToStop?: string) => {
         if (watchId !== null) {
             Geolocation.clearWatch(watchId);
@@ -233,6 +219,7 @@ const MapTracker: React.FC = () => {
                         />
                         <Button
                             onPress={() => setModalVisible(false)}
+
                         >
                             <Text>Close</Text>
                         </Button>

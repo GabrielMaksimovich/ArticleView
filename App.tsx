@@ -18,7 +18,7 @@ import Media from "./src/screens/Media";
 import {PictureProvider} from "./PictureContext";
 import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
 import GoogleSearch from "./src/screens/GoogleSearch";
-import MapScreen from "./src/screens/MapScreen";
+import MapScreen from "./src/screens/MapScreen/MapScreen";
 
 const Drawer = createDrawerNavigator();
 
