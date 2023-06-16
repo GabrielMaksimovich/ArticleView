@@ -3,6 +3,7 @@ import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import realm from '../models/Route';
 import {Alert, PermissionsAndroid, Platform} from 'react-native';
+import {Modal, FlatList, View} from 'react-native';
 import {Block} from "../components/SimpleComponents/Block";
 import {Button} from "../components/SimpleComponents/Button";
 import {Text} from "../components/SimpleComponents/Text";
@@ -26,6 +27,12 @@ const MapTracker: React.FC = () => {
     const [routeId, setRouteId] = useState<string | null>(null);
     const [lastFirestoreUpdate, setLastFirestoreUpdate] = useState<number>(Date.now());
     const [motionlessTimeout, setMotionlessTimeout] = useState<number | null>(null);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [routes, setRoutes] = useState<Route[]>([]);
+
+    useEffect(() => {
+        setRoutes(getRoutes());
+    }, []);
 
     useEffect(() => {
         return () => {
@@ -60,6 +67,12 @@ const MapTracker: React.FC = () => {
         return true;
     };
 
+    const getRoutes = (): Route[] => {
+        const routes = realm.objects<Route>('Route');
+
+        return Array.from(routes);
+    };
+
     const startTracking = async () => {
         if (!(await requestLocationPermission())) {
             return;
@@ -79,11 +92,15 @@ const MapTracker: React.FC = () => {
         const id = Geolocation.watchPosition(
             async (position) => {
                 const { latitude, longitude } = position.coords;
+                const timestamp = position.timestamp;
+
+                await addToRealm(newRouteId, latitude, longitude, timestamp);
 
                 setRoute((currentRoute) => {
                     const newRoute = [...currentRoute, { latitude, longitude }];
+                    const MAX_ROUTE_LENGTH = 1000;
                     // Limit the length of the local route to prevent memory issues
-                    while (newRoute.length > 1000) {
+                    while (newRoute.length > MAX_ROUTE_LENGTH) {
                         newRoute.shift();
                     }
                     return newRoute;
@@ -95,10 +112,11 @@ const MapTracker: React.FC = () => {
                 }
 
                 // Set a new motionless timeout
+                const MOTIONLESS_TIMEOUT_DURATION = 5 * 60 * 1000;
                 const timeoutId = setTimeout(() => {
                     Alert.alert('You have been motionless for 5 minutes. Stopping tracking.');
                     stopTracking(newRouteId);
-                }, 5 * 60 * 1000);
+                }, MOTIONLESS_TIMEOUT_DURATION);
 
                 setMotionlessTimeout(timeoutId);
             },
@@ -174,6 +192,15 @@ const MapTracker: React.FC = () => {
                     <Text color={'#fff'}>Start Tracking</Text>
                 </Button>
                 <Button
+                    onPress={() => setModalVisible(true)}
+                    paddingVertical={10}
+                    paddingHorizontal={10}
+                    borderRadius={'25px'}
+                    bg={'rgba(0, 0, 0, 0.5)'}
+                >
+                    <Text color={'#fff'}>Show Routes</Text>
+                </Button>
+                <Button
                     onPress={stopTracking}
                     paddingVertical={10}
                     paddingHorizontal={10}
@@ -183,8 +210,38 @@ const MapTracker: React.FC = () => {
                     <Text color={'#fff'}>Stop Tracking</Text>
                 </Button>
             </Block>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <Block flex={1} justifyContent={'center'} alignItems={'center'}>
+                    <Block
+                        bg={'white'}
+                        marginVertical={90}
+                        paddingVertical={20}
+                        paddingHorizontal={20}
+                        borderRadius={'10px'}
+                    >
+                        <FlatList
+                            data={routes}
+                            keyExtractor={(item) => item.id}
+                            renderItem={({item}) => <Text>{item.startTime.toISOString()}</Text>} // Render route data however you want
+                        />
+                        <Button
+                            onPress={() => setModalVisible(false)}
+                        >
+                            <Text>Close</Text>
+                        </Button>
+                    </Block>
+                </Block>
+            </Modal>
         </Block>
     );
+
 };
 
 export default MapTracker;
