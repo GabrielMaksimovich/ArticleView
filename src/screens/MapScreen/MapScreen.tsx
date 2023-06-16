@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
-import Geolocation from '@react-native-community/geolocation';
 import realm from '../../models/Route';
 import {Alert, PermissionsAndroid, Platform} from 'react-native';
 import {Block} from "../../components/SimpleComponents/Block";
 import {Route} from "../../types/Route";
 import {MapButtons} from "./MapButtons";
 import {RouteModal} from "./RouteModal";
+import useGeoLocation from "../../hooks/useGeolocation";
 
 const MapTracker: React.FC = () => {
     const [route, setRoute] = useState<LatLng[]>([]);
@@ -16,6 +16,7 @@ const MapTracker: React.FC = () => {
     const [motionlessTimeout, setMotionlessTimeout] = useState<number | null>(null);
     const [modalVisible, setModalVisible] = useState(false);
     const [routes, setRoutes] = useState<Route[]>([]);
+    const location = useGeoLocation();
 
     useEffect(() => {
         setRoutes(getRoutes());
@@ -70,48 +71,44 @@ const MapTracker: React.FC = () => {
 
         const startTime = new Date();
         realm.write(() => {
-            const newRoute = realm.create('Route', {
+            realm.create('Route', {
                 id: newRouteId,
                 startTime: startTime,
             });
         });
 
-        const id = Geolocation.watchPosition(
-            async (position) => {
-                const { latitude, longitude } = position.coords;
-                const timestamp = position.timestamp;
+        if (location) {
+            const { latitude, longitude, timestamp } = location;
 
-                await addToRealm(newRouteId, latitude, longitude, timestamp);
+            await addToRealm(newRouteId, latitude, longitude, timestamp);
 
-                setRoute((currentRoute) => {
-                    const newRoute = [...currentRoute, { latitude, longitude }];
-                    const MAX_ROUTE_LENGTH = 1000;
-                    // Limit the length of the local route to prevent memory issues
-                    while (newRoute.length > MAX_ROUTE_LENGTH) {
-                        newRoute.shift();
-                    }
-                    return newRoute;
-                });
-
-                // Cancel the previous motionless timeout
-                if (motionlessTimeout) {
-                    clearTimeout(motionlessTimeout);
+            setRoute((currentRoute) => {
+                const newRoute = [...currentRoute, { latitude, longitude }];
+                const MAX_ROUTE_LENGTH = 1000;
+                // Limit the length of the local route to prevent memory issues
+                while (newRoute.length > MAX_ROUTE_LENGTH) {
+                    newRoute.shift();
                 }
+                return newRoute;
+            });
 
-                // Set a new motionless timeout
-                const MOTIONLESS_TIMEOUT_DURATION = 5 * 60 * 1000;
-                const timeoutId = setTimeout(() => {
-                    Alert.alert('You have been motionless for 5 minutes. Stopping tracking.');
-                    stopTracking(newRouteId);
-                }, MOTIONLESS_TIMEOUT_DURATION);
+            // Cancel the previous motionless timeout
+            if (motionlessTimeout) {
+                clearTimeout(motionlessTimeout);
+            }
 
-                setMotionlessTimeout(timeoutId);
-            },
-            (error) => console.log(error),
-            { distanceFilter: 10, interval: 1000, fastestInterval: 500 }
-        );
+            // Set a new motionless timeout
+            const MOTIONLESS_TIMEOUT_DURATION = 5 * 60 * 1000;
+            const timeoutId = setTimeout(() => {
+                Alert.alert('You have been motionless for 5 minutes. Stopping tracking.');
+                stopTracking(newRouteId);
+            }, MOTIONLESS_TIMEOUT_DURATION);
 
-        setWatchId(id);
+            setMotionlessTimeout(timeoutId);
+        } else {
+            console.log('Location data is null');
+            return;
+        }
 
         Alert.alert('Tracking is now active.');
     };
@@ -128,7 +125,6 @@ const MapTracker: React.FC = () => {
 
     const stopTracking = async (idToStop?: string) => {
         if (watchId !== null) {
-            Geolocation.clearWatch(watchId);
             setWatchId(null);
 
             const id = idToStop ?? routeId;
