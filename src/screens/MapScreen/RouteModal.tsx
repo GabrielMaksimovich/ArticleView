@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Modal, FlatList} from "react-native";
+import {Modal, FlatList, TouchableOpacity} from "react-native";
 import {Route} from "../../types/Route";
 import {Block} from "../../components/SimpleComponents/Block";
 import {Button} from "../../components/SimpleComponents/Button";
@@ -11,9 +11,17 @@ interface RouteModalProps {
     modalVisible: boolean;
     onClose: () => void;
     routes: Route[];
+    onRouteClick: (selectedRoute: Route) => void;
+    onRouteRemove: (routeId: string) => void;
 }
 
-export const RouteModal: React.FC<RouteModalProps> = ({ modalVisible, onClose, routes }) => {
+export const RouteModal: React.FC<RouteModalProps> = ({
+    modalVisible,
+    onClose,
+    routes,
+    onRouteClick,
+    onRouteRemove,
+    }) => {
     return (
         <Modal
             animationType="slide"
@@ -32,7 +40,16 @@ export const RouteModal: React.FC<RouteModalProps> = ({ modalVisible, onClose, r
                     <FlatList
                         data={routes}
                         keyExtractor={(item) => item.id}
-                        renderItem={({item}) => <Text>{item.startTime.toISOString()}</Text>} // Render route data however you want
+                        renderItem={({ item }) => (
+                            <Block flexDirection="row" alignItems="center">
+                                <TouchableOpacity onPress={() => onRouteClick(item)}>
+                                    <Text>{item.startTime.toISOString()}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => onRouteRemove(item.id)}>
+                                    <Text style={{ color: 'red', marginLeft: 10 }}>Remove</Text>
+                                </TouchableOpacity>
+                            </Block>
+                        )}
                     />
                     <Button onPress={onClose}>
                         <Text>Close</Text>

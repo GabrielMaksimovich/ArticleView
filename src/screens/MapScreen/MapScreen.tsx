@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import MapView, {LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {LatLng, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import realm from '../../models/Route';
 import {Alert, PermissionsAndroid, Platform} from 'react-native';
@@ -10,7 +10,6 @@ import {RouteModal} from "./RouteModal";
 import useGeoLocation from "../../hooks/useGeolocation";
 
 const MapTracker: React.FC = () => {
-    const [route, setRoute] = useState<LatLng[]>([]);
     const [watchId, setWatchId] = useState<number | null>(null);
     const [routeId, setRouteId] = useState<string | null>(null);
     const [lastFirestoreUpdate, setLastFirestoreUpdate] = useState<number>(Date.now());
@@ -18,16 +17,7 @@ const MapTracker: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [routes, setRoutes] = useState<Route[]>([]);
     const location = useGeoLocation();
-    const [coordinates] = useState([
-        {
-            latitude: 48.8587741,
-            longitude: 2.2069771,
-        },
-        {
-            latitude: 48.8323785,
-            longitude: 2.3361663,
-        },
-    ]);
+    const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
 
     useEffect(() => {
         setRoutes(getRoutes());
@@ -93,16 +83,6 @@ const MapTracker: React.FC = () => {
 
             await addToRealm(newRouteId, latitude, longitude, timestamp);
 
-            setRoute((currentRoute) => {
-                const newRoute = [...currentRoute, { latitude, longitude }];
-                const MAX_ROUTE_LENGTH = 1000;
-                // Limit the length of the local route to prevent memory issues
-                while (newRoute.length > MAX_ROUTE_LENGTH) {
-                    newRoute.shift();
-                }
-                return newRoute;
-            });
-
             // Cancel the previous motionless timeout
             if (motionlessTimeout) {
                 clearTimeout(motionlessTimeout);
@@ -158,6 +138,19 @@ const MapTracker: React.FC = () => {
 
     const GOOGLE_API_KEY = 'AIzaSyA8MaCkBYt1zdFYWbo-e-hud_IoF-c_W4I';
 
+    const handleRouteClick = (route: Route) => {
+        setSelectedRoute(route);
+        setModalVisible(false); // Close the modal after selecting a route
+    };
+
+    const removeRoute = (routeId: string) => {
+        realm.write(() => {
+            const route = realm.objects<Route>('Route').filtered(`id == "${routeId}"`)[0];
+            realm.delete(route);
+        });
+        setRoutes(getRoutes());
+    };
+
     return (
         <Block flex={1}>
             <MapView
@@ -168,13 +161,41 @@ const MapTracker: React.FC = () => {
                 showsUserLocation={true}
                 zoomControlEnabled={true}
             >
-                <MapViewDirections
-                    origin={coordinates[0]}
-                    destination={coordinates[1]}
-                    apikey={GOOGLE_API_KEY} // insert your API Key here
-                    strokeWidth={4}
-                    strokeColor="#111111"
-                />
+                {selectedRoute && selectedRoute.locations.length > 0 && (
+                    <>
+                        {selectedRoute.locations[0] && (
+                            <Marker
+                                coordinate={{
+                                    latitude: selectedRoute.locations[0].latitude,
+                                    longitude: selectedRoute.locations[0].longitude,
+                                }}
+                            />
+                        )}
+                        {selectedRoute.locations[selectedRoute.locations.length - 1] && (
+                            <Marker
+                                coordinate={{
+                                    latitude: selectedRoute.locations[selectedRoute.locations.length - 1].latitude,
+                                    longitude: selectedRoute.locations[selectedRoute.locations.length - 1].longitude,
+                                }}
+                            />
+                        )}
+                        {selectedRoute.locations[0] && selectedRoute.locations[selectedRoute.locations.length - 1] && (
+                            <MapViewDirections
+                                origin={{
+                                    latitude: selectedRoute.locations[0].latitude,
+                                    longitude: selectedRoute.locations[0].longitude,
+                                }}
+                                destination={{
+                                    latitude: selectedRoute.locations[selectedRoute.locations.length - 1].latitude,
+                                    longitude: selectedRoute.locations[selectedRoute.locations.length - 1].longitude,
+                                }}
+                                apikey={GOOGLE_API_KEY}
+                                strokeWidth={4}
+                                strokeColor="#111111"
+                            />
+                        )}
+                    </>
+                )}
             </MapView>
             <MapButtons
                 onStartTracking={startTracking}
@@ -185,6 +206,8 @@ const MapTracker: React.FC = () => {
                 modalVisible={modalVisible}
                 onClose={() => setModalVisible(false)}
                 routes={routes}
+                onRouteClick={handleRouteClick}
+                onRouteRemove={removeRoute}
             />
         </Block>
     );
