@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import MapView, {Polyline, LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {LatLng, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
 import realm from '../../models/Route';
 import {Alert, PermissionsAndroid, Platform} from 'react-native';
 import {Block} from "../../components/SimpleComponents/Block";
@@ -17,6 +18,16 @@ const MapTracker: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [routes, setRoutes] = useState<Route[]>([]);
     const location = useGeoLocation();
+    const [coordinates] = useState([
+        {
+            latitude: 48.8587741,
+            longitude: 2.2069771,
+        },
+        {
+            latitude: 48.8323785,
+            longitude: 2.3361663,
+        },
+    ]);
 
     useEffect(() => {
         setRoutes(getRoutes());
@@ -145,6 +156,8 @@ const MapTracker: React.FC = () => {
         Alert.alert('Tracking has been stopped.');
     };
 
+    const GOOGLE_API_KEY = 'AIzaSyA8MaCkBYt1zdFYWbo-e-hud_IoF-c_W4I';
+
     return (
         <Block flex={1}>
             <MapView
@@ -155,7 +168,13 @@ const MapTracker: React.FC = () => {
                 showsUserLocation={true}
                 zoomControlEnabled={true}
             >
-                <Polyline coordinates={route} />
+                <MapViewDirections
+                    origin={coordinates[0]}
+                    destination={coordinates[1]}
+                    apikey={GOOGLE_API_KEY} // insert your API Key here
+                    strokeWidth={4}
+                    strokeColor="#111111"
+                />
             </MapView>
             <MapButtons
                 onStartTracking={startTracking}
