@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import MapView, {LatLng, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import realm from '../../models/Route';
-import {Alert, PermissionsAndroid, Platform} from 'react-native';
+import {Alert} from 'react-native';
 import {Block} from "../../components/SimpleComponents/Block";
 import {Route} from "../../types/Route";
 import {MapButtons} from "./MapButtons";
 import {RouteModal} from "./RouteModal";
 import useGeoLocation from "../../hooks/useGeolocation";
 import { requestLocationPermission } from './permissions';
+
+const GOOGLE_API_KEY = 'AIzaSyDTOS504_TSnnMdC4feKySyXvxpDYg_Gng';
+const MOTIONLESS_TIMEOUT_DURATION = 5 * 60 * 1000;
 
 const MapTracker: React.FC = () => {
     const [watchId, setWatchId] = useState<number | null>(null);
@@ -39,7 +42,7 @@ const MapTracker: React.FC = () => {
     };
 
     const startTracking = async () => {
-        const hasLocationPermission = await requestLocationPermission();
+        const hasLocationPermission: boolean = await requestLocationPermission();
         if (!hasLocationPermission) {
             return;
         }
@@ -66,7 +69,6 @@ const MapTracker: React.FC = () => {
             }
 
             // Set a new motionless timeout
-            const MOTIONLESS_TIMEOUT_DURATION = 5 * 60 * 1000;
             const timeoutId = setTimeout(() => {
                 Alert.alert('You have been motionless for 5 minutes. Stopping tracking.');
                 stopTracking(newRouteId);
@@ -113,11 +115,9 @@ const MapTracker: React.FC = () => {
         Alert.alert('Tracking has been stopped.');
     };
 
-    const GOOGLE_API_KEY = 'AIzaSyA8MaCkBYt1zdFYWbo-e-hud_IoF-c_W4I';
-
     const handleRouteClick = (route: Route) => {
         setSelectedRoute(route);
-        setModalVisible(false); // Close the modal after selecting a route
+        setModalVisible(false);
     };
 
     const removeRoute = (routeId: string) => {
