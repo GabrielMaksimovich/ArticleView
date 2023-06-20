@@ -8,6 +8,7 @@ import {Route} from "../../types/Route";
 import {MapButtons} from "./MapButtons";
 import {RouteModal} from "./RouteModal";
 import useGeoLocation from "../../hooks/useGeolocation";
+import { requestLocationPermission } from './permissions';
 
 const MapTracker: React.FC = () => {
     const [watchId, setWatchId] = useState<number | null>(null);
@@ -31,31 +32,6 @@ const MapTracker: React.FC = () => {
         };
     }, [motionlessTimeout]);
 
-    const requestLocationPermission = async () => {
-        if (Platform.OS === 'android') {
-            try {
-                const granted = await PermissionsAndroid.request(
-                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                    {
-                        title: 'Location Permission',
-                        message: 'This App needs access to your location',
-                        buttonNeutral: 'Ask Me Later',
-                        buttonNegative: 'Cancel',
-                        buttonPositive: 'OK',
-                    },
-                );
-                if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-                    console.log('Location permission denied');
-                    return false;
-                }
-            } catch (err) {
-                console.warn(err);
-                return false;
-            }
-        }
-        return true;
-    };
-
     const getRoutes = (): Route[] => {
         const routes = realm.objects<Route>('Route');
 
@@ -63,7 +39,8 @@ const MapTracker: React.FC = () => {
     };
 
     const startTracking = async () => {
-        if (!(await requestLocationPermission())) {
+        const hasLocationPermission = await requestLocationPermission();
+        if (!hasLocationPermission) {
             return;
         }
 
