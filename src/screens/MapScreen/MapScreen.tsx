@@ -130,6 +130,7 @@ const MapTracker: React.FC = () => {
             const route = realm.objects<Route>('Route').filtered(`id == "${routeId}"`)[0];
             realm.delete(route);
         });
+        setSelectedRoute(null);
         setRoutes(getRoutes());
     };
 
