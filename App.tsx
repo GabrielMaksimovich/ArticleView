@@ -19,8 +19,10 @@ import {PictureProvider} from "./PictureContext";
 import CameraStackNavigator from "./src/screens/navigation/CameraStackNavigator";
 import GoogleSearch from "./src/screens/GoogleSearch";
 import MapScreen from "./src/screens/MapScreen/MapScreen";
+import {enableLatestRenderer} from 'react-native-maps';
 
 const Drawer = createDrawerNavigator();
+enableLatestRenderer();
 
 const App = () => {
     const [showSplash, setShowSplash] = useState(true);

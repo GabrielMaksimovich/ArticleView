@@ -116,6 +116,8 @@ const MapTracker: React.FC = () => {
 
         Alert.alert('Tracking has been stopped.');
         setIsTracking(false);
+
+        setRoutes(getRoutes());
     };
 
     const handleRouteClick = (route: Route) => {
