@@ -22,6 +22,7 @@ const MapTracker: React.FC = () => {
     const [routes, setRoutes] = useState<Route[]>([]);
     const location = useGeoLocation();
     const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
+    const [isTracking, setIsTracking] = useState(false);
 
     useEffect(() => {
         setRoutes(getRoutes());
@@ -81,6 +82,7 @@ const MapTracker: React.FC = () => {
         }
 
         Alert.alert('Tracking is now active.');
+        setIsTracking(true);
     };
 
     const addToRealm = async (newRouteId: string, latitude: number, longitude: number, timestamp: number) => {
@@ -113,6 +115,7 @@ const MapTracker: React.FC = () => {
         }
 
         Alert.alert('Tracking has been stopped.');
+        setIsTracking(false);
     };
 
     const handleRouteClick = (route: Route) => {
@@ -169,6 +172,12 @@ const MapTracker: React.FC = () => {
                                 apikey={GOOGLE_API_KEY}
                                 strokeWidth={4}
                                 strokeColor="#111111"
+                                onReady={(result) => {
+                                    console.log('Directions Result:', result);
+                                }}
+                                onError={(errorMessage) => {
+                                    console.log('Directions Error:', errorMessage);
+                                }}
                             />
                         )}
                     </>
@@ -178,6 +187,7 @@ const MapTracker: React.FC = () => {
                 onStartTracking={startTracking}
                 onStopTracking={stopTracking}
                 onShowRoutes={() => setModalVisible(true)}
+                isTracking={isTracking}
             />
             <RouteModal
                 modalVisible={modalVisible}
@@ -188,7 +198,6 @@ const MapTracker: React.FC = () => {
             />
         </Block>
     );
-
 };
 
 export default MapTracker;

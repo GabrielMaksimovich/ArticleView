@@ -52,9 +52,9 @@ const StyledButton = styled.TouchableOpacity<ButtonInterface>`
 `;
 
 let disabled = false;
-export const Button: FC<ButtonInterface> = ({ children, onPress, ...rest }) => {
+export const Button: FC<ButtonInterface  & { isDisabled?: boolean }> = ({ children, onPress, isDisabled, ...rest }) => {
     const callPress = () => {
-        if (!disabled) {
+        if (!disabled && !isDisabled) {
             onPress();
             disabled = true;
         }
@@ -63,7 +63,7 @@ export const Button: FC<ButtonInterface> = ({ children, onPress, ...rest }) => {
         }, 500);
     };
     return (
-        <StyledButton onPress={callPress} {...rest}>
+        <StyledButton onPress={callPress} {...rest} style={isDisabled ? { opacity: 0.5 } : {}}>
             {children}
         </StyledButton>
     );

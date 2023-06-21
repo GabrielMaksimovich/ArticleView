@@ -7,9 +7,10 @@ interface MapButtonsProps {
     onStartTracking: () => void;
     onStopTracking: () => void;
     onShowRoutes: () => void;
+    isTracking: boolean;
 }
 
-export const MapButtons: React.FC<MapButtonsProps> = ({ onStartTracking, onStopTracking, onShowRoutes }) => {
+export const MapButtons: React.FC<MapButtonsProps> = ({ onStartTracking, onStopTracking, onShowRoutes, isTracking }) => {
     return (
         <Block
             flexDirection={'row'}
@@ -20,6 +21,7 @@ export const MapButtons: React.FC<MapButtonsProps> = ({ onStartTracking, onStopT
         >
             <Button
                 onPress={onStartTracking}
+                isDisabled={isTracking}
                 paddingVertical={10}
                 paddingHorizontal={10}
                 borderRadius={'25px'}
@@ -38,6 +40,7 @@ export const MapButtons: React.FC<MapButtonsProps> = ({ onStartTracking, onStopT
             </Button>
             <Button
                 onPress={onStopTracking}
+                isDisabled={!isTracking}
                 paddingVertical={10}
                 paddingHorizontal={10}
                 borderRadius={'25px'}
